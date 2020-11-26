@@ -314,7 +314,7 @@
                             </a>
                         </div>
                         <div class="right-header__button btn">
-                            <a title="Add place" href="{{route('business_signup')}}">
+                            <a title="Add place" href="{{route('place_addnew')}}">
                                 <i class="las la-plus la-24-white"></i>
                                 <span>{{__('Add Business')}}</span>
                             </a>

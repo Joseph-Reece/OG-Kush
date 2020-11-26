@@ -1,5 +1,5 @@
-(function ($) {
-    'use strict';
+// (function ($) {
+//     'use strict';
 
     $('input[type=text]').on('keydown', function (e) {
         if (e.which === 13) {
@@ -155,7 +155,7 @@
         $(this).parents('.field-3col').remove();
     });
 
-})(jQuery);
+// })(jQuery);
 
 /**
  * Google map

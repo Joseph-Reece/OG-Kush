@@ -2875,12 +2875,14 @@ a.place__comments__reply {
     left: 0;
     bottom: 0;
     top: 80px;
+    
     width: 30%;
     z-index: 9;
     border-top: 1px solid #eee;
     transition: all 0.3s; }
     .listing-main .listing-nav.on_scroll {
-      top: 0; }
+      top: 0;
+       }
     .listing-main .listing-nav.is_footer {
       position: relative; }
   .listing-main .listing-content {

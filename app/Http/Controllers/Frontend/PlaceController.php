@@ -26,7 +26,14 @@ class PlaceController extends Controller
     private $amenities;
     private $response;
 
-    public function __construct(Place $place, Country $country, City $city, Category $category, Amenities $amenities, Response $response)
+    public function __construct(
+        Place $place,
+        Country $country,
+        City $city,
+        Category $category,
+        Amenities $amenities,
+        Response $response
+        )
     {
         $this->place = $place;
         $this->country = $country;
@@ -79,6 +86,11 @@ class PlaceController extends Controller
             $similar_places->where('category', 'like', "%{$cat_id}%");
         endforeach;
         $similar_places = $similar_places->limit(4)->get();
+        // dd($place->gallery);
+        $addons = $place->gallery;
+        // $cover_image= $addons[0];
+        // dd($cover_image);
+
 
 //        return $categories;
 
@@ -97,13 +109,17 @@ class PlaceController extends Controller
             'place_types' => $place_types,
             'reviews' => $reviews,
             'review_score_avg' => $review_score_avg,
-            'similar_places' => $similar_places
+            'similar_places' => $similar_places,
+            // Mine
+            // 'cover_image' => $cover_image
         ]);
     }
 
     public function pageAddNew(Request $request, $id = null)
+    // public function pageAddNew(Request $request)
     {
         $place = Place::find($id);
+        
 
         if ($place) abort_if($place->user_id !== Auth::id(), 401);
 
@@ -112,6 +128,7 @@ class PlaceController extends Controller
         $countries = $this->country->getFullList();
         $cities = $this->city->getListByCountry($country_id);
         $categories = $this->category->getListAll(Category::TYPE_PLACE);
+        // dd($this->country);
 
         $place_types = Category::query()
             ->with('place_type')
@@ -137,6 +154,8 @@ class PlaceController extends Controller
         $request['slug'] = getSlug($request, 'name');
         $request['status'] = Place::STATUS_PENDING;
 
+        // dd($request->all());
+
         $rule_factory = RuleFactory::make([
             'user_id' => '',
             'country_id' => '',
@@ -163,6 +182,8 @@ class PlaceController extends Controller
             'thumb' => 'mimes:jpeg,jpg,png,gif|max:10000'
         ]);
         $data = $this->validate($request, $rule_factory);
+            // $data = $request->all();
+        dd($data);
 
         if ($request->hasFile('thumb')) {
             $thumb = $request->file('thumb');
@@ -173,8 +194,13 @@ class PlaceController extends Controller
         $model = new Place();
         $model->fill($data);
 
+
+
+
         if ($model->save()) {
-            return redirect(route('user_my_place'))->with('success', 'Create place success. Wating admin review and apporeve!');
+            return redirect(route('user_my_place'))->with('success', 'Create place success. Waiting admin review and apporeve!');
+        }else{
+            return redirect()->back()->with('success', 'OOOPs something mut have gone wrong');
         }
 
         return $request;
@@ -184,38 +210,42 @@ class PlaceController extends Controller
     {
         $request['slug'] = getSlug($request, 'name');
 
-        $rule_factory = RuleFactory::make([
-            'user_id' => '',
-            'country_id' => '',
-            'city_id' => '',
-            'category' => '',
-            'place_type' => '',
-            '%name%' => '',
-            'slug' => '',
-            '%description%' => '',
-            'price_range' => '',
-            'amenities' => '',
-            'address' => '',
-            'lat' => '',
-            'lng' => '',
-            'email' => '',
-            'phone_number' => '',
-            'website' => '',
-            'social' => '',
-            'opening_hour' => '',
-            'gallery' => '',
-            'video' => '',
-            'link_bookingcom' => '',
-            'status' => '',
-            'thumb' => 'mimes:jpeg,jpg,png,gif|max:10000'
-        ]);
-        $data = $this->validate($request, $rule_factory);
+       // $rule_factory = RuleFactory::make([
+        //     'user_id' => '',
+        //     'country_id' => '',
+        //     'city_id' => '',
+        //     'category' => '',
+        //     'place_type' => '',
+        //     '%name%' => '',
+        //     'slug' => '',
+        //     '%description%' => '',
+        //     'price_range' => '',
+        //     'amenities' => '',
+        //     'address' => '',
+        //     'lat' => '',
+        //     'lng' => '',
+        //     'email' => '',
+        //     'phone_number' => '',
+        //     'website' => '',
+        //     'social' => '',
+        //     'opening_hour' => '',
+        //     'gallery' => '',
+        //     'video' => '',
+        //     'link_bookingcom' => '',
+        //     'status' => '',
+        // 'thumb' => 'mimes:jpeg,jpg,png,gif|max:10000'
+        //]);
+        //$data = $this->validate($request, $rule_factory);
+
+           // dd($data);
+        $data = $request->all();
 
         if ($request->hasFile('thumb')) {
             $thumb = $request->file('thumb');
             $thumb_file = $this->uploadImage($thumb, '');
             $data['thumb'] = $thumb_file;
         }
+        // dd($thumb = $request->file('thumb'));
 
         $model = Place::find($request->place_id);
         $model->fill($data);

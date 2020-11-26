@@ -195,15 +195,9 @@
 
             <div class="container-fluid">
                 <nav class="nav nav-pills d-flex justify-content-center flex-column flex-sm-row" id="myTab" role="tablist">
-                    {{-- <li class="nav-item" role="presentation"> --}}
                         <a class="flex-sm-fill text-sm-center nav-link active " id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Dispensaries</a>
-                    {{-- </li> --}}
-                        {{-- <li class="nav-item" role="presentation"> --}}
-                    <a class="flex-sm-fill text-sm-center nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Delivery Driver</a>
-                    {{-- </li> --}}
-                    {{-- <li class="nav-item" role="presentation"> --}}
+                        <a class="flex-sm-fill text-sm-center nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Delivery Driver</a>
                         <a class="flex-sm-fill text-sm-center nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Doctor</a>
-                    {{-- </li> --}}
                 </nav>
 
                 <div class="tab-content" id="myTabContent">
@@ -478,7 +472,7 @@
                         </section>
                     </div>
                 </div>
-              </div>
+            </div>
 
         </div>
 

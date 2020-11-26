@@ -435,7 +435,7 @@
                     </section>
                 </div>
             </div>
-          </div>
+        </div>
 
     </div>
 </main>

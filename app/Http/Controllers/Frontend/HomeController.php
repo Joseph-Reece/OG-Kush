@@ -255,6 +255,7 @@ class HomeController extends Controller
         $filter_place_type = $request->place_type;
         $filter_city = $request->city;
 
+
         $categories = Category::query()
             ->where('type', Category::TYPE_PLACE)
             ->get();

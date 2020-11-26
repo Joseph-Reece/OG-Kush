@@ -115,6 +115,7 @@ class PlaceController extends Controller
             'seo_description' => ''
         ]);
         $data = $this->validate($request, $rule_factory);
+        //dd($data);
 
         if ($request->hasFile('thumb')) {
             $thumb = $request->file('thumb');
