@@ -43,7 +43,7 @@ $router->group([
     $router->get('/city/{slug}/{cat_slug}', 'CityController@detail')->name('city_category_detail');
 
     $router->get('/place/{slug}', 'PlaceController@detail')->name('place_detail');
-    $router->get('/new-place', 'PlaceController@pageAddNew')->name('place_addnew');
+    $router->get('/new-place', 'PlaceController@pageNew')->name('place_addnew');
     $router->get('/edit-place/{id}', 'PlaceController@pageAddNew')->name('place_edit')->middleware('auth');
     $router->post('/place', 'PlaceController@create')->name('place_create')->middleware('auth');
     $router->put('/place', 'PlaceController@update')->name('place_update')->middleware('auth');
@@ -95,6 +95,7 @@ $router->group([
         // My Routes
             $router->get('/busi', 'newcontroller@Business_signup')->name('business_signup');
             $router->get('/busiP', 'newcontroller@Business_package')->name('business_package');
+            $router->post('/busiData', 'newcontroller@savebusiness')->name('save_business');
 
 });
 // Route::view('/busi', 'frontend.New.business_signup');

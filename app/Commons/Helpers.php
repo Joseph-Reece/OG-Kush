@@ -218,9 +218,13 @@ function getSlug($request, $key)
         ->where('is_default', \App\Models\Language::IS_DEFAULT)
         ->select('code')
         ->first();
-    $language_code = $language_default->code;
-    $value = $request[$language_code][$key];
+
+        $language_code = $language_default->code;
+        $value = $request[$language_code][$key];
+        // dd($value);
+
     $slug = \Illuminate\Support\Str::slug($value);
+
     return $slug;
 }
 

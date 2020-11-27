@@ -196,23 +196,26 @@ color: #999;
                                         <a href="mailto:{{$place->email}}" rel="nofollow">{{$place->email}}</a>
                                     </li>
                                 @endif
-                                @foreach($place->social as $social)
+                                {{-- @foreach($place->social as $social)
                                     @if($social['name'] && $social['url'])
                                         <li>
                                             <i class="{{SOCIAL_LIST[$social['name']]['icon']}}"></i>
                                             <a href="{{SOCIAL_LIST[$social['name']]['base_url'] . $social['url']}}" title="{{$social['url']}}" rel="nofollow" target="_blank">{{$social['url']}}</a>
                                         </li>
                                     @endif
-                                @endforeach
+                                @endforeach --}}
                             </ul>
                         </div><!-- .place__box -->
                         @php
                                 $have_opening_hour = false;
-                                foreach ($place->opening_hour as $opening):
-                                    if ($opening['title'] && $opening['value']):
-                                    $have_opening_hour = true;
-                                    endif;
-                                endforeach
+                                if ($place->opening_hour):
+                                    foreach ($place->opening_hour as $opening):
+                                        if ($opening['title'] && $opening['value']):
+                                        $have_opening_hour = true;
+                                        endif;
+                                    endforeach;
+                                endif;
+
                             @endphp
                             @if($have_opening_hour)
                                 <div class="place__box place__box-open">

@@ -4,35 +4,31 @@
 
     <div class="tab-content">
 
-        <ul class="nav nav-tabs bar_tabs" role="tablist">
+        {{-- <ul class="nav nav-tabs bar_tabs" role="tablist">
             @foreach($languages as $index => $language)
                 <li class="nav-item">
                     <a class="nav-link {{$index !== 0 ?: "active"}}" id="home-tab" data-toggle="tab" href="#language_{{$language->code}}" role="tab" aria-controls="" aria-selected="">{{$language->name}}</a>
                 </li>
             @endforeach
-        </ul>
+        </ul> --}}
 
         <div id="genaral">
-            <p class="lead">Genaral</p>
+            <p class="lead">General</p>
 
             <div class="form-group row">
                 <div class="col-md-12">
                     <div class="tab-content">
-                        @foreach($languages as $index => $language)
-                            @php
-                                $trans = $place ? $place->translate($language->code) : [];
-                            @endphp
-                            <div class="tab-pane fade show {{$index !== 0 ?: "active"}}" id="language_{{$language->code}}" role="tabpanel" aria-labelledby="home-tab">
+
+                            <div class="tab-pane fade show active" id="" role="tabpanel" aria-labelledby="home-tab">
                                 <div class="form-group">
-                                    <label for="place_name">Place name <small>({{$language->code}})</small>: *</label>
-                                    <input type="text" class="form-control" name="{{$language->code}}[name]" value="{{$trans['name']}}" placeholder="What the name of place" autocomplete="off" {{$index !== 0 ?: "required"}}>
+                                    <label for="place_name">Place name *</label>
+                                    <input type="text" class="form-control" name="name" value="{{$place->name}}" placeholder="What the name of place" autocomplete="off" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">Description <small>({{$language->code}})</small>: *</label>
-                                    <textarea type="text" class="form-control" name="{{$language->code}}[description]" rows="6" {{$index !== 0 ?: "required"}}>{{$trans['description']}}</textarea>
+                                    <label for="name">Description: *</label>
+                                    <textarea type="text" class="form-control" name="description" rows="6" required>{{$place->description}}</textarea>
                                 </div>
                             </div>
-                        @endforeach
                     </div>
                 </div>
             </div>

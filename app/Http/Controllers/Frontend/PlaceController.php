@@ -115,11 +115,33 @@ class PlaceController extends Controller
         ]);
     }
 
+    public function pageNew()
+    {
+        SEOMeta(setting('app_name'), setting('home_description'));
+        $country_id = '11';
+
+        $countries = $this->country->getFullList();
+        $categories = $this->category->getListAll(Category::TYPE_PLACE);
+        $cities = $this->city->getListByCountry($country_id);
+
+        $place_types = Category::query()
+            ->with('place_type')
+            ->get();
+
+        $amenities = $this->amenities->getListAll();
+
+        return view('frontend.New.business_signup', compact('countries','cities', 'categories', 'place_types', 'amenities'));;
+    }
     public function pageAddNew(Request $request, $id = null)
     // public function pageAddNew(Request $request)
     {
         $place = Place::find($id);
-        
+
+        $license_details = $place->license;
+
+        $license = json_decode($license_details, true);
+
+        /////dd($license);
 
         if ($place) abort_if($place->user_id !== Auth::id(), 401);
 
@@ -138,22 +160,28 @@ class PlaceController extends Controller
 
         $app_name = setting('app_name', 'Golo.');
         SEOMeta("Add new place - {$app_name}");
-        return view('frontend.place.place_addnew', [
+        return view('frontend.place.place_edit', [
             'place' => $place,
             'countries' => $countries,
             'cities' => $cities,
             'categories' => $categories,
             'place_types' => $place_types,
             'amenities' => $amenities,
+            'license' => $license,
         ]);
     }
 
     public function create(Request $request)
     {
         $request['user_id'] = Auth::id();
-        $request['slug'] = getSlug($request, 'name');
         $request['status'] = Place::STATUS_PENDING;
 
+
+        $name = $request->name;
+
+        $slug = \Illuminate\Support\Str::slug($name);
+        $request['slug'] = $slug;
+    // dd($request->slug);
         // dd($request->all());
 
         $rule_factory = RuleFactory::make([
@@ -183,7 +211,7 @@ class PlaceController extends Controller
         ]);
         $data = $this->validate($request, $rule_factory);
             // $data = $request->all();
-        dd($data);
+        // dd($data);
 
         if ($request->hasFile('thumb')) {
             $thumb = $request->file('thumb');
@@ -199,8 +227,6 @@ class PlaceController extends Controller
 
         if ($model->save()) {
             return redirect(route('user_my_place'))->with('success', 'Create place success. Waiting admin review and apporeve!');
-        }else{
-            return redirect()->back()->with('success', 'OOOPs something mut have gone wrong');
         }
 
         return $request;
@@ -210,32 +236,32 @@ class PlaceController extends Controller
     {
         $request['slug'] = getSlug($request, 'name');
 
-       // $rule_factory = RuleFactory::make([
-        //     'user_id' => '',
-        //     'country_id' => '',
-        //     'city_id' => '',
-        //     'category' => '',
-        //     'place_type' => '',
-        //     '%name%' => '',
-        //     'slug' => '',
-        //     '%description%' => '',
-        //     'price_range' => '',
-        //     'amenities' => '',
-        //     'address' => '',
-        //     'lat' => '',
-        //     'lng' => '',
-        //     'email' => '',
-        //     'phone_number' => '',
-        //     'website' => '',
-        //     'social' => '',
-        //     'opening_hour' => '',
-        //     'gallery' => '',
-        //     'video' => '',
-        //     'link_bookingcom' => '',
-        //     'status' => '',
-        // 'thumb' => 'mimes:jpeg,jpg,png,gif|max:10000'
-        //]);
-        //$data = $this->validate($request, $rule_factory);
+       $rule_factory = RuleFactory::make([
+            'user_id' => '',
+            'country_id' => '',
+            'city_id' => '',
+            'category' => '',
+            'place_type' => '',
+            '%name%' => '',
+            'slug' => '',
+            '%description%' => '',
+            'price_range' => '',
+            'amenities' => '',
+            'address' => '',
+            'lat' => '',
+            'lng' => '',
+            'email' => '',
+            'phone_number' => '',
+            'website' => '',
+            'social' => '',
+            'opening_hour' => '',
+            'gallery' => '',
+            'video' => '',
+            'link_bookingcom' => '',
+            'status' => '',
+        'thumb' => 'mimes:jpeg,jpg,png,gif|max:10000'
+        ]);
+        $data = $this->validate($request, $rule_factory);
 
            // dd($data);
         $data = $request->all();

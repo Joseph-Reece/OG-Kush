@@ -7,7 +7,7 @@
                     <li class="active">
                         <a href="#genaral" title="Genaral">
                             <span class="icon"><i class="la la-cog"></i></span>
-                            <span>{{__('General')}}</span>
+                            <span>{{__('Genaral')}}</span>
                         </a>
                     </li>
                     <li>
@@ -26,6 +26,12 @@
                         <a href="#contact" title="Contact info">
                             <span class="icon"><i class="la la-phone"></i></span>
                             <span>{{__('Contact info')}}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#license" title="license info">
+                            <span class="icon"><i class="la la-phone"></i></span>
+                            <span>{{__('License info')}}</span>
                         </a>
                     </li>
                     <li>
@@ -52,64 +58,67 @@
 
         <div class="listing-content">
             <h2>
-
+                @if(isRoute('place_edit'))
+                    {{__('Edit my place')}}
+                @else
                     {{__('Add new place')}}
-
+                @endif
             </h2>
             <form class="upload-form" id="new_place" action="{{route('place_create')}}" method="POST" enctype="multipart/form-data">
-
+                @if(isRoute('place_edit'))
+                    @method('PUT')
+                @endif
                 @csrf
                 <div class="listing-box" id="genaral">
-                    <h3>{{__('General')}}</h3>
+                    <h3>{{__('Genaral')}}</h3>
                     <div class="field-inline">
                         <div class="field-group field-input">
-                            <label for="place_name">{{__('Place Name')}} ({{$language_default['code']}}) *</label>
-                            <input type="text" id="place_name" name="{{$language_default['code']}}[name]" value="" required placeholder="{{__('What the name of place')}}">
-
+                            <label for="place_name">{{__('Business Name')}} ({{$language_default['code']}}) *</label>
+                            <input type="text" id="place_name" name="{{$language_default['code']}}[name]" value="{{$place['name']}}" required placeholder="{{__('What the name of place')}}">
                         </div>
                         <div class="field-group field-select">
                             <label for="price_range">{{__('Price Range')}}</label>
                             <select id="price_range" name="price_range">
                                 @foreach(PRICE_RANGE as $key => $price)
-                                    <option value="{{$key}}">{{$price}}</option>
+                                    <option value="{{$key}}" {{isSelected($key, $place['price_range'])}}>{{$price}}</option>
                                 @endforeach
                             </select>
                             <i class="la la-angle-down"></i>
                         </div>
                     </div>
                     <div class="field-group">
-                        <label for="description">{{__('Description')}} ({{$language_default['code']}}) *</label>
+                        <label for="description">{{__('Description')}} ({{$language_default['code']}}) <span class="text-danger"> *</span></label>
                         <textarea class="form-control" id="description" name="{{$language_default['code']}}[description]" rows="5">{{$place['description']}}</textarea>
                     </div>
                     <div class="field-group field-select">
-                        <label for="lis_category">{{__('Category')}} *</label>
+                        <label for="lis_category">{{__('Business Type')}} <span class="text-danger"> *</span></label>
                         <select class="chosen-select" id="lis_category" name="category[]" data-placeholder="{{__('Select Category')}}" multiple required>
                             @foreach($categories as $cat)
-                                <option value="{{$cat['id']}}">{{$cat['name']}}</option>
+                                <option value="{{$cat['id']}}" {{isSelected($cat['id'], $place['category'])}}>{{$cat['name']}}</option>
                             @endforeach
                         </select>
                         <i class="la la-angle-down"></i>
                     </div>
-                    <div class="field-group field-select">
+                   {{-- <div class="field-group field-select">
                         <label for="lis_place_type">{{__('Place Type')}} *</label>
                         <select class="chosen-select" id="lis_place_type" name="place_type[]" data-placeholder="{{__('Select Place Type')}}" multiple required>
                             @foreach($place_types as $cat)
                                 <optgroup label="{{$cat['name']}}">
                                     @foreach($cat['place_type'] as $type)
-                                        <option value="{{$type['id']}}">{{$type['name']}}</option>
+                                        <option value="{{$type['id']}}" {{isSelected($type['id'], $place['place_type'])}}>{{$type['name']}}</option>
                                     @endforeach
                                 </optgroup>
                             @endforeach
                         </select>
                         <i class="la la-angle-down"></i>
-                    </div>
+                    </div>--}}
                 </div><!-- .listing-box -->
                 <div class="listing-box" id="amenities">
                     <h3>{{__('Amenities')}}</h3>
                     <div class="field-group field-check">
                         @foreach($amenities as $item)
                             <label for="amenities_{{$item['id']}}">
-                                <input type="checkbox" name="amenities[]" id="amenities_{{$item['id']}}" value="{{$item['id']}}">{{$item['name']}}
+                                <input type="checkbox" name="amenities[]" id="amenities_{{$item['id']}}" value="{{$item['id']}}" {{isChecked($item['id'], $place['amenities'])}}>{{$item['name']}}
                                 <span class="checkmark">
                                     <i class="la la-check"></i>
                                 </span>
@@ -126,7 +135,7 @@
                                 <select name="country_id" class="custom-select" id="select_country" required>
                                     <option value="">{{__('Select country')}}</option>
                                     @foreach($countries as $country)
-                                        <option value="{{$country['id']}}">{{$country['name']}}</option>
+                                        <option value="{{$country['id']}}" {{isSelected($country['id'], $place['country_id'])}}>{{$country['name']}}</option>
                                     @endforeach
                                 </select>
                                 <i class="la la-angle-down"></i>
@@ -135,7 +144,7 @@
                                 <select name="city_id" class="custom-select" id="select_city" required>
                                     <option value="">{{__('Select city')}}</option>
                                     @foreach($cities as $city)
-                                        <option value="{{$city['id']}}" >{{$city['name']}}</option>
+                                        <option value="{{$city['id']}}" {{isSelected($city['id'], $place['city_id'])}}>{{$city['name']}}</option>
                                     @endforeach
                                 </select>
                                 <i class="la la-angle-down"></i>
@@ -143,15 +152,15 @@
                         </div>
                     </div>
                     <div class="field-group">
-                        <input type="text" id="pac-input" placeholder="{{__('Full Address')}}" value="" name="address" autocomplete="off" required/>
+                        <input type="text" id="pac-input" placeholder="{{__('Full Address')}}" value="{{$place['address']}}" name="address" autocomplete="off" required/>
                     </div>
                     <div class="field-group field-maps">
                         <div class="field-inline">
                             <label for="pac-input">{{__('Place Location at Google Map')}}</label>
                         </div>
                         <div class="field-map">
-                            <input type="hidden" id="place_lat" name="lat" value="">
-                            <input type="hidden" id="place_lng" name="lng" value="">
+                            <input type="hidden" id="place_lat" name="lat" value="{{$place['lat']}}">
+                            <input type="hidden" id="place_lng" name="lng" value="{{$place['lng']}}">
                             <div id="map"></div>
                         </div>
                     </div>
@@ -160,37 +169,65 @@
                     <h3>Contact Info</h3>
                     <div class="field-group">
                         <label for="place_email">{{__('Email')}}</label>
-                        <input type="email" id="place_email" value="" placeholder="{{__('Your email address')}}" name="email">
+                        <input type="email" id="place_email" value="{{$place['email']}}" placeholder="{{__('Your email address')}}" name="email">
                     </div>
                     <div class="field-group">
                         <label for="place_number">{{__('Phone number')}}</label>
-                        <input type="tel" id="place_number" value="" placeholder="{{__('Your phone number')}}" name="phone_number">
+                        <input type="tel" id="place_number" value="{{$place['phone_number']}}" placeholder="{{__('Your phone number')}}" name="phone_number">
                     </div>
                     <div class="field-group">
                         <label for="place_website">{{__('Website')}}</label>
-                        <input type="text" id="place_website" value="" placeholder="{{__('Your website url')}}" name="website">
+                        <input type="text" id="place_website" value="{{$place['website']}}" placeholder="{{__('Your website url')}}" name="website">
                     </div>
                 </div><!-- .listing-box -->
+                {{--License listing box start--}}
+                <div class="listing-box" id="license">
+                    <h3>License</h3>
+                    <div class="field-inline">
+                        @if ($license)
+
+                        @foreach ($license as $key =>$item)
+
+
+                        <div class="field-group field-input">
+                            <label for="license">{{__('License Number')}}</label>
+                        <input type="text" disabled id="license" value="{{$item['license_number']}}" placeholder="" name="license_number">
+                        </div>
+                        <div class="field-group field-input">
+                            <label for="license_type">{{__('License Type')}}</label>
+                            <input type="text" disabled id="license_type" value="{{$item['license_type']}}" placeholder="" name="license_type">
+                        </div>
+
+                    </div>
+                    <div class="field-group">
+                        <label for="license_expiration">{{__('Expiration')}} <span class="text-danger"> *</span></label>
+                        <input type="date" disabled id="license_expiration" value="{{$item['expiration']}}" class="col-md-4" placeholder="" name="expiration">
+                    </div>
+                    @endforeach
+                    @endif
+
+                </div>
+                {{--License listing box end--}}
                 <div class="listing-box" id="social">
                     <h3>{{__('Social Networks')}}</h3>
                     <div class="field-group">
                         <label for="place_socials">{{__('Social Networks')}}</label>
 
                         <div class="social_list">
-                            @if($place)
+                            @if($place['social'])
                                 @foreach($place['social'] as $key => $social)
                                     <div class="field-inline field-3col social_item">
                                         <div class="field-group field-select">
                                             <select name="social[{{$key}}][name]" id="place_socials">
                                                 <option value="">{{__('Select network')}}</option>
                                                 @foreach(SOCIAL_LIST as $k => $value)
-                                                    <option value="{{$k}}" >{{$value['name']}}</option>
+                                                    <option value="{{$k}}" {{isSelected($k, $social['name'])}}>{{$value['name']}}</option>
                                                 @endforeach
                                             </select>
                                             <i class="la la-angle-down"></i>
                                         </div>
                                         <div class="field-group field-input">
-                                            <input type="text" name="social[{{$key}}][url]" value="" placeholder="{{__('Enter URL include http or www')}}">
+                                            <input type="text" name="social[{{$key}}][url]" value="{{$social['url']}}" placeholder="{{__('Enter URL include http or www')}}">
                                         </div>
                                         <a href="#" class="social_item_remove pt-2">
                                             <i class="la la-trash-alt"></i>
@@ -203,7 +240,7 @@
                                         <select name="social[0][name]" id="place_socials">
                                             <option value="">{{__('Select network')}}</option>
                                             @foreach(SOCIAL_LIST as $value)
-                                                <option value="">{{$value['name']}}</option>
+                                                <option value="{{$value['name']}}">{{$value['name']}}</option>
                                             @endforeach
                                         </select>
                                         <i class="la la-angle-down"></i>
@@ -227,14 +264,14 @@
                 <div class="listing-box" id="open">
                     <h3>{{__('Opening Hours')}}</h3>
                     <div class="group-field" id="time-opening">
-                        @if($place)
+                        @if($place['opening_hour'])
                             @foreach($place['opening_hour'] as $index => $opening_hour)
                                 <div class="field-inline field-3col openinghour_item">
                                     <div class="field-group field-input">
-                                        <input type="text" class="form-control valid" name="opening_hour[{{$index}}][title]" value="">
+                                        <input type="text" class="form-control valid" name="opening_hour[{{$index}}][title]" value="{{$opening_hour['title']}}">
                                     </div>
                                     <div class="field-group field-input">
-                                        <input type="text" class="form-control" name="opening_hour[{{$index}}][value]" value="">
+                                        <input type="text" class="form-control" name="opening_hour[{{$index}}][value]" value="{{$opening_hour['value']}}">
                                     </div>
                                     <a href="#" class="openinghour_item_remove pt-2">
                                         <i class="la la-trash-alt"></i>
@@ -298,7 +335,7 @@
                                                 <a class="icon icon-delete" href="#">
                                                     <i class="la la-trash-alt"></i>
                                                 </a>
-                                                <input type="hidden" name="gallery[]" value="">
+                                                <input type="hidden" name="gallery[]" value="{{$gallery}}">
                                                 <span class="icon icon-loader"><i class="fa fa-spinner fa-spin"></i></span>
                                             </div>
                                         </figure>
@@ -319,7 +356,7 @@
                 </div><!-- .listing-box -->
 
                 <div class="field-group field-submit">
-                    <input type="hidden" name="place_id" value="">
+                    <input type="hidden" name="place_id" value="{{$place['id']}}">
                     @guest
                         <a href="#" class="btn btn-login open-login">{{__('Login to submit')}}</a>
                     @else

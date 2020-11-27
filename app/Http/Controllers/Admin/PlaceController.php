@@ -86,7 +86,11 @@ class PlaceController extends Controller
     public function create(Request $request)
     {
         $request['user_id'] = Auth::id();
-        $request['slug'] = getSlug($request, 'name');
+        $name = $request->name;
+        $slug = \Illuminate\Support\Str::slug($name);
+
+        $request['slug'] = $slug;
+        // $request['slug'] = getSlug($request, 'name');
         $rule_factory = RuleFactory::make([
             'user_id' => '',
             'country_id' => '',
@@ -134,7 +138,11 @@ class PlaceController extends Controller
 
     public function update(Request $request)
     {
-        $request['slug'] = getSlug($request, 'name');
+        // $request['slug'] = getSlug($request, 'name');
+        $name = $request->name;
+        $slug = \Illuminate\Support\Str::slug($name);
+
+        $request['slug'] = $slug;
         $rule_factory = RuleFactory::make([
             'country_id' => '',
             'city_id' => '',
