@@ -18,12 +18,18 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/lity/lity.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/gijgo/css/gijgo.min.css')}}"/>
 
+    
+{{--dataTables--}}
+
+
+
     @if(setting('style_rtl'))
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style-rtl.css')}}"/>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive-rtl.css')}}"/>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/custom-rtl.css?v=1.0')}}"/>
     @else
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}"/>
+        {{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/css/Mycss.css')}}"/> --}}
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}"/>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/custom.css?v=1.0')}}"/>
     @endif
@@ -446,6 +452,7 @@
 <script src="{{asset('assets/libs/quilljs/js/quill.js')}}"></script>
 <script src="{{asset('assets/libs/gijgo/js/gijgo.min.js')}}"></script>
 <script src="{{asset('assets/libs/chosen/chosen.jquery.min.js')}}"></script>
+
 <!-- orther script -->
 <script src="{{asset('assets/js/main.js?v=1.4')}}"></script>
 <script src="{{asset('assets/js/custom.js?v=1.4')}}"></script>

@@ -28,6 +28,7 @@ class ReviewController extends Controller
             ->with('user')
             ->with('place')
             ->get();
+            // dd($reviews);
 
         return view('admin.review.review_list', [
             'reviews' => $reviews

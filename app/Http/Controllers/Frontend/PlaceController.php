@@ -12,6 +12,7 @@ use App\Models\Country;
 use App\Models\Place;
 use App\Models\PlaceType;
 use App\Models\Review;
+use App\Models\Wishlist;
 use Astrotomic\Translatable\Validation\RuleFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -86,13 +87,13 @@ class PlaceController extends Controller
             $similar_places->where('category', 'like', "%{$cat_id}%");
         endforeach;
         $similar_places = $similar_places->limit(4)->get();
-        // dd($place->gallery);
+        // dd($place->thumb);
         $addons = $place->gallery;
         // $cover_image= $addons[0];
         // dd($cover_image);
 
 
-//        return $categories;
+        // return $categories;
 
         // SEO Meta
         $title = $place->seo_title ? $place->seo_title : $place->name;
@@ -113,6 +114,137 @@ class PlaceController extends Controller
             // Mine
             // 'cover_image' => $cover_image
         ]);
+    }
+
+    public function businessInfo()
+    {
+        $user = Auth::user()->id;
+
+        $place = $this->place->getById($user);
+        // dd($place);
+
+        $license_details = $place->license;
+
+        $license = json_decode($license_details, true);
+
+        // dd($license);
+
+        $city = City::query()
+            ->with('country')
+            ->where('id', $place->city_id)
+            ->first();
+
+        $amenities = Amenities::query()
+            ->whereIn('id', $place->amenities ? $place->amenities : [])
+            ->get(['id', 'name', 'icon']);
+
+        $categories = Category::query()
+            ->whereIn('id', $place->category ? $place->category : [])
+            ->get(['id', 'name', 'slug', 'icon_map_marker']);
+
+        $place_types = PlaceType::query()
+            ->whereIn('id', $place->place_type ? $place->place_type : [])
+            ->get(['id', 'name']);
+
+        $reviews = Review::query()
+            ->with('user')
+            ->where('place_id', $place->id)
+            ->where('status', Review::STATUS_ACTIVE)
+            ->get();
+        $review_score_avg = Review::query()
+            ->where('place_id', $place->id)
+            ->where('status', Review::STATUS_ACTIVE)
+            ->avg('score');
+
+        $similar_places = Place::query()
+            ->with('place_types')
+            ->with('avgReview')
+            ->withCount('reviews')
+            ->withCount('wishList')
+            ->where('city_id', $city->id)
+            ->where('id', '<>', $place->id);
+
+        $followers = Wishlist::where('place_id', $place->id)->count();
+        // dd($followers);
+        foreach ($place->category as $cat_id):
+            $similar_places->where('category', 'like', "%{$cat_id}%");
+        endforeach;
+        $similar_places = $similar_places->limit(4)->get();
+        // dd($place->thumb);
+        $addons = $place->gallery;
+        // $cover_image= $addons[0];
+        // dd($cover_image);
+
+
+        // return $categories;
+
+        // SEO Meta
+        $title = $place->seo_title ? $place->seo_title : $place->name;
+        $description = $place->seo_description ? $place->seo_description : Str::limit($place->description, 165);
+        SEOMeta($title, $description, getImageUrl($place->thumb));
+
+        // $template = setting('template', '01');
+
+        // return view("frontend.place.place_detail_{$template}", [
+        return view("frontend.user.user_business", [
+            'place' => $place,
+            'city' => $city,
+            'license' => $license,
+            'amenities' => $amenities,
+            'categories' => $categories,
+            'place_types' => $place_types,
+            'reviews' => $reviews,
+            'followers' => $followers,
+            'review_score_avg' => $review_score_avg,
+            'similar_places' => $similar_places,
+            // Mine
+            // 'cover_image' => $cover_image
+        ]);
+    }
+
+    public function pageReviews(Request $request){
+
+        // $filter = [
+        //     // 'city' => $request->city_id,
+        //     // 'category' => $request->category_id,
+        //     'keyword' => $request->keyword,
+        // ];
+        $filter_keyword = $request->keyword;
+        // dd($filter_keyword);
+
+        $user = Auth::user()->id;
+
+        $place = $this->place->getById($user);
+
+        $reviews = Review::query()
+        ->with('user')
+        ->where('place_id', $place->id)
+        ->where('status', Review::STATUS_ACTIVE)
+        ->get();
+
+        $review_score_avg = Review::query()
+        ->where('place_id', $place->id)
+        ->where('status', Review::STATUS_ACTIVE)
+        ->avg('score');
+        // dd($filter['keyword']);
+
+        // if (isset($filter_keyword)) {
+        //     $reviews->where('name', 'like', "%{$filter_keyword}%");
+        // }
+
+        // dd($reviews->where('comment', 'like', '%'.$filter_keyword.'%'));
+        
+        // $reviews = $reviews->paginate();
+
+
+        return view("frontend.user.business_reviews", [
+            'place' => $place,
+            'reviews' => $reviews,
+            'review_score_avg' => $review_score_avg,
+            'filter' => $filter_keyword
+        ]);
+
+
     }
 
     public function pageNew()
@@ -277,7 +409,7 @@ class PlaceController extends Controller
         $model->fill($data);
 
         if ($model->save()) {
-            return redirect(route('user_my_place'))->with('success', 'Update place success!');
+            return redirect()->back()->with('success', 'Update place success!');
         }
 
         return $request;

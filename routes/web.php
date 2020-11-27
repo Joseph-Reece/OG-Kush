@@ -43,6 +43,7 @@ $router->group([
     $router->get('/city/{slug}/{cat_slug}', 'CityController@detail')->name('city_category_detail');
 
     $router->get('/place/{slug}', 'PlaceController@detail')->name('place_detail');
+    $router->get('/place/{id}', 'PlaceController@businessInfo')->name('business_info');
     $router->get('/new-place', 'PlaceController@pageNew')->name('place_addnew');
     $router->get('/edit-place/{id}', 'PlaceController@pageAddNew')->name('place_edit')->middleware('auth');
     $router->post('/place', 'PlaceController@create')->name('place_create')->middleware('auth');
@@ -60,6 +61,10 @@ $router->group([
     $router->put('/user/reset-password', 'ResetPasswordController@reset')->name('user_update_password');
 
     $router->get('/user/my-place', 'UserController@pageMyPlace')->name('user_my_place')->middleware('auth');
+    // $router->get('/user/my-place', 'UserController@pageBusiness')->name('user_my_place')->middleware('auth');
+    $router->get('/user/store-info', 'PlaceController@businessInfo')->name('business_info')->middleware('auth');
+    $router->get('/user/store-reviews', 'PlaceController@pageReviews')->name('business_reviews')->middleware('auth');
+    $router->get('/user/store-menu', 'PlaceController@pageMenu')->name('business_menu')->middleware('auth');
     $router->delete('/user/my-place', 'UserController@deleteMyPlace')->name('user_my_place_delete')->middleware('auth');
 
     $router->get('/user/wishlist', 'UserController@pageWishList')->name('user_wishlist')->middleware('auth');

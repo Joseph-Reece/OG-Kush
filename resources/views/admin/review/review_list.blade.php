@@ -43,7 +43,7 @@
                                     @if(isset($review['place']['slug']))
                                         <a href="{{route('place_detail', $review['place']['slug'])}}" target="_blank">{{$review['place']['name']}}</a>
                                     @else
-                                        {{$review['place']['name']}}
+                                        {{-- {{$review['place']['name']}} --}}
                                     @endif
                                 </td>
                                 <td>{{$review->comment}}</td>

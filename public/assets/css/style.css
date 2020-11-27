@@ -2875,7 +2875,7 @@ a.place__comments__reply {
     left: 0;
     bottom: 0;
     top: 80px;
-    
+
     width: 30%;
     z-index: 9;
     border-top: 1px solid #eee;
@@ -3186,6 +3186,23 @@ a.place__comments__reply {
     background-color: #2d2d2d;
     color: #ffffff; }
     .add-social:focus svg > *, .add-social:hover svg > * {
+      fill: #ffffff; }
+
+.viewbtn {
+  border: solid 2px #6d3d23;
+  color: #2d2d2d;
+  background-color: #ffffff;
+  font-family: "Jost";
+  font-size: 15px;
+  font-weight: 500;
+  transition: inherit; }
+  .viewbtn svg {
+    vertical-align: -2px; }
+  .viewbtn:focus, .viewbtn:hover {
+    border: solid 2px #6d3d23;
+    background-color: #23d3d3;
+    color: #ffffff; }
+    .viewbtn:focus svg > *, .viewbtn:hover svg > * {
       fill: #ffffff; }
 
 .accordion-top {

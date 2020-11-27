@@ -133,4 +133,14 @@ class Place extends Model  implements TranslatableContract
             ->first();
         return $place;
     }
+
+    public function getById($user_id)
+    {
+
+        $place = self::query()
+            ->withCount('wishList')
+            ->where('user_id', $user_id)
+            ->first();
+        return $place;
+    }
 }

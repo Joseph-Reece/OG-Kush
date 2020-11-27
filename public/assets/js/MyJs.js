@@ -1,31 +1,8 @@
 (function ($) {
     "use strict";
     $(document).on('ready', function () {
-        /* $("input[id='option1']").on('click', function (e) {
-            console.log(e.currentTarget.name);
-            //return option btn t0 default
-            $("label[id='option']").removeProp('class', 'active');
-            $("label[id='option']").prop('class', 'btn btn-outline-secondary');
 
-            //change btn to success
-            $("label[id='Home']").removeProp('class', 'btn btn-outline-secondary');
-            $("label[id='Home']").prop('class', 'btn btn-success');
-            $("input[id='option3']").prop('checked', false);
-        });
-
-        $("input[id='option3']").on('click',function (e) {
-            console.log(e.currentTarget.name);
-            // return homeDelivery to default
-            $("label[id='Home']").removeProp('class', 'btn btn-success');
-            $("label[id='Home']").prop('class', 'btn btn-outline-secondary');
-
-            //Change btn to success
-            $("label[id='option']").removeProp('class', 'btn btn-outline-secondary');
-            $("label[id='option']").prop('class', 'btn btn-success');
-
-            $("input[id='HomeDelivery']").prop('checked', false);
-        }); */
-
+       
         $("button[id='delivery']").on('click',function (e) {
            console.log(e.currentTarget.id);
            $(this).prop('class', 'btn bnt');
@@ -50,6 +27,71 @@
            $('#dispensary').prop('hidden', false);
 
        });
+       
+       $("button[id='show_map']").on('click', function(e){
+        console.log(e.currentTarget.id);
+        e.preventDefault();
+        $("#map").toggle(500);
+       });
+    //    hours toggling
+        $('#btn_add_hour').on('click', function (e) {           
+            console.log(e.currentTarget.id);
+            e.preventDefault();
+
+            $("#open").removeProp('hidden');
+        });
+
+        $('#hideHours').on('click', function (e) {           
+            console.log(e.currentTarget.id);
+            e.preventDefault();
+
+            $("#open").prop('hidden', true);
+        });
+    //    hours amenities
+        $('#btn_add_amenities').on('click', function (e) {           
+            console.log(e.currentTarget.id);
+            e.preventDefault();
+
+            $("#amenities").removeProp('hidden');
+        });
+
+        $('#hideAmenities').on('click', function (e) {           
+            console.log(e.currentTarget.id);
+            e.preventDefault();
+
+            $("#amenities").prop('hidden', true);
+        });
+    //    hours deals
+        $('#btn_add_deals').on('click', function (e) {           
+            console.log(e.currentTarget.id);
+            e.preventDefault();
+
+            $("#open").removeProp('hidden');
+        });
+
+        $('#hideHours').on('click', function (e) {           
+            console.log(e.currentTarget.id);
+            e.preventDefault();
+
+            $("#open").prop('hidden', true);
+        });
+    //    hours media
+        $('#btn_add_media').on('click', function (e) {           
+            console.log(e.currentTarget.id);
+            e.preventDefault();
+
+            $("#media").removeProp('hidden');
+        });
+
+        $('#hideMedia').on('click', function (e) {           
+            console.log(e.currentTarget.id);
+            e.preventDefault();
+
+            $("#media").prop('hidden', true);
+        });
+
+    
+
 
 
     });

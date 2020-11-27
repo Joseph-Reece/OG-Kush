@@ -25,10 +25,12 @@ color: #999;
                             // dd($place->gallery);
 
                             @endphp
-                            @if(isset($place->gallery))
-                            @foreach($place->gallery as $gallery)
-                                <div class="place-slider__item photoswipe-item"><a href="{{getImageUrl($gallery)}}" data-height="900" data-width="1200" data-caption="{{$gallery}}"><img src="{{getImageUrl($gallery)}}" alt="{{$gallery}}"></a></div>
-                                @endforeach
+                            @if(isset($place->thumb))
+                                {{-- <div class="place-slider__item photoswipe-item"> --}}
+                                    <a href="{{getImageUrl($place->thumb)}}" data-height="900" data-width="1200" data-caption="{{$place->thumb}}">
+                                        <img class="rounded" src="{{getImageUrl($place->thumb)}}" alt="{{$place->thumb}}">
+                                    </a>
+                                {{-- </div> --}}
                             @else
                                     <img src="https://via.placeholder.com/1280x500?text=GOLO" alt="slider no image">
                                 </a>
@@ -112,7 +114,7 @@ color: #999;
 
                                 <div class="place__box place__box-overview">
                                     <h3>{{__('Overview')}}</h3>
-                                    <div class="place__desc">
+                                    <div class="place__desc text-justify">
                                         {{$place->description}}
                                     </div><!-- .place__desc -->
                                     <a href="#" class="show-more" title="{{__('Show more')}}">{{__('Show more')}}</a>
@@ -196,14 +198,14 @@ color: #999;
                                         <a href="mailto:{{$place->email}}" rel="nofollow">{{$place->email}}</a>
                                     </li>
                                 @endif
-                                {{-- @foreach($place->social as $social)
+                                @foreach($place->social as $social)
                                     @if($social['name'] && $social['url'])
                                         <li>
                                             <i class="{{SOCIAL_LIST[$social['name']]['icon']}}"></i>
                                             <a href="{{SOCIAL_LIST[$social['name']]['base_url'] . $social['url']}}" title="{{$social['url']}}" rel="nofollow" target="_blank">{{$social['url']}}</a>
                                         </li>
                                     @endif
-                                @endforeach --}}
+                                @endforeach
                             </ul>
                         </div><!-- .place__box -->
                         @php

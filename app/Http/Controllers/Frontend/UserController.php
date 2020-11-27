@@ -70,6 +70,30 @@ class UserController extends Controller
         return view('frontend.user.user_profile');
     }
 
+    // public function pageBusiness(){
+    //     $user = Auth::user();
+
+    //     // $place = Place::where('user_id', Auth::id())->get();
+
+    //     // Get list places
+    //     $places = Place::query()
+    //         ->with('city')
+    //         ->with('categories')
+    //         ->with('amenities')
+    //         ->where('user_id', Auth::id())
+    //         ->where('status', '<>', Place::STATUS_DELETE)
+    //         ->select(['id', 'name', 'thumb', 'slug', 'city_id', 'category', 'status']
+    //     )->get();
+    //     foreach ($places as $key => $value) {
+    //         # code...
+    //         dd($value->amenities);
+    //     }
+    //     return view('frontend.user.user_business', [
+    //         'places' => $places,
+
+    //     ]);
+    // }
+
     public function pageMyPlace(Request $request)
     {
         $filter = [
@@ -95,7 +119,7 @@ class UserController extends Controller
         }
         if ($filter['keyword']) {
             $places->where('name', 'like', '%' . $filter['keyword'] . '%');
-        }
+        } 
         $places = $places->paginate();
 
         // Get list city have in places
