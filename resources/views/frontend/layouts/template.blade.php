@@ -5,6 +5,7 @@
     {!! SEO::generate() !!}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/jost/stylesheet.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/fontawesome-pro/css/fontawesome.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/line-awesome.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/bootstrap/css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/slick/slick-theme.css')}}"/>
@@ -18,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/lity/lity.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/gijgo/css/gijgo.min.css')}}"/>
 
-    
+
 {{--dataTables--}}
 
 
@@ -89,15 +90,21 @@
                                         </div><!-- .account -->
                                     @endguest
 
-                                    <div class="popup__destinations popup__box">
+                                    <div class="popup__menu popup__box">
                                         <ul class="menu-arrow">
-                                            <li>
+                                            {{-- <li>
                                                 <a title="Destinations" href="#">{{__('Destinations')}}</a>
                                                 <ul class="sub-menu">
                                                     @foreach($destinations as $city)
                                                         <li><a href="{{route('city_detail', $city->slug)}}" title="{{$city->name}}">{{$city->name}}</a></li>
                                                     @endforeach
                                                 </ul>
+                                            </li> --}}
+                                            <li>
+                                                <a href="#" class=""><i class="fas fa-map"></i> Map Search</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class=""><i class="fas fa-list"></i> List Search</a>
                                             </li>
                                         </ul>
                                     </div><!-- .popup__destinations -->
@@ -106,8 +113,8 @@
                                             <li>
                                                 <a title="Home demo" href="{{route('home')}}">Home</a>
                                                 <ul class="sub-menu">
-                                                    <li><a href="https://lara-business.getgolo.com">Business Listing</a></li>
-                                                    <li><a href="https://lara-cityguide.getgolo.com">City Guide</a></li>
+                                                    {{-- <li><a href="#0">Business Listing</a></li>
+                                                    <li><a href="#0">City Guide</a></li> --}}
                                                 </ul>
                                             </li>
                                             <li>
@@ -122,12 +129,11 @@
                                             <li>
                                                 <a title="Page" href="#">Page</a>
                                                 <ul class="sub-menu">
-                                                    <li><a href="https://lara.getgolo.com/post/about-us-10">About</a></li>
-                                                    <li><a href="/page-404">404</a></li>
-                                                    <li><a href="https://lara.getgolo.com/post/faqs-11">Faqs</a></li>
-                                                    <li><a href="{{route('page_landing', '03')}}">App Landing</a></li>
+                                                    <li><a href="{{route('home')}}/post/about-us-10">About</a></li>
+                                                    <li><a href="{{route('home')}}/post/faqs-11">Faqs</a></li>
+                                                    {{-- <li><a href="{{route('page_landing', '03')}}">App Landing</a></li>
                                                     <li><a href="{{route('page_landing', '01')}}">Construction</a></li>
-                                                    <li><a href="{{route('page_landing', '02')}}">Coming Soon</a></li>
+                                                    <li><a href="{{route('page_landing', '02')}}">Coming Soon</a></li> --}}
                                                 </ul>
                                             </li>
                                             <li><a title="Blog" href="{{route('post_list_all')}}">Blog</a></li>
@@ -206,7 +212,7 @@
 
                 <div class="col-md-6 col-4">
                     <div class="right-header align-right">
-                        <div class="right-header__languages">
+                        {{-- <div class="right-header__languages">
                             <a href="#">
                                 <img src="{{flagImageUrl(\Illuminate\Support\Facades\App::getLocale())}}">
                                 @if(count($languages) > 1)
@@ -222,9 +228,16 @@
                                     @endforeach
                                 </ul>
                             @endif
+                        </div> --}}
+                        <div class="right-header__destinations">
+                            <a href="#" class="">Map Search</a>
+                        </div>
+                        <div class="right-header__destinations">
+                            <a href="#" class="">List Search</a>
                         </div>
 
-                        <div class="right-header__destinations">
+
+                        {{-- <div class="right-header__destinations">
                             <a title="Destinations" href="#">
                                 {{__('Destinations')}}
                                 <i class="la la-angle-down la-12"></i>
@@ -234,7 +247,7 @@
                                     <li><a href="{{route('city_detail', $city->slug)}}" title="{{$city->name}}">{{$city->name}}</a></li>
                                 @endforeach
                             </ul>
-                        </div><!-- .right-header__destinations -->
+                        </div><!-- .right-header__destinations --> --}}
                         @guest
                             <div class="right-header__login">
                                 <a title="Login" class="open-login" href="#">{{__('Login')}}</a>

@@ -92,6 +92,10 @@ class PlaceController extends Controller
         // $cover_image= $addons[0];
         // dd($cover_image);
 
+        $license_details = $place->license;
+
+        $license = json_decode($license_details, true);
+
 
         // return $categories;
 
@@ -109,6 +113,7 @@ class PlaceController extends Controller
             'categories' => $categories,
             'place_types' => $place_types,
             'reviews' => $reviews,
+            'license' => $license,
             'review_score_avg' => $review_score_avg,
             'similar_places' => $similar_places,
             // Mine
@@ -233,7 +238,7 @@ class PlaceController extends Controller
         // }
 
         // dd($reviews->where('comment', 'like', '%'.$filter_keyword.'%'));
-        
+
         // $reviews = $reviews->paginate();
 
 

@@ -93,10 +93,10 @@
                                         </ul> --}}
                                         <ul class="menu-arrow">
                                             <li>
-                                                <a class="btn " href="#"><i class="fas fa-map"></i> Map Search</a>
+                                                <a href="#" class=""><i class="fas fa-map"></i> Map Search</a>
                                             </li>
                                             <li>
-                                                <a href="#" class="btn"><i class="fas fa-list"></i> List Search</a>
+                                                <a href="#" class=""><i class="fas fa-list"></i> List Search</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -106,8 +106,8 @@
                                             <li>
                                                 <a title="Home demo" href="{{route('home')}}">Home</a>
                                                 <ul class="sub-menu">
-                                                    <li><a href="https://lara-business.getgolo.com">Business Listing</a></li>
-                                                    <li><a href="https://lara-cityguide.getgolo.com">City Guide</a></li>
+                                                    <li><a href="#0">Business Listing</a></li>
+                                                    <li><a href="#0">City Guide</a></li>
                                                 </ul>
                                             </li>
                                             <li>
@@ -123,11 +123,11 @@
                                                 <a title="Page" href="#">Page</a>
                                                 <ul class="sub-menu">
                                                     <li><a href="{{route('home')}}/post/about-us-10">About</a></li>
-                                                    <li><a href="{{route('home')}}/page-404">404</a></li>
+                                                    {{-- <li><a href="{{route('home')}}/page-404">404</a></li> --}}
                                                     <li><a href="{{route('home')}}/post/faqs-11">Faqs</a></li>
-                                                    <li><a href="{{route('page_landing', '03')}}">App Landing</a></li>
-                                                    <li><a href="{{route('page_landing', '01')}}">Construction</a></li>
-                                                    <li><a href="{{route('page_landing', '02')}}">Coming Soon</a></li>
+                                                    {{-- <li><a href="{{route('page_landing', '03')}}">App Landing</a></li> --}}
+                                                    {{-- <li><a href="{{route('page_landing', '01')}}">Construction</a></li> --}}
+                                                    {{-- <li><a href="{{route('page_landing', '02')}}">Coming Soon</a></li> --}}
                                                 </ul>
                                             </li>
                                             <li><a title="Blog" href="{{route('post_list_all')}}">Blog</a></li>
@@ -141,8 +141,7 @@
                                         <i class="la la-plus la-24"></i>
                                         <span>{{__('Add Business')}}</span>
                                     </a>
-                                </div>
-                                <!-- .popup__button -->
+                                </div><!-- .popup__button -->
                             </div><!-- .popup -->
                         </div><!-- .site__menu -->
                         <div class="site__brand justify-content-center">
@@ -246,7 +245,7 @@
                                         <div class="field-input">
                                             <input type="password" id="password" name="password" placeholder="Password" required>
                                         </div>
-                                        <a title="Forgot password" class="forgot_pass" href="#">{{__('Forgot password')}}</a>
+                                        <a title="Forgot password" class="forgot_pass" href="#forgot_password">{{__('Forgot password')}}</a>
                                         {{--                                    <input type="submit" name="submit" value="Login">--}}
                                         <button type="submit" class="gl-button btn button w-100" id="submit_login">{{__('Login')}}</button>
                                     </form>
@@ -277,6 +276,16 @@
                                             </label>
                                         </div>
                                         <button type="submit" class="gl-button btn button w-100" id="submit_register">{{__('Sign Up')}}</button>
+                                    </form>
+                                    <form class="form-forgotpass form-content" id="forgot_password" action="{{route('api_user_forgot_password')}}" method="POST">
+                                        @csrf
+                                        <p class="choose-or"><span>{{__('Lost your password? Please enter your email address. You will receive a link to create a new password via email.')}}</span></p>
+                                        <small class="form-text text-danger golo-d-none" id="fp_error">error!</small>
+                                        <small class="form-text text-success golo-d-none" id="fp_success">error!</small>
+                                        <div class="field-input">
+                                            <input type="text" id="email" name="email" placeholder="Email Address" required>
+                                        </div>
+                                        <button type="submit" class="gl-button btn button w-100" id="submit_forgot_password">{{__('Forgot password')}}</button>
                                     </form>
 
                                 </div>

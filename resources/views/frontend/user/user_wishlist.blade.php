@@ -9,7 +9,7 @@
             </div>
             <div class="container">
                 <div class="member-wishlist-wrap">
-                    <h1>{{__('Wishlist')}}</h1>
+                    <h1>{{__('Following')}}</h1>
                     <div class="mw-box">
                         <div class="mw-grid golo-grid grid-4 ">
                             @foreach($places as $place)

@@ -323,15 +323,10 @@
                             <div class="row justify-content-around d-flex">
                                 <a class="btn viewbtn" href="{{route('place_detail', $place->slug)}}" class="view" title="{{__('View store')}}"><i class="la la-eye"></i> {{__('View Store')}} </a>
                                 <input type="hidden" name="place_id" value="{{$place['id']}}">
-                                <input class="btn" type="submit" value="{{__('Save Changes')}}">
+                                <button class="btn viewbtn" type="submit" value=""><i class="la la-save"></i> {{__('Save Changes')}} </button>
                             </div>
                         </div>
                     </form>
-
-
-
-
-
                 </div><!-- .member-place-wrap -->
             </div>
         </div><!-- .site-content -->

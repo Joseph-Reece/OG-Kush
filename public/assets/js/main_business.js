@@ -79,6 +79,7 @@
             $(this).parents('#wrapper').find('.form-log').fadeIn(0);
             $(this).parents('#wrapper').find('.nav-signup').removeClass('active');
             $(this).parents('#wrapper').find('.form-sign').fadeOut(0);
+            $(this).parents('#wrapper').find('.form-forgotpass').fadeOut(0);
             $(this).parents('#wrapper').find('.popup-background').fadeIn(0);
             $(this).parents('#wrapper').find('.popup-form').toggleClass('open');
         });
@@ -90,8 +91,22 @@
             $(this).parents('#wrapper').find('.form-sign').fadeIn(0);
             $(this).parents('#wrapper').find('.nav-login').removeClass('active');
             $(this).parents('#wrapper').find('.form-log').fadeOut(0);
+            $(this).parents('#wrapper').find('.form-forgotpass').fadeOut(0);
             $(this).parents('#wrapper').find('.popup-background').fadeIn(0);
             $(this).parents('#wrapper').find('.popup-form').toggleClass('open');
+        });
+
+        $('.forgot_pass').on('click', function (e) {
+            e.preventDefault();
+            $('.popup--left').removeClass('open');
+            // $(this).parents('#wrapper').find('.nav-signup').addClass('active');
+            // $(this).parents('#wrapper').find('.nav-signup').removeClass('active');
+            // $(this).parents('#wrapper').find('.form-sign').fadeOut(0);
+            $(this).parents('#wrapper').find('.nav-login').removeClass('active');
+             $(this).parents('#wrapper').find('.form-log').fadeOut(0);
+            $(this).parents('#wrapper').find('.form-forgotpass').fadeIn(0);
+            $(this).parents('#wrapper').find('.popup-background').fadeIn(0);x
+            // $(this).parents('#wrapper').find('.popup-form').toggleClass('open');
         });
 
         $('.choose-form a').on('click', function (e) {

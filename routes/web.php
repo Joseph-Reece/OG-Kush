@@ -67,7 +67,7 @@ $router->group([
     $router->get('/user/store-menu', 'PlaceController@pageMenu')->name('business_menu')->middleware('auth');
     $router->delete('/user/my-place', 'UserController@deleteMyPlace')->name('user_my_place_delete')->middleware('auth');
 
-    $router->get('/user/wishlist', 'UserController@pageWishList')->name('user_wishlist')->middleware('auth');
+    $router->get('/user/following', 'UserController@pageWishList')->name('user_wishlist')->middleware('auth');
 
     $router->post('/bookings', 'BookingController@booking')->name('booking_submit');
 

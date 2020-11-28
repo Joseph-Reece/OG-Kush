@@ -120,45 +120,53 @@ color: #999;
                                     <a href="#" class="show-more" title="{{__('Show more')}}">{{__('Show more')}}</a>
                                 </div>
                                 @if(isset($amenities))
-                                <div class="place__box place__box-hightlight">
-                                    <h3>{{__('Amenities')}}</h3>
-                                    <div class="hightlight-grid">
-                                        @foreach($amenities as $key => $item)
-                                            @if($key < 4)
-                                                <div class="place__amenities">
-                                                    <img src="{{getImageUrl($item->icon)}}" alt="{{$item->name}}">
-                                                    <span>{{$item->name}}</span>
-                                                </div>
+                                    <div class="place__box place__box-hightlight">
+                                        <h3>{{__('Amenities')}}</h3>
+                                        <div class="hightlight-grid">
+                                            @foreach($amenities as $key => $item)
+                                                @if($key < 4)
+                                                    <div class="place__amenities">
+                                                        <img src="{{getImageUrl($item->icon)}}" alt="{{$item->name}}">
+                                                        <span>{{$item->name}}</span>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                            @if(count($amenities) > 4)
+                                                <a class="open-popup" href="#show-amenities"><span class="hightlight-count">+({{count($amenities) - 4}})</span></a>
                                             @endif
-                                        @endforeach
-                                        @if(count($amenities) > 4)
-                                            <a class="open-popup" href="#show-amenities"><span class="hightlight-count">+({{count($amenities) - 4}})</span></a>
-                                        @endif
-                                        <div class="popup-wrap" id="show-amenities">
-                                            <div class="popup-bg popupbg-close"></div>
-                                            <div class="popup-middle">
-                                                <a title="Close" href="#" class="popup-close">
-                                                    <i class="la la-times la-24"></i>
-                                                </a><!-- .popup-close -->
-                                                <h3>{{__('Amenities')}}</h3>
-                                                <div class="popup-content">
-                                                    <div class="hightlight-flex">
-                                                        @foreach($amenities as $key => $item)
-                                                            <div class="place__amenities">
-                                                                <img src="{{getImageUrl($item->icon)}}" alt="{{$item->name}}">
-                                                                <span>{{$item->name}}</span>
-                                                            </div>
-                                                        @endforeach
-                                                    </div><!-- .hightlight-flex -->
-                                                </div><!-- .popup-content -->
-                                            </div><!-- .popup-middle -->
-                                        </div><!-- .popup-wrap -->
+                                            <div class="popup-wrap" id="show-amenities">
+                                                <div class="popup-bg popupbg-close"></div>
+                                                <div class="popup-middle">
+                                                    <a title="Close" href="#" class="popup-close">
+                                                        <i class="la la-times la-24"></i>
+                                                    </a><!-- .popup-close -->
+                                                    <h3>{{__('Amenities')}}</h3>
+                                                    <div class="popup-content">
+                                                        <div class="hightlight-flex">
+                                                            @foreach($amenities as $key => $item)
+                                                                <div class="place__amenities">
+                                                                    <img src="{{getImageUrl($item->icon)}}" alt="{{$item->name}}">
+                                                                    <span>{{$item->name}}</span>
+                                                                </div>
+                                                            @endforeach
+                                                        </div><!-- .hightlight-flex -->
+                                                    </div><!-- .popup-content -->
+                                                </div><!-- .popup-middle -->
+                                            </div><!-- .popup-wrap -->
+                                        </div>
                                     </div>
-                                </div><!-- .place__box -->
-                            @endif
-                            </div>
-                        </div>
+                                @endif
+                            </div><!-- .place__box -->
 
+                            <h3>{{__('State license')}}</h3>
+                            @if ($license)
+                                @foreach ($license as $key =>$item)
+                                <p class="pt-2">
+                                    {{$item['license_type']}}: {{$item['license_number']}}
+                                </p>
+                                @endforeach
+                            @endif
+                        </div>
                     </div>
                     <div class="col-md-6 border rounded border-secondary">
                         <div class="place__box place__box-map">
