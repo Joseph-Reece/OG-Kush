@@ -212,6 +212,7 @@
                                 <input type="hidden" name="category_id" value="{{$places_by_category['category']['id']}}">
                             </div>
 
+
                             <div class="city-grid">
                                 <div class="row" id="list_places">
                                     @if(count($places_by_category['places']))

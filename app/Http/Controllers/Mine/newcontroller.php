@@ -43,27 +43,27 @@ class newcontroller extends Controller
         $this->response = $response;
     }
     //
-    public function Business_signup(Request $request, $id = null){
-        SEOMeta(setting('app_name'), setting('home_description'));
+    // public function Business_signup(Request $request, $id = null){
+    //     SEOMeta(setting('app_name'), setting('home_description'));
 
 
 
-        $country_id = '11';
+    //     $country_id = '11';
 
-        $countries = $this->country->getFullList();
-        $categories = $this->category->getListAll(Category::TYPE_PLACE);
-        $cities = $this->city->getListByCountry($country_id);
+    //     $countries = $this->country->getFullList();
+    //     $categories = $this->category->getListAll(Category::TYPE_PLACE);
+    //     $cities = $this->city->getListByCountry($country_id);
 
-        $place_types = Category::query()
-            ->with('place_type')
-            ->get();
+    //     $place_types = Category::query()
+    //         ->with('place_type')
+    //         ->get();
 
-        $amenities = $this->amenities->getListAll();
+    //     $amenities = $this->amenities->getListAll();
 
-        return view('frontend.New.business_signup', compact('countries','cities', 'categories', 'place_types', 'amenities'));
+    //     return view('frontend.New.business_signup', compact('countries','cities', 'categories', 'place_types', 'amenities'));
 
-        // return view('frontend.New.place_addnew');
-    }
+    //     // return view('frontend.New.place_addnew');
+    // }
     public function Business_package(){
 
         SEOMeta(setting('app_name'), setting('home_description'));
@@ -71,65 +71,65 @@ class newcontroller extends Controller
         return view('frontend.New.business_package');
     }
 
-    public function savebusiness(Request $request){
+    // public function savebusiness(Request $request){
 
 
 
-        // $this->validate($request, [
-        //     'name' => 'required|string',
-        //     'category' => 'string',
-        //     'country_id' => 'required',
-        //     'city_id' => 'required',
-        //     'address' => 'required',
-        //     'email' => 'required|email',
-        //     'phone_number' => 'required',
-        //     'website' => 'required|',
-        //     'license_number' => 'required',
-        //     'license_type' => 'required',
-        //     'expiration' => 'required',
-        // ]);
+    //     // $this->validate($request, [
+    //     //     'name' => 'required|string',
+    //     //     'category' => 'string',
+    //     //     'country_id' => 'required',
+    //     //     'city_id' => 'required',
+    //     //     'address' => 'required',
+    //     //     'email' => 'required|email',
+    //     //     'phone_number' => 'required',
+    //     //     'website' => 'required|',
+    //     //     'license_number' => 'required',
+    //     //     'license_type' => 'required',
+    //     //     'expiration' => 'required',
+    //     // ]);
 
-            // Put License details into array
-        $license_details = array([
-            'license_number' => $request->license_number,
-            'license_type' =>$request->license_type,
-            'expiration' =>$request->expiration
-        ]);
+    //         // Put License details into array
+    //     $license_details = array([
+    //         'license_number' => $request->license_number,
+    //         'license_type' =>$request->license_type,
+    //         'expiration' =>$request->expiration
+    //     ]);
 
-        // Change $license_details to Json ******** to save as string **** to retrieve the output use $string_json = json_decode($license_details, true);
-        $json_array = json_encode($license_details);
+    //     // Change $license_details to Json ******** to save as string **** to retrieve the output use $string_json = json_decode($license_details, true);
+    //     $json_array = json_encode($license_details);
 
-            // put json to $request array
-        $request['license']= $json_array;
-        $request['user_id'] = Auth::user()->id;
-        $request['status'] = Place::STATUS_PENDING;
+    //         // put json to $request array
+    //     $request['license']= $json_array;
+    //     $request['user_id'] = Auth::user()->id;
+    //     $request['status'] = Place::STATUS_PENDING;
 
-        //Get slug for business name
-        $name = $request->name;
-        $slug = \Illuminate\Support\Str::slug($name);
+    //     //Get slug for business name
+    //     $name = $request->name;
+    //     $slug = \Illuminate\Support\Str::slug($name);
 
-        $request['slug'] = $slug;
+    //     $request['slug'] = $slug;
 
-        $data = $request->except('_token');
-
-
-        //dd($request->except('_token'));
-
-        //hande saving data to table
-        $business = new Place();
-        $business->fill($data);
-        // dd($business);
-
-        $business->save();
-
-        return redirect(route('user_my_place'))->with('success', 'Create place success. Waiting admin review and apporeve!');
-
-        /*
-        code to retrieve values
-        $string_json = "[{"name":"1"},{"name2":"2"},{"name":"3"}]";
-        $array_output = json_decode($string_json,true);
-        */
+    //     $data = $request->except('_token');
 
 
-    }
+    //     //dd($request->except('_token'));
+
+    //     //hande saving data to table
+    //     $business = new Place();
+    //     $business->fill($data);
+    //     // dd($business);
+
+    //     $business->save();
+
+    //     return redirect(route('user_my_place'))->with('success', 'Create place success. Waiting admin review and apporeve!');
+
+    //     /*
+    //     code to retrieve values
+    //     $string_json = "[{"name":"1"},{"name2":"2"},{"name":"3"}]";
+    //     $array_output = json_decode($string_json,true);
+    //     */
+
+
+    // }
 }

@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
+use Illuminate\Support\Facades\Auth;
+
+
 class HomeController extends Controller
 {
     private $response;
@@ -208,6 +211,7 @@ class HomeController extends Controller
         $keyword = $request->keyword;
         $category_id = $request->category_id;
         $city_id = $request->city_id;
+        // dd($keyword);
 
         $places = Place::query()
             ->with(['city' => function ($query) {
@@ -218,7 +222,9 @@ class HomeController extends Controller
             ->with('avgReview')
             ->withCount('wishList')
             ->orWhere('address', 'like', "%{$keyword}%")
-            ->whereTranslationLike('name', "%{$keyword}%")
+            ->orWhere('slug', 'like', "%{$keyword}%")
+            ->orWhere('name', 'like', "%{$keyword}%")
+            // ->whereTranslationLike('name', "%{$keyword}%")
             ->where('status', Place::STATUS_ACTIVE);
 
         if ($category_id) {
@@ -254,6 +260,11 @@ class HomeController extends Controller
         $filter_amenities = $request->amenities;
         $filter_place_type = $request->place_type;
         $filter_city = $request->city;
+        $sort_by = $request->sort_by;
+        $status = Place::STATUS_ACTIVE;
+
+
+
 
 
         $categories = Category::query()
@@ -267,20 +278,39 @@ class HomeController extends Controller
             ->get();
 
         $cities = City::query()
-            ->get();
+        ->get();
 
+        /* $places = Place::query()
+        ->with(['city' => function ($query) {
+            return $query->select('id', 'name', 'slug');
+        }])
+        ->with('categories')
+        ->with('place_types')
+        ->withCount('reviews')
+        ->with('avgReview')
+        ->withCount('wishList')
+        ->where('status', Place::STATUS_ACTIVE)
+        ->orWhere('address', 'like', "%{$keyword}%")
+        ->orWhere('slug', 'like',  "%{$keyword}%")
+        ->orWhere('name', 'like',  "%{$keyword}%")
+        ->get()
+        ; */
         $places = Place::query()
-            ->with(['city' => function ($query) {
-                return $query->select('id', 'name', 'slug');
-            }])
-            ->with('categories')
-            ->with('place_types')
-            ->withCount('reviews')
-            ->with('avgReview')
-            ->withCount('wishList')
-            ->orWhere('address', 'like', "%{$keyword}%")
-            ->whereTranslationLike('name', "%{$keyword}%")
-            ->where('status', Place::STATUS_ACTIVE);
+        ->with(['city' => function ($query) {
+            return $query->select('id', 'name', 'slug');
+        }])
+        ->with('categories')
+        ->with('place_types')
+        ->withCount('reviews')
+        ->with('avgReview')
+        ->withCount('wishList')
+        ->where('status', Place::STATUS_ACTIVE)
+        ->where('address', 'like', "%{$keyword}%")
+        ->orWhere('slug', 'like',  "%{$keyword}%")
+        ->orWhere('name', 'like',  "%{$keyword}%")
+        ;
+
+
 
         if ($filter_category) {
             foreach ($filter_category as $key => $item) {
@@ -334,24 +364,32 @@ class HomeController extends Controller
             return $this->response->formatResponse(200, $data, 'success');
         }
 
-        $places = $places->paginate();
+        if ($sort_by) {
+                if ($sort_by === 'price_asc') $places->orderBy('price_range', 'asc');
+                if ($sort_by === 'price_desc') $places->orderBy('price_range', 'desc');
+            }
+        $places = $places->paginate(10);
+
 
 //        return $places;
 
         $template = setting('template', '01');
 
-        return view("frontend.search.search_{$template}", [
+        return view("frontend.search.search_02", [
             'keyword' => $keyword,
             'places' => $places,
             'categories' => $categories,
             'place_types' => $place_types,
             'amenities' => $amenities,
             'cities' => $cities,
+            'sort_by' => $sort_by,
             'filter_category' => $filter_category,
             'filter_amenities' => $filter_amenities,
             'filter_place_type' => $filter_place_type,
             'filter_city' => $request->city,
         ]);
     }
+
+
 
 }

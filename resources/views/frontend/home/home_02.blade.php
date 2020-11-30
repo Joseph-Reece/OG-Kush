@@ -6,6 +6,13 @@
         $home_banner = "style=background-image:url(/assets/images/home-bsn-banner.jpg)";
     }
 @endphp
+<style>
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+       #map {
+  height: 100%;
+}
+</style>
 @extends('frontend.layouts.template_02')
 @section('main')
     <main id="main" class="site-main home-main business-main">
@@ -138,6 +145,17 @@
             </div>
         </div> --}}
         <!-- .trending -->
+
+        <div class="form-group">
+            <label for="address_address">Address</label>
+            <input type="text" id="address-input" name="address_address" class="form-control map-input">
+            <input type="text" name="address_latitude" id="address-latitude" value="0" />
+            <input type="text" name="address_longitude" id="address-longitude" value="0" />
+        </div>
+        <div id="address-map-container" style="width:100%;height:400px; ">
+            <div style="width: 100%; height: 100%" id="address-map"></div>
+        </div>
+
 
         <div class="featured-cities">
             <div class="container">
@@ -621,3 +639,8 @@
         </div>
     </main><!-- .site-main -->
 @stop
+@push('scripts')
+<script src="{{asset('assets/js/map.js')}}"></script>
+
+
+@endpush

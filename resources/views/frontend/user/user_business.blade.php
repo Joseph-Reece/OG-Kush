@@ -35,7 +35,14 @@
                                             <div class="field-group">
                                                 <input type="text" id="pac-input" placeholder="{{__('Full Address')}}" value="{{$place['address']}}" name="address" autocomplete="off" required/>
                                             </div>
-                                            <button class="btn" id="show_map">Toggle Map</button>
+
+                                            <div class="show-map">
+                                                <span>{{__('Show on Map')}}</span>
+                                                <a href="#" class="icon-toggle"></a>
+                                            </div><!-- .show-map -->
+
+
+                                            </a>
                                             <div class="field-group field-maps">
                                                 <div class="field-map">
                                                     <input type="hidden" id="place_lat" name="lat" value="{{$place['lat']}}">

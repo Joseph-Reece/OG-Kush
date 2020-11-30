@@ -202,4 +202,5 @@ class PlaceController extends Controller
         Place::destroy($id);
         return back()->with('success', 'Delete place success!');
     }
+
 }

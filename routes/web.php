@@ -17,6 +17,7 @@ $router->group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
+
 /**
  * Frontend Router
  */
@@ -49,10 +50,11 @@ $router->group([
     $router->post('/place', 'PlaceController@create')->name('place_create')->middleware('auth');
     $router->put('/place', 'PlaceController@update')->name('place_update')->middleware('auth');
     $router->get('/places/filter', 'PlaceController@getListFilter')->name('place_get_list_filter');
+    $router->get('/business/filter', 'HomeController@BusinesSearch')->name('business_get_list_filter');
 
     $router->post('/review', 'ReviewController@create')->name('review_create')->middleware('auth');
-    $router->post('/wishlist', 'UserController@addWishlist')->name('add_wishlist')->middleware('auth');
-    $router->delete('/wishlist', 'UserController@removeWishlist')->name('remove_wishlist')->middleware('auth');
+    $router->post('/following', 'UserController@addWishlist')->name('add_wishlist')->middleware('auth');
+    $router->delete('/following', 'UserController@removeWishlist')->name('remove_wishlist')->middleware('auth');
 
     $router->get('/user/profile', 'UserController@pageProfile')->name('user_profile')->middleware('auth');
     $router->put('/user/profile', 'UserController@updateProfile')->name('user_profile_update')->middleware('auth');
@@ -103,7 +105,7 @@ $router->group([
             $router->post('/busiData', 'newcontroller@savebusiness')->name('save_business');
 
 });
-// Route::view('/busi', 'frontend.New.business_signup');
+Route::view('/map', 'frontend.New.tryMap');
 /*
  * AdminCP Router
  */

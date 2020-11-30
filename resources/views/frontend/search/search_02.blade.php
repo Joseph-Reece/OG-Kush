@@ -55,12 +55,12 @@
                 </div>
                 @endforeach
                 @endif
-              {{-- <div class="carousel-item active">
+              <div class="carousel-item active">
                 <img src="{{URL::asset('/assets/images/home-banner.jpg')}}" class="d-block w-100" alt="..." style="height: 400px">
               </div>
               <div class="carousel-item">
                 <img src="{{URL::asset('/assets/images/home-banner.jpg')}}" class="d-block w-100" alt="..." style="height: 400px">
-              </div> --}}
+              </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -71,13 +71,106 @@
               <span class="sr-only">Next</span>
             </a>
         </div>
+        <div class="container d-flex justify-content-around">
+
+            <div class="shop__order site__order golo-nav-filter">
+                <div class="golo-clear-filter">
+                    <i class="la la-times"></i>
+                    <span>{{__('Clear All')}}</span>
+                </div>
+                <div class="shop__filter site__filter">
+                    <a title="Filter" class="golo-filter-toggle" href="#">
+                        {{__('Filter')}}
+                        <i class="la la-angle-down"></i>
+                    </a>
+                </div><!-- .shop__filter -->
+            </div><!-- .shop__order -->
+
+        </div>
+        <form action="#"  class="filterForm" id="filterForm">
+        <div class="golo-menu-filter">
+            <div class="row ">
+                <div class="col-md-3">
+
+                    {{-- Cities filter --}}
+                    <div class="entry-filter">
+                        <h4>{{__('Cities')}}</h4>
+                        <ul class="type filter-control custom-scrollbar">
+                            @foreach($cities as $city)
+                                <li>
+                                    <input type="checkbox"
+                                    class="custom-checkbox input-control"
+                                    id="city_{{$city->id}}" name="city[]"
+                                    value="{{$city->id}}" {{isChecked($city->id, $filter_city)}}>
+                                    <label for="city_{{$city->id}}"> {{$city->name}}</label>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                {{-- Filter by Price range --}}
+                <div class="col-md-3">
+                    <div class="entry-filter">
+                        <h4>{{__('Category Filter')}}</h4>
+                        <ul class=" filter-control custom-scrollbar">
+                            @foreach($categories as $cat)
+                                <li>
+                                    <input type="checkbox"
+                                    class="custom-checkbox input-control"
+                                    id="cat_{{$cat->id}}"
+                                    name="category[]"
+                                    value="{{$cat->id}}" {{isChecked($cat->id, $filter_category)}}>
+
+                                    <label for="city_{{$city->id}}">
+                                         {{$cat->name}}
+                                    </label>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                {{-- Filter by type --}}
+                {{-- <div class="col-md-3"> --}}
+                    <div class="entry-filter">
+                        <h4>{{__('Amenities')}}</h4>
+                        <ul class="amenities filter-control custom-scrollbar">
+                                @foreach($amenities as $item)
+                                <li>
+                                    <input type="checkbox" class="custom-checkbox input-control" id="amenities_{{$item->id}}"
+                                    name="amenities[]"
+                                    value="{{$item->id}}" {{isChecked($item->id, $filter_amenities)}}>
+                                    {{$item->name}}
+                                    <label for="amenities_{{$item->id}}">
+                                        {{$item->name}}
+                                    </label>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                {{-- </div> --}}
+
+                {{-- Filter by City --}}
+                {{-- <div class="col-md-3"> --}}
+
+                {{-- </div> --}}
+
+                {{-- <div class="col-md-3"> --}}
+
+                {{-- </div> --}}
+
+
+            </div>
+
+        </div>
+    </form>
+
         <div class="archive-city">
             <div class="col-left">
                 <div class="archive-filter">
                     <form action="#" class="filterForm" id="filterForm">
                         <div class="filter-head">
                             <h2>{{__('Filter')}}</h2>
-                           {{-- <a href="#" class="clear-filter"><i class="fal fa-sync"></i>Clear all</a>  --}}
+                           {{-- <a href="#" class="clear-filter"><i class="fal fa-sync"></i>Clear all</a>--}}
                             <a href="#" class="close-filter"><i class="las la-times"></i></a>
                         </div>
                         <div class="filter-box">
@@ -114,7 +207,7 @@
                                 <a href="#" class="more open-more" data-close="Close" data-more="More">{{__('More')}}</a>
                             </div>
                         </div>
-                        <div class="filter-box">
+                         <div class="filter-box">
                             <h3>{{__('Place Type')}}</h3>
                             <div class="filter-list">
                                 <div class="filter-group">
@@ -131,6 +224,46 @@
                                 <a href="#" class="more open-more" data-close="Close" data-more="More">{{__('More')}}</a>
                             </div>
                         </div>
+                         <div class="filter-box">
+                            <h3>{{__('Amenities')}}</h3>
+                            <div class="filter-list">
+                                <div class="filter-group">
+                                    <div class="field-check">
+                                        <label for="0" class="bc_filter">
+
+                                            <input type="checkbox" value="0" {{isChecked(0, $sort_by)}} name="price[]" id="0">
+                                                 Free   <span class="checkmark"><i class="la la-check"></i></span>
+                                        </label>
+
+                                        <label for="1" class="bc_filter">
+
+                                            <input type="checkbox" value="1" {{isChecked(1, $sort_by)}} name="price[]" id="1">
+                                                 $  <span class="checkmark"><i class="la la-check"></i></span>
+                                        </label>
+
+                                        <label for="2" class="bc_filter">
+
+                                            <input type="checkbox" value="2" {{isChecked(2, $sort_by)}} name="price[]" id="2">
+                                                 $$  <span class="checkmark"><i class="la la-check"></i></span>
+                                        </label>
+
+                                        <label for="3" class="bc_filter">
+
+                                            <input type="checkbox" value="3" {{isChecked(3, $sort_by)}} name="price[]" id="3">
+                                                 $$$   <span class="checkmark"><i class="la la-check"></i></span>
+                                        </label>
+                                        <label for="4" class="bc_filter">
+
+                                            <input type="checkbox" value="4" {{isChecked(4, $sort_by)}} name="price[]" id="4">
+                                                $$$$   <span class="checkmark"><i class="la la-check"></i></span>
+                                        </label>
+
+                                    </div>
+                                </div>
+                                <a href="#" class="more open-more" data-close="Close" data-more="More">More</a>
+                            </div>
+
+                        </div>
                         <div class="filter-box">
                             <h3>{{__('Amenities')}}</h3>
                             <div class="filter-list">
@@ -138,7 +271,8 @@
                                     @foreach($amenities as $item)
                                         <div class="field-check">
                                             <label class="bc_filter" for="amenities_{{$item->id}}">
-                                                <input type="checkbox" id="amenities_{{$item->id}}" name="amenities[]" value="{{$item->id}}" {{isChecked($item->id, $filter_amenities)}}>
+                                                <input type="checkbox" id="amenities_{{$item->id}}" name="amenities[]"
+                                                value="{{$item->id}}" {{isChecked($item->id, $filter_amenities)}}>
                                                 {{$item->name}}
                                                 <span class="checkmark"><i class="la la-check"></i></span>
                                             </label>
@@ -174,16 +308,19 @@
                         </div><!-- .show-map -->
                     </div>
 
-                    <div class="area-places">
+                    <div class="area-places" id="list_places">
+                       
                         @if($places->total())
                             @foreach($places as $place)
+
+                           {{-- @include('frontend.common.place_item')--}}
                                 <div class="place-item place-hover layout-02" data-maps="">
                                     <div class="place-inner">
                                         <div class="place-thumb">
                                             <a class="entry-thumb" href="{{route('place_detail', $place->slug)}}"><img src="{{getImageUrl($place->thumb)}}" alt=""></a>
                                             <a href="#" class="golo-add-to-wishlist btn-add-to-wishlist @if($place->wish_list_count) remove_wishlist active @else @guest open-login @else add_wishlist @endguest @endif" data-id="{{$place->id}}">
 											<span class="icon-heart">
-												<i class="la la-bookmark large"></i>
+												<i class="la la-heart la-24"></i>
 											</span>
                                             </a>
                                             <a class="entry-category rosy-pink" href="{{route('page_search_listing', ['category[]' => $place['categories'][0]['id']])}}" style="background-color:{{$place['categories'][0]['color_code']}};">
@@ -228,6 +365,7 @@
                             </div>
                         @endif
                     </div>
+
                     <div class="pagination">
                         {{$places->render('frontend.common.pagination')}}
                     </div>

@@ -231,13 +231,14 @@ class PlaceController extends Controller
         ->where('place_id', $place->id)
         ->where('status', Review::STATUS_ACTIVE)
         ->avg('score');
-        // dd($filter['keyword']);
+        // dd($reviews[1]->comment );
+        foreach ($reviews as $key => $value) {
+            # code...
+            $review=$value;
+        }
 
-        // if (isset($filter_keyword)) {
-        //     $reviews->where('name', 'like', "%{$filter_keyword}%");
-        // }
 
-        // dd($reviews->where('comment', 'like', '%'.$filter_keyword.'%'));
+        // dd($reviews[0]->where('comment', 'like', '%'.$filter_keyword.'%'));
 
         // $reviews = $reviews->paginate();
 
@@ -482,6 +483,7 @@ class PlaceController extends Controller
         $places = $places->get();
 
         $html = "";
+        dd(count($places));
         if (count($places)) :
             foreach ($places as $place) :
                 $place_detail_url = route('place_detail', $place->slug);

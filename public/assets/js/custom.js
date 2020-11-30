@@ -78,7 +78,7 @@ const PRICE_RANGE = {
                 let place_id = $(this).attr('data-id');
                 $.ajax({
                     type: "POST",
-                    url: `${app_url}/wishlist`,
+                    url: `${app_url}/following`,
                     data: {
                         '_token': CSRF_TOKEN,
                         'place_id': place_id
@@ -92,7 +92,7 @@ const PRICE_RANGE = {
                             $this.addClass('active');
                             $this.addClass('remove_wishlist');
                             $this.removeClass('add_wishlist');
-                            $this.html('<i class="la la-bookmark la-24"></i>');
+                            $this.html('<i class="la la-heart la-24"></i>');
                         }
                     },
                     error: function (jqXHR) {
@@ -111,7 +111,7 @@ const PRICE_RANGE = {
                 let place_id = $(this).attr('data-id');
                 $.ajax({
                     type: "delete",
-                    url: `${app_url}/wishlist`,
+                    url: `${app_url}/following`,
                     data: {
                         '_token': CSRF_TOKEN,
                         'place_id': place_id
@@ -125,7 +125,7 @@ const PRICE_RANGE = {
                             $this.removeClass('active');
                             $this.removeClass('remove_wishlist');
                             $this.addClass('add_wishlist');
-                            $this.html('<i class="la la-bookmark la-24"></i>');
+                            $this.html('<i class="la la-heart la-24"></i>');
                         }
                     },
                     error: function (jqXHR) {

@@ -12,7 +12,7 @@ var GL_BC = GL_BC || {};
 
         clickFilter: function () {
             $(document).on('click', '.bc_filter', function (e) {
-                $('#filterForm').submit();
+                $('#filtersForm').submit();
             });
         },
 
