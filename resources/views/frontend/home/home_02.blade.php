@@ -146,14 +146,15 @@
         </div> --}}
         <!-- .trending -->
 
-        <div class="form-group">
-            <label for="address_address">Address</label>
-            <input type="text" id="address-input" name="address_address" class="form-control map-input">
-            <input type="text" name="address_latitude" id="address-latitude" value="0" />
-            <input type="text" name="address_longitude" id="address-longitude" value="0" />
+        <div class="field-group">
+            <input type="text" id="pac-input" placeholder="{{__('My Full Address')}}" value="" name="address" autocomplete="off" required/>
         </div>
-        <div id="address-map-container" style="width:100%;height:400px; ">
-            <div style="width: 100%; height: 100%" id="address-map"></div>
+        <div class="field-group field-maps">
+            <div class="field-map">
+                <input type="hidden" id="place_lat" name="lat" value="">
+                <input type="hidden" id="place_lng" name="lng" value="">
+                <div class="site-banner" id="map" style=" position: relative; overflow: hidden;"></div>
+            </div>
         </div>
 
 
@@ -248,7 +249,6 @@
                                             <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Import Videos</li>
                                             <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li>
                                         </ul>
-                                        <a href="#" class="btn btn-block btn-primary text-uppercase">Button</a>
 
                                     </div>
                                     </div>
@@ -275,7 +275,6 @@
                                             <li class="text-muted" ><span class="fa-li"><i class="fas fa-times"></i></span>Import Videos</li>
                                             <li class="text-muted" ><span class="fa-li"><i class="fas fa-times"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li>
                                         </ul>
-                                        <a href="#" class="btn btn-block btn-primary text-uppercase">Button</a>
                                     </div>
                                     </div>
                                 </div>
@@ -301,7 +300,6 @@
                                             <li ><span class="fa-li"><i class="fas fa-check"></i></span>Import Videos</li>
                                             <li ><span class="fa-li"><i class="fas fa-check"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li>
                                         </ul>
-                                        <a href="#" class="btn btn-block btn-primary text-uppercase">Button</a>
                                     </div>
                                     </div>
                                 </div>
@@ -338,7 +336,6 @@
                                             <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Import Videos</li>
                                             <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li>
                                         </ul>
-                                        <a href="#" class="btn btn-block btn-primary text-uppercase">Button</a>
 
                                     </div>
                                     </div>
@@ -365,7 +362,6 @@
                                             <li class="text-muted" ><span class="fa-li"><i class="fas fa-times"></i></span>Import Videos</li>
                                             <li class="text-muted" ><span class="fa-li"><i class="fas fa-times"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li>
                                         </ul>
-                                        <a href="#" class="btn btn-block btn-primary text-uppercase">Button</a>
                                     </div>
                                     </div>
                                 </div>
@@ -428,7 +424,6 @@
                                             <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Import Photos & Videos</li>
                                             {{-- <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li> --}}
                                         </ul>
-                                        <a href="#" class="btn btn-block btn-primary text-uppercase">Button</a>
 
                                     </div>
                                     </div>
@@ -481,7 +476,6 @@
                                             <li ><span class="fa-li"><i class="fas fa-check"></i></span>Import Photos & Videos</li>
                                             {{-- <li ><span class="fa-li"><i class="fas fa-check"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li> --}}
                                         </ul>
-                                        <a href="#" class="btn btn-block btn-primary text-uppercase">Button</a>
                                     </div>
                                     </div>
                                 </div>

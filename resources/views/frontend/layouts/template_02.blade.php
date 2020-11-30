@@ -202,6 +202,7 @@
                                 </ul>
                             @endif
                         </div> --}}
+                        
                         <div class="right-header__destinations">
                             <a href="#" class="">Map Search</a>
                         </div>

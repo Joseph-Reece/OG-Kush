@@ -1,9 +1,17 @@
 /**
  * Google map
  */
-// function placeMap() {
-    let place_lat = parseFloat($('#place_lat').val()) || -33.8688;
-    let place_lng = parseFloat($('#place_lng').val()) || 151.2195;
+(function ($) {
+    "use strict";
+
+
+    let place_lat = parseFloat($('#place_lat').val()) ||  40.7127753;
+    let place_lng = parseFloat($('#place_lng').val()) || -74.0059728;
+
+
+
+
+
 
     let map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: place_lat, lng: place_lng},
@@ -26,7 +34,7 @@
     // Create the search box and link it to the UI element.
     let input = document.getElementById('pac-input');
     let searchBox = new google.maps.places.SearchBox(input);
-    // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     // Bias the SearchBox results towards current map's viewport.
     map.addListener('bounds_changed', function () {
@@ -48,6 +56,9 @@
             marker.setMap(null);
         });
         markers = [];
+
+
+//   var latlon = position.coords.latitude + "," + position.coords.longitude;
 
         // For each place, get the icon, name and location.
         let bounds = new google.maps.LatLngBounds();
@@ -78,4 +89,6 @@
         });
         map.fitBounds(bounds);
     });
-    // }
+
+
+    })(jQuery);
