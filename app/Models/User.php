@@ -20,7 +20,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'avatar', 'phone_number', 'facebook', 'instagram', 'status', 'is_admin'];
+    protected $fillable = ['name', 'email', 'password', 'avatar', 'phone_number', 'facebook', 'instagram', 'status', 'is_admin','referrer_id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -35,6 +35,8 @@ class User extends Authenticatable
         'is_admin' => 'integer',
         'status' => 'integer'
     ];
+
+    protected $appends = ['referral_link'];
 
     const STATUS_DEACTIVE = 0;
     const STATUS_ACTIVE = 1;
@@ -55,7 +57,7 @@ class User extends Authenticatable
     public function validateLogin($data)
     {
         $validateData = $data->all();
-        $resp = (Object)[
+        $resp = (object)[
             'code' => APICode::WRONG_PARAMS,
             'message' => ''
         ];
@@ -76,7 +78,7 @@ class User extends Authenticatable
     public function validateRegister($data)
     {
         $validateData = $data->all();
-        $resp = (Object)[
+        $resp = (object)[
             'code' => APICode::WRONG_PARAMS,
             'message' => ''
         ];
@@ -137,6 +139,19 @@ class User extends Authenticatable
 
         return $this->api_token;
     }
+    public function getReferralLinkAttribute()
+{
+    return $this->referral_link = route('register', ['ref' => $this->email]);
+}
 
+    public function referrer()
+    {
+        return $this->belongsTo(User::class, 'referrer_id', 'id');
+    }
+
+    public function referrals()
+    {
+        return $this->hasMany(User::class, 'referrer_id', 'id');
+    }
 
 }

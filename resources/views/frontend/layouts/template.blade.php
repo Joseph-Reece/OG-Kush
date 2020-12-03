@@ -35,7 +35,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/custom.css?v=1.0')}}"/>
     @endif
 
-    <link rel="icon" sizes="16x16" href="{{asset('assets/images/favicon.png')}}">
+    <link rel="icon" sizes="16x16" href="{{asset('assets/images/favicon.jpg')}}">
     <meta name="csrf-token" content="{{csrf_token()}}"/>
     <script>
         var app_url = window.location.origin;

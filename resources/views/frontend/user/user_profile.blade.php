@@ -24,6 +24,12 @@
                                 {{__('Upload new')}}
                             </label>
                         </div>
+                        <h3>{{__('Referal Information ')}}</h3>
+                        <div class="field-input">
+                            <label for="name">{{__('Referral link:')}}{{ Auth::user()->referral_link }}</label><br>
+                            <label for="name">{{__('Referrer:')}}{{ Auth::user()->referrer->name ?? 'Not Specified' }}</label><br>
+                            <label for="name">{{__('Refferal count:')}}{{ count(Auth::user()->referrals)  ?? '0' }}</label><br>
+                        </div>
                         <h3>{{__('Basic Info')}}</h3>
                         <div class="field-input">
                             <label for="name">{{__('Full name')}}</label>
@@ -71,8 +77,8 @@
                         </div>
                     </form><!-- .member-password -->
 
-                </div> 
-                
+                </div>
+
                 <!-- .member-wrap -->
             </div>
         </div><!-- .site-content -->
