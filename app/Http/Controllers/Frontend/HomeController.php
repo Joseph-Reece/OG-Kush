@@ -31,6 +31,7 @@ class HomeController extends Controller
         $this->response = $response;
     }
 
+
     public function index()
     {
         // SEO Meta
@@ -83,7 +84,7 @@ class HomeController extends Controller
             ->where('status', Testimonial::STATUS_ACTIVE)
             ->get();
 
-//        return $trending_places;
+        //        return $trending_places;
 
         $template = setting('template', '01');
 
@@ -151,8 +152,8 @@ class HomeController extends Controller
         $places = $places->get(['id', 'city_id', 'name', 'slug', 'address']);
 
         $html = '<ul class="custom-scrollbar">';
-        foreach ($places as $place):
-            if (isset($place['city'])):
+        foreach ($places as $place) :
+            if (isset($place['city'])) :
                 $place_url = route('place_detail', $place->slug);
                 $city_url = route('city_detail', $place['city']['slug']);
                 $html .= "
@@ -187,8 +188,8 @@ class HomeController extends Controller
         $places = $places->get(['id', 'city_id', 'name', 'slug', 'address']);
 
         $html = '<ul class="listing_items">';
-        foreach ($places as $place):
-            if (isset($place['city'])):
+        foreach ($places as $place) :
+            if (isset($place['city'])) :
                 $place_url = route('place_detail', $place->slug);
                 $html .= "
                 <li>
@@ -237,7 +238,7 @@ class HomeController extends Controller
 
         $places = $places->paginate(20);
 
-//        return $places;
+        //        return $places;
 
         return view('frontend.search.search', [
             'places' => $places,
@@ -253,28 +254,231 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function fetchListingsBySearch($keyword=''){
+    public function fetchListingsBySearch($keyword = '')
+    {
         $places = Place::query()
-        ->with(['city' => function ($query) {
-            return $query->select('id', 'name', 'slug');
-        }])
-        ->with('categories')
-        ->with('place_types')
-        ->withCount('reviews')
-        ->with('avgReview')
-        ->withCount('wishList')
-        ->where('name', 'like',  "%{$keyword}%")
-        ->where('address', 'like', "%{$keyword}%")
-        ->orWhere('slug', 'like',  "%{$keyword}%")
-        ->where('status', Place::STATUS_ACTIVE)
-        ;
+            ->with(['city' => function ($query) {
+                return $query->select('id', 'name', 'slug');
+            }])
+            ->with('categories')
+            ->with('place_types')
+            ->withCount('reviews')
+            ->with('avgReview')
+            ->withCount('wishList')
+            ->where('name', 'like',  "%{$keyword}%")
+            ->where('address', 'like', "%{$keyword}%")
+            ->orWhere('slug', 'like',  "%{$keyword}%")
+            ->where('status', Place::STATUS_ACTIVE);
 
 
 
 
-            return $places;
+        return $places;
     }
 
+
+    // public function pageSearchListing(Request $request)
+    // {
+    //     $keyword = $request->keyword;
+    //     $filter_category = $request->category;
+    //     $filter_amenities = $request->amenities;
+    //     $filter_place_type = $request->place_type;
+    //     $filter_city = $request->city;
+    //     $sort_by = $request->sort_by;
+    //     $action = $request->action;
+    //     $ajax = $request->ajax;
+    //     $price = $request->price;
+    //     // dd($filter_amenities);
+    //     // dd($filter_category);
+    //     // dd($filter_city);
+    //     // dd($price);
+    //     // dd($sort_by);
+    //     // dd($ajax);
+    //     // dd($keyword);
+    //     // dd($action);
+    //     // dd($filter_place_type);
+
+    //     //$places = $this->fetchListingsBySearch($keyword );
+
+    //     //dd($keyword);
+    //     $places = Place::query()
+    //         ->with(['city' => function ($query) {
+    //             return $query->select('id', 'name', 'slug');
+    //         }])
+    //         ->with('categories')
+    //         ->with('place_types')
+    //         ->withCount('reviews')
+    //         ->with('avgReview')
+    //         ->withCount('wishList')
+    //         ->where('name', 'like',  "%{$keyword}%")
+    //         ->where('address', 'like', "%{$keyword}%")
+    //         ->orWhere('slug', 'like',  "%{$keyword}%")
+    //         ->where('status', Place::STATUS_ACTIVE);
+
+
+
+
+    //     if ($filter_category) {
+    //         foreach ($filter_category as $key => $item) {
+
+    //             if ($key === 0) {
+    //                 $places->where('category', 'like', "%$item%");
+    //             } else {
+    //                 $places->orWhere('category', 'like', "%$item%");
+    //             }
+    //         }
+    //     }
+
+    //     if ($filter_amenities) {
+    //         foreach ($filter_amenities as $key => $item) {
+    //             if ($key === 0) {
+    //                 $places->where('amenities', 'like', "%$item%");
+    //             } else {
+    //                 $places->orWhere('amenities', 'like', "%$item%");
+    //             }
+    //         }
+    //     }
+
+    //     if ($filter_place_type) {
+    //         foreach ($filter_place_type as $key => $item) {
+    //             if ($key === 0) {
+    //                 $places->where('place_type', 'like', "%$item%");
+    //             } else {
+    //                 $places->orWhere('place_type', 'like', "%$item%");
+    //             }
+    //         }
+    //     }
+    //     if ($filter_city) {
+    //         foreach ($filter_city as $key => $item) {
+    //             if ($key === 0) {
+    //                 $places->whereIn('city_id', $filter_city);
+    //             } else {
+    //                 $places->whereIn('city_id', $filter_city);
+    //             }
+    //         }
+    //     }
+
+    //     /*  if ($filter_city) {
+    //         $places->whereIn('city_id', $filter_city);
+    //     } */
+
+    //     if ($ajax == '1') {
+    //         $places = $places->get();
+
+    //         $city = null;
+    //         if (isset($filter_city)) {
+    //             $city = City::query()
+    //                 ->whereIn('id', $filter_city)
+    //                 ->first();
+    //         }
+
+    //         $data = [
+    //             'city' => $city,
+    //             'places' => $places
+    //         ];
+
+    //         return $this->response->formatResponse(200, $data, 'success');
+    //     }
+
+
+
+    //     $categories = Category::query()
+    //         ->where('type', Category::TYPE_PLACE)
+    //         ->get();
+
+    //     $place_types = PlaceType::query()
+    //         ->get();
+
+    //     $amenities = Amenities::query()
+    //         ->get();
+
+    //     $cities = City::query()
+    //         ->get();
+    //     // $places = $places->get();
+
+
+
+    //     if ($sort_by) {
+    //         if ($sort_by === 'price_asc') $places->orderBy('price_range', 'asc');
+    //         if ($sort_by === 'price_desc') $places->orderBy('price_range', 'desc');
+    //     }
+
+    //     $places = $places->paginate(10);
+
+    //     // dd($places->count());
+
+    //     // dd($searchResults);
+    //     //dd($action);
+    //     $warning = '';
+    //     if ($action == 'livesearch') {
+    //         //dd('has entered');
+
+    //         $warning = 'Livesearch';
+
+    //         return View('frontend.common.business_item', [
+    //             'places' => $places,
+    //             'warning' => $warning,
+    //         ]);
+    //     } else {
+    //         $warning = 'Success';
+    //         //dd($warning);
+
+    //         return view("frontend.search.search_02", [
+    //             'keyword' => $keyword,
+    //             'places' => $places,
+    //             'categories' => $categories,
+    //             'place_types' => $place_types,
+    //             'amenities' => $amenities,
+    //             'cities' => $cities,
+    //             'sort_by' => $sort_by,
+    //             'warning' => $warning,
+    //             'filter_category' => $filter_category,
+    //             'filter_amenities' => $filter_amenities,
+    //             'filter_place_type' => $filter_place_type,
+    //             'filter_city' => $request->city,
+    //         ]);
+
+    //         // dd('should output page with all data');
+
+
+
+
+
+    //     }
+    //     // $places = $places->paginate(10);
+
+
+    //     //        return $places;
+
+    //     // $template = setting('template', '01');
+
+    //     // //return view("frontend.search.search_02", [
+    //     // return view("frontend.common.business_item", [
+    //     //     'keyword' => $keyword,
+    //     //     'places' => $places,
+    //     //     'categories' => $categories,
+    //     //     'place_types' => $place_types,
+    //     //     'amenities' => $amenities,
+    //     //     'cities' => $cities,
+    //     //     'sort_by' => $sort_by,
+    //     //     'filter_category' => $filter_category,
+    //     //     'filter_amenities' => $filter_amenities,
+    //     //     'filter_place_type' => $filter_place_type,
+    //     //     'filter_city' => $request->city,
+    //     // ]);
+    // }
+
+
+
+
+
+
+
+
+
+
+
+    //Our New
     public function pageSearchListing(Request $request)
     {
         $keyword = $request->keyword;
@@ -285,76 +489,21 @@ class HomeController extends Controller
         $sort_by = $request->sort_by;
         $action = $request->action;
         $ajax = $request->ajax;
-        //dd($action);
+        $price = $request->price;
+        $searchResults = $this->ourfetchListingsBySearch($keyword, $filter_category, $filter_amenities, $filter_place_type, $filter_city, $sort_by, $action, $ajax, $price);
 
-
-        //$places = $this->fetchListingsBySearch($keyword );
-
-        //dd($keyword);
-        $places = Place::query()
-        ->with(['city' => function ($query) {
-            return $query->select('id', 'name', 'slug');
-        }])
-        ->with('categories')
-        ->with('place_types')
-        ->withCount('reviews')
-        ->with('avgReview')
-        ->withCount('wishList')
-        ->where('name', 'like',  "%{$keyword}%")
-        ->where('address', 'like', "%{$keyword}%")
-        ->orWhere('slug', 'like',  "%{$keyword}%")
-        ->where('status', Place::STATUS_ACTIVE)
-        ;
-
-
-
-
-        if ($filter_category) {
-            foreach ($filter_category as $key => $item) {
-
-                if ($key === 0) {
-                    $places->where('category', 'like', "%$item%");
-                } else {
-                    $places->orWhere('category', 'like', "%$item%");
-                }
-            }
-        }
-
-        if ($filter_amenities) {
-            foreach ($filter_amenities as $key => $item) {
-                if ($key === 0) {
-                    $places->where('amenities', 'like', "%$item%");
-                } else {
-                    $places->orWhere('amenities', 'like', "%$item%");
-                }
-            }
-        }
-
-        if ($filter_place_type) {
-            foreach ($filter_place_type as $key => $item) {
-                if ($key === 0) {
-                    $places->where('place_type', 'like', "%$item%");
-                } else {
-                    $places->orWhere('place_type', 'like', "%$item%");
-                }
-            }
-        }
-        if ($filter_city) {
-            foreach ($filter_city as $key => $item) {
-                if ($key === 0) {
-                    $places->whereIn('city_id', $filter_city);
-                } else {
-                    $places->whereIn('city_id', $filter_city);
-                }
-            }
-        }
-
-       /*  if ($filter_city) {
-            $places->whereIn('city_id', $filter_city);
-        } */
-
+        $warning = '';
+        $query = Place::query()
+            ->with(['city' => function ($query) {
+                return $query->select('id', 'name', 'slug');
+            }])
+            ->with('categories')
+            ->with('place_types')
+            ->withCount('reviews')
+            ->with('avgReview')
+            ->withCount('wishList');
         if ($ajax == '1') {
-            $places = $places->get();
+            $places = $query->get();
 
             $city = null;
             if (isset($filter_city)) {
@@ -371,8 +520,6 @@ class HomeController extends Controller
             return $this->response->formatResponse(200, $data, 'success');
         }
 
-
-
         $categories = Category::query()
             ->where('type', Category::TYPE_PLACE)
             ->get();
@@ -384,83 +531,164 @@ class HomeController extends Controller
             ->get();
 
         $cities = City::query()
-        ->get();
-       // $places = $places->get();
+            ->get();
+
+
+        if (!$searchResults->isEmpty()) {
+
+            if ($action == 'livesearch') {
+                //dd('has entered');
+
+                $warning = 'Livesearch';
+
+                return View('frontend.common.business_item', [
+                    'places' => $searchResults,
+                    'warning' => $warning,
+                ]);
+            } else {
+                $warning = 'Success';
+                //dd($warning);
+
+                return view("frontend.search.search_02", [
+                    'keyword' => $keyword,
+                    'places' => $searchResults,
+                    'categories' => $categories,
+                    'place_types' => $place_types,
+                    'amenities' => $amenities,
+                    'cities' => $cities,
+                    'sort_by' => $sort_by,
+                    'warning' => $warning,
+                    'filter_category' => $filter_category,
+                    'filter_amenities' => $filter_amenities,
+                    'filter_place_type' => $filter_place_type,
+                    'filter_city' => $request->city,
+                ]);
+            }
+        } else {
+            if ($action == 'livesearch') {
+                //dd('has entered');
+
+                $warning = 'Livesearch';
+
+                return View('frontend.common.business_item', [
+                    'places' => $searchResults,
+                    'warning' => $warning,
+                ]);
+            } else {
+                $warning = 'Success';
+                //dd($warning);
+
+                return view("frontend.search.search_02", [
+                    'keyword' => $keyword,
+                    'places' => $searchResults,
+                    'categories' => $categories,
+                    'place_types' => $place_types,
+                    'amenities' => $amenities,
+                    'cities' => $cities,
+                    'sort_by' => $sort_by,
+                    'warning' => $warning,
+                    'filter_category' => $filter_category,
+                    'filter_amenities' => $filter_amenities,
+                    'filter_place_type' => $filter_place_type,
+                    'filter_city' => $request->city,
+                ]);
+
+                // dd('should output page with all data');
 
 
 
-        if ($sort_by) {
-            if ($sort_by === 'price_asc') $places->orderBy('price_range', 'asc');
-            if ($sort_by === 'price_desc') $places->orderBy('price_range', 'desc');
+
+
+            }
         }
-
-       $places =$places->paginate(10);
-
-        // dd($places->count());
-
-        // dd($searchResults);
-        //dd($action);
-        $warning ='';
-        if($action == 'livesearch'){
-            //dd('has entered');
-
-            $warning = 'Livesearch';
-
-            return View('frontend.common.business_item', [
-                'places' => $places,
-                'warning' => $warning,
-            ]);
-
-
-        }else{
-            $warning = 'Success';
-            //dd($warning);
-
-            return view("frontend.search.search_02", [
-                'keyword' => $keyword,
-                'places' => $places,
-                'categories' => $categories,
-                'place_types' => $place_types,
-                'amenities' => $amenities,
-                'cities' => $cities,
-                'sort_by' => $sort_by,
-                'warning' => $warning,
-                'filter_category' => $filter_category,
-                'filter_amenities' => $filter_amenities,
-                'filter_place_type' => $filter_place_type,
-                'filter_city' => $request->city,
-            ]);
-
-            // dd('should output page with all data');
-
-
-
-
-
-        }
-        // $places = $places->paginate(10);
-
-
-//        return $places;
-
-        // $template = setting('template', '01');
-
-        // //return view("frontend.search.search_02", [
-        // return view("frontend.common.business_item", [
-        //     'keyword' => $keyword,
-        //     'places' => $places,
-        //     'categories' => $categories,
-        //     'place_types' => $place_types,
-        //     'amenities' => $amenities,
-        //     'cities' => $cities,
-        //     'sort_by' => $sort_by,
-        //     'filter_category' => $filter_category,
-        //     'filter_amenities' => $filter_amenities,
-        //     'filter_place_type' => $filter_place_type,
-        //     'filter_city' => $request->city,
-        // ]);
     }
 
 
 
+
+
+
+
+
+
+    public function ourfetchListingsBySearch($keyword = '', $filter_category = [], $filter_amenities = [], $filter_place_type = [], $filter_city = [],   $sort_by = '',  $price = '')
+    {
+        
+        $query = Place::query()
+            ->with(['city' => function ($query) {
+                return $query->select('id', 'name', 'slug');
+            }])
+            ->with('categories')
+            ->with('place_types')
+            ->withCount('reviews')
+            ->with('avgReview')
+            ->withCount('wishList');
+
+        $query->where('status', Place::STATUS_ACTIVE);
+
+        if ($keyword != '') {
+            $query->where('name', 'like',  "%{$keyword}%")
+                ->orWhere('address', 'like', "%{$keyword}%")
+                ->orWhere('slug', 'like',  "%{$keyword}%");
+        }
+        if ($filter_category != []) {
+            foreach ($filter_category as $key => $item) {
+
+                if ($key === 0) {
+                    $query->where('category', 'like', "%$item%");
+                } else {
+                    $query->orWhere('category', 'like', "%$item%");
+                }
+            }
+        }
+        if ($filter_amenities != []) {
+            foreach ($filter_amenities as $key => $item) {
+                if ($key === 0) {
+                    $query->where('amenities', 'like', "%$item%");
+                } else {
+                    $query->orWhere('amenities', 'like', "%$item%");
+                }
+            }
+        }
+        if ($filter_place_type != []) {
+            foreach ($filter_place_type as $key => $item) {
+                if ($key === 0) {
+                    $query->where('place_type', 'like', "%$item%");
+                } else {
+                    $query->orWhere('place_type', 'like', "%$item%");
+                }
+            }
+        }
+        if ($filter_city != []) {
+            foreach ($filter_city as $key => $item) {
+                if ($key === 0) {
+                    $query->whereIn('city_id', $filter_city);
+                } else {
+                    $query->whereIn('city_id', $filter_city);
+                }
+            }
+        }
+
+
+
+        if ($sort_by == 'newest') {
+            $query->orderBy('places.updated_at', 'desc');
+        } elseif ($sort_by == 'price_asc') {
+            $query->orderBy('price_range', 'asc');
+        } elseif ($sort_by == 'price_desc') {
+            $query->orderBy('price_range', 'desc');
+        } elseif ($sort_by == 'rating') {
+            $query->orderBy('vehicles.updated_at');
+        }
+
+
+        if ($price) {
+            $query->where('price_range', $price);
+        }
+
+
+
+
+        return $query->get();
+    }
 }

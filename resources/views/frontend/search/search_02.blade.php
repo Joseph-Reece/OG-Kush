@@ -4,7 +4,7 @@
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="height: 400px">
             <div class="carousel-inner">
 
-                @if($places->total())
+                @if($places->count())
                 @foreach($places as $place)
 
                 <div class="carousel-item ">
@@ -86,10 +86,10 @@
                                 <div class="filter-list">
                                     <div class="filter-group">
                                         <ul class="sort-by filter-control custom-scrollbar">
-                                            <li><a href="#" data-sort="newest">{{__('Newest')}}</a></li>
-                                            <li><a href="#" data-sort="rating">{{__('Average rating')}}</a></li>
-                                            <li class="price-filter"><a href="#" data-sort="price_asc">{{__('Price: Low to high')}}</a></li>
-                                            <li class="price-filter"><a href="#" data-sort="price_desc">{{__('Price: High to low')}}</a></li>
+                                            <li><a class="bc_filter" href="#" data-sort="newest">{{__('Newest')}}</a></li>
+                                            {{-- <li><a class="bc_filter" href="#" data-sort="rating">{{__('Average rating')}}</a></li> --}}
+                                            <li class="price-filter"><a class="bc_filter" href="#" data-sort="price_asc">{{__('Price: Low to high')}}</a></li>
+                                            <li class="price-filter"><a class="bc_filter" href="#" data-sort="price_desc">{{__('Price: High to low')}}</a></li>
                                         </ul>
                                     </div>
                                     <a href="#" class="more open-more" data-close="Close" data-more="More">More</a>
@@ -101,10 +101,10 @@
                                 <div class="filter-list">
                                     <div class="filter-group">
                                         <ul class="price filter-control custom-scrollbar">
-                                            <li><a href="#" data-price="0">{{__('Free')}}</a></li>
-                                            <li><a href="#" data-price="1">{{__('Low: $')}}</a></li>
-                                            <li><a href="#" data-price="2">{{__('Medium: $$')}}</a></li>
-                                            <li><a href="#" data-price="3">{{__('High: $$$')}}</a></li>
+                                            <li ><a class="bc_filter" href="#" data-price="0">{{__('Free')}}</a></li>
+                                            <li><a class="bc_filter" href="#" data-price="1">{{__('Low: $')}}</a></li>
+                                            <li><a class="bc_filter"href="#" data-price="2">{{__('Medium: $$')}}</a></li>
+                                            <li><a class="bc_filter" href="#" data-price="3">{{__('High: $$$')}}</a></li>
                                         </ul>
                                     </div>
                                     <a href="#" class="more open-more" data-close="Close" data-more="More">More</a>
@@ -200,7 +200,7 @@
                             </ul>
                             <div class="mb-maps"><a class="mb-maps" href="#"><i class="las la-map-marked-alt"></i></a></div>
                         </div>
-                        
+
 
                         {{-- <div class="area-places" id="list_places">
 
@@ -275,9 +275,7 @@
 
 						</div>
 
-                        <div class="pagination">
-                            {{$places->render('frontend.common.pagination')}}
-                        </div>
+
                     </div><!-- .main-primary -->
                 </div><!-- .col-left -->
 
@@ -297,46 +295,6 @@
 
 @push('scripts')
     <script src="{{asset('assets/js/page_business_category.js')}}"></script>
-    <script>
 
-	//.............................Submiting the form.............................//
-	function submitForm() {
-	// console.log($("#brand").val());
-		$(".searchoverlay").fadeIn();
-		$.ajax({
-			url:"{{route('page_search_listing')}}",
-			method:"GET",
-			data:{
-				model:$('#carmodel').val(),
-				min_price: $("#min_price").val(),
-				max_price: $("#max_price").val(),
-				brand: $("#brand").val(),
-				fuel: $("#fuel").val(),
-				condition: $("#selCondition").val() ,
-				sort: $("#sort").val() ,
-				transmission: $("#transmission").val(),
-				action: "carsearch" ,
-				"_token": $('#token').val(),
-					},
-
-			success:function(data)
-			{
-
-
-				// console.log(data);
-				$('.main-search').hide();
-				$('.results').empty();
-				$('.results').append(data);
-				$(".searchoverlay").fadeOut();
-
-			},
-				error:function(data)
-			{
-			console.log('nothing');
-			}
-		});
-
-	}
-    </script>
 
 @endpush

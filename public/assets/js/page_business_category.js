@@ -39,10 +39,9 @@ var GL_BC = GL_BC || {};
             $('.filter-group ul.filter-control a').on('click', function (e) {
                 e.preventDefault();
                 if ($(this).parent().hasClass('active')) {
-                    console.log('was active');
+                    // console.log('was active');
                     $(this).parents('.filter-group  ul.filter-control').find('li').removeClass('active');
                 } else {
-                    console.log('was not active');
 
                     $(this).parents('.filter-group ul.filter-control').find('li').removeClass('active');
                     $(this).parent().add('class', 'active');
@@ -82,6 +81,12 @@ var GL_BC = GL_BC || {};
                     city.push(parseInt($(this).val()));
                 });
 
+                console.log('keyword: '+keyword);
+                console.log('price: '+price);
+                console.log('category: '+category);
+                console.log('amenities: '+amenities);
+                console.log('place_type: '+place_type);
+                console.log('city: '+city);
                 //call api
                 $.ajax({
                     url: `${app_url}/search-listing`,
@@ -89,6 +94,8 @@ var GL_BC = GL_BC || {};
                     data:{
                         'keyword': keyword,
                         'action': action,
+                        'sort_by': sort_by,
+                        'price': price,
                         'category': category,
                         'amenities': amenities,
                         'place_type': place_type,
@@ -101,7 +108,7 @@ var GL_BC = GL_BC || {};
                         $(".searchoverlay").fadeIn(500);
                     },
                     success: function(data) {
-                        //console.log(data);
+                        // console.log(data);
                         $('.main-search').hide();
                         $('.results').empty();
                         $('.results').append(data);
