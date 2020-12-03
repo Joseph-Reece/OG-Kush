@@ -202,7 +202,7 @@
                                 </ul>
                             @endif
                         </div> --}}
-                        
+
                         <div class="right-header__destinations">
                             <a href="#" class="">Map Search</a>
                         </div>
@@ -456,7 +456,6 @@
 <script src="{{asset('assets/js/main_business.js?v=1.0')}}"></script>
 <script src="{{asset('assets/js/custom.js?v=1.0')}}"></script>
 {{-- My Script --}}
-<script src="{{asset('assets/js/MyJs.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{setting('goolge_map_api_key', 'AIzaSyD-2mhVoLX7oIOgRQ-6bxlJt4TF5k0xhWc')}}&libraries=places&language={{\Illuminate\Support\Facades\App::getLocale()}}"></script>
 
 @stack('scripts')

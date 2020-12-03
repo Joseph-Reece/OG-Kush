@@ -1,5 +1,16 @@
+<div class="top-area top-area-filter">
+    <span class="result-count"><span class="count">{{$places->count()}}</span> {{__('results')}}</span>
+{{-- <a href="#" class="clear">Clear filter</a>  --}}
+    <div class="select-box">
+    </div><!-- .select-box -->
+    <div class="show-map">
+        <span>{{__('Maps')}}</span>
+        <a href="#" class="icon-toggle"></a>
+    </div><!-- .show-map -->
+</div>
+
 <div class="area-places" id="list_places">
-    @if($places->total())
+    @if(($places->count())>0)
         @foreach($places as $place)
         {{-- @include('frontend.common.place_item') --}}
             <div class="place-item place-hover layout-02" data-maps="">

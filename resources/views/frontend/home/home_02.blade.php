@@ -45,6 +45,7 @@
                         <div class="field-submit">
                             <button><i class="las la-search la-24-black"></i></button>
                         </div>
+                        {{-- <input type="hidden" name="action" value="homesearch"> --}}
                     </form><!-- .site-banner__search -->
                 </div><!-- .site-banner__content -->
             </div>
@@ -145,7 +146,7 @@
             </div>
         </div> --}}
         <!-- .trending -->
-
+        {{-- <button id="button" class="btn">Click here</button>
         <div class="field-group">
             <input type="text" id="pac-input" placeholder="{{__('My Full Address')}}" value="" name="address" autocomplete="off" required/>
         </div>
@@ -155,7 +156,7 @@
                 <input type="hidden" id="place_lng" name="lng" value="">
                 <div class="site-banner" id="map" style=" position: relative; overflow: hidden;"></div>
             </div>
-        </div>
+        </div> --}}
 
 
         <div class="featured-cities">

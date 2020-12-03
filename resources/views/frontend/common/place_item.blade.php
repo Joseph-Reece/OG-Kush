@@ -1,3 +1,4 @@
+
 <div class="places-item hover__box">
     <div class="places-item__thumb hover__box__thumb">
         <a title="{{$place->name}}" href="{{route('place_detail', $place->slug)}}"><img src="{{getImageUrl($place->thumb)}}" alt="{{$place->name}}"></a>

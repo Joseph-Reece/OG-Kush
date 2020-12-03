@@ -34,7 +34,7 @@
     //     $("#map").toggle(500);
     //    });
 
-       $( '.icon-toggle' ).on( 'click', function() {
+       $( '.icon-toggler' ).on( 'click', function() {
         $( this ).toggleClass( 'active' );
         if ($( this ).hasClass( 'active' )) {
             $( this ).parents( 'body' ).find( '#map' ).fadeIn(500);

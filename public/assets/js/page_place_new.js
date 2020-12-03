@@ -126,7 +126,7 @@
         previewUploadImage(this, 'thumb_preview')
     });
 
-    // Add more opening hour
+    // Add more 
     $('#openinghour_addmore').click(function () {
         event.preventDefault();
         let openinghour_list = $('#time-opening');

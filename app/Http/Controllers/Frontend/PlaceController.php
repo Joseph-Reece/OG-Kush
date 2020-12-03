@@ -483,7 +483,7 @@ class PlaceController extends Controller
         $places = $places->get();
 
         $html = "";
-        dd(count($places));
+        // dd(count($places));
         if (count($places)) :
             foreach ($places as $place) :
                 $place_detail_url = route('place_detail', $place->slug);

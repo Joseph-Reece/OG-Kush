@@ -17,9 +17,10 @@
         "laravel/framework": "5.8.*",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^1.0",
+        "spatie/laravel-permission": "^3.18",
         "staudenmeir/eloquent-json-relations": "^1.1",
-        "unisharp/laravel-filemanager": "^2.0",
-        "symfony/translation": "4.3.8"
+        "symfony/translation": "4.3.8",
+        "unisharp/laravel-filemanager": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

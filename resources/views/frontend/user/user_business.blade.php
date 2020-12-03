@@ -38,7 +38,7 @@
 
                                             <div class="show-map">
                                                 <span>{{__('Show on Map')}}</span>
-                                                <a href="#" class="icon-toggle"></a>
+                                                <a href="#" class="icon-toggler"></a>
                                             </div><!-- .show-map -->
 
 
