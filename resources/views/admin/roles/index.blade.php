@@ -7,9 +7,9 @@
             <h2>Role Management</h2>
         </div>
         <div class="pull-right">
-        @can('role-create')
-            <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
-        @endcan
+        {{-- @can('role-create') --}}
+            <a class="btn btn-success" href="{{ route('admin_roles.create') }}"> Create New Role</a>
+        {{-- @endcan --}}
         </div>
     </div>
 </div>
@@ -34,15 +34,16 @@
         <td>{{ $role->name }}</td>
         <td>
             <a class="btn btn-info" href="{{ route('admin_roles.show',$role->id) }}">Show</a>
-            @can('role-edit')
+            {{-- @can('role-edit') --}}
                 <a class="btn btn-primary" href="{{ route('admin_roles.edit',$role->id) }}">Edit</a>
-            @endcan
+            {{-- @endcan --}}
 
-           {{--  @can('role-delete')
-                <form action="{{route('admin_roles.destroy',$role->id )}}" method="post" enctype="multipart/form-data" style="display:inline">
+            {{-- @can('role-delete') --}}
+                <form action="{{route('admin_roles.destroy', $role->id )}}" method="post" enctype="multipart/form-data" style="display:inline">
+                    @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
-            @endcan --}}
+            {{-- @endcan --}}
             @hasrole('Dispensary')
             <form action="{{route('admin_roles.destroy',$role->id )}}" method="post" enctype="multipart/form-data" style="display:inline">
                 <button type="submit" class="btn btn-danger">Delete</button>

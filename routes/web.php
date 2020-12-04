@@ -101,6 +101,7 @@ $router->group([
 
         // My Routes
             $router->get('/busiP', 'newcontroller@Business_package')->name('business_package');
+            $router->post('/busiAdd', 'newcontroller@Business_signup')->name('save_business');
 
 });
 

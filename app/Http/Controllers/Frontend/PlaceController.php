@@ -124,6 +124,7 @@ class PlaceController extends Controller
     public function businessInfo()
     {
         $user = Auth::user()->id;
+        //dd($user);
 
         $place = $this->place->getById($user);
         // dd($place);
