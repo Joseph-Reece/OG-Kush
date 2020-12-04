@@ -43,27 +43,27 @@ class newcontroller extends Controller
         $this->response = $response;
     }
     //
-    // public function Business_signup(Request $request, $id = null){
-    //     SEOMeta(setting('app_name'), setting('home_description'));
+    public function Business_signup(Request $request, $id = null){
+        SEOMeta(setting('app_name'), setting('home_description'));
 
 
 
-    //     $country_id = '11';
+        $country_id = '11';
 
-    //     $countries = $this->country->getFullList();
-    //     $categories = $this->category->getListAll(Category::TYPE_PLACE);
-    //     $cities = $this->city->getListByCountry($country_id);
+        $countries = $this->country->getFullList();
+        $categories = $this->category->getListAll(Category::TYPE_PLACE);
+        $cities = $this->city->getListByCountry($country_id);
 
-    //     $place_types = Category::query()
-    //         ->with('place_type')
-    //         ->get();
+        $place_types = Category::query()
+            ->with('place_type')
+            ->get();
 
-    //     $amenities = $this->amenities->getListAll();
+        $amenities = $this->amenities->getListAll();
 
-    //     return view('frontend.New.business_signup', compact('countries','cities', 'categories', 'place_types', 'amenities'));
+        return view('frontend.New.business_signup', compact('countries','cities', 'categories', 'place_types', 'amenities'));
 
-    //     // return view('frontend.New.place_addnew');
-    // }
+        // return view('frontend.New.place_addnew');
+    }
     public function Business_package(){
 
         SEOMeta(setting('app_name'), setting('home_description'));
