@@ -187,7 +187,7 @@ return [
             Spatie Roles & permissions service providers
         */
         Spatie\Permission\PermissionServiceProvider::class,
-
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
@@ -243,6 +243,8 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
