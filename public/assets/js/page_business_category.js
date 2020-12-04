@@ -6,7 +6,6 @@ var GL_BC = GL_BC || {};
     GL_BC = {
         init: function () {
             GL_BC.filterPlace();
-            GL_BC.clickFilter();
             GL_BC.categoryMap();
             console.log("category.....");
         },
@@ -39,30 +38,40 @@ var GL_BC = GL_BC || {};
             $('.filter-group ul.filter-control a').on('click', function (e) {
                 e.preventDefault();
                 if ($(this).parent().hasClass('active')) {
-                    // console.log('was active');
+                    console.log('was active');
                     $(this).parents('.filter-group  ul.filter-control').find('li').removeClass('active');
                 } else {
 
                     $(this).parents('.filter-group ul.filter-control').find('li').removeClass('active');
                     $(this).parent().add('class', 'active');
                 }
+
+                 // click filter: Types, Amenities
+                $('.filter-group input[class="bc_filter"]').on('input', function () {
+                    var ajax_call = true;
+                    console.log('its here');
+                });
                 var ajax_call = true;
-                GL_FILTER.ajaxFilter();
+                //GL_FILTER.ajaxFilter();
             });
         },
 
-        clickFilter: function () {
-            $(document).on('click', '.bc_filter', function (e) {
-               GL_BC.ajaxFilter();
-               //console.log('now you doing smthng');
-            });
-        },
+
+        // clickFilter: function () {
+        //     $(document).on('click', '.bc_filter', function (e) {
+
+
+
+        //        GL_BC.ajaxFilter();
+        //        //console.log('now you doing smthng');
+        //     });
+        // },
 
         ajaxFilter: function(){
             let keyword = $('input[name="keyword"]').val(),
                 action = $('input[name="action"]').val(),
                 sort_by = menu_filter_wrap.find('.sort-by.filter-control li.active a').data('sort'),
-                price = menu_filter_wrap.find('.price.filter-control li.active a').data('price'),
+                // price = menu_filter_wrap.find('.price.filter-control li.active a').data('price'),
                 category = [],
                 amenities = [],
                 place_type = [],
@@ -82,7 +91,6 @@ var GL_BC = GL_BC || {};
                 });
 
                 console.log('keyword: '+keyword);
-                console.log('price: '+price);
                 console.log('category: '+category);
                 console.log('amenities: '+amenities);
                 console.log('place_type: '+place_type);
@@ -95,7 +103,7 @@ var GL_BC = GL_BC || {};
                         'keyword': keyword,
                         'action': action,
                         'sort_by': sort_by,
-                        'price': price,
+                        // 'price': price,
                         'category': category,
                         'amenities': amenities,
                         'place_type': place_type,

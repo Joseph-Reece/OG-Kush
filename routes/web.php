@@ -100,12 +100,10 @@ $router->group([
     'middleware' => []], function () use ($router) {
 
         // My Routes
-            $router->get('/busi', 'newcontroller@Business_signup')->name('business_signup');
             $router->get('/busiP', 'newcontroller@Business_package')->name('business_package');
-            $router->post('/busiData', 'newcontroller@savebusiness')->name('save_business');
 
 });
-Route::view('/map', 'frontend.New.tryMap');
+
 /*
  * AdminCP Router
  */
@@ -191,6 +189,17 @@ $router->group([
     $router->post('/testimonials', 'TestimonialController@create')->name('testimonial_action');
     $router->put('/testimonials', 'TestimonialController@update')->name('testimonial_action');
 
-});
+    /* $router->get('/roles', 'RoleController@index')->name('roles.index');
+    $router->get('/roles-Add', 'RoleController@create')->name('roles.create');
+    $router->post('/roles-Add', 'RoleController@store')->name('roles.store'); */
 
+        Route::resource('roles', 'RoleController');
+
+
+});
 $router->get('/admincp/login', 'Admin\UserController@loginPage')->name('admin_login');
+
+/*
+* New Routes
+ */
+Route::view('/map', 'frontend.New.tryMap')->middleware('auth');

@@ -318,6 +318,7 @@ const PRICE_RANGE = {
                 price = menu_filter_wrap.find('.price.filter-control li.active a').data('price'),
                 place_types = [],
                 amenities = [];
+                console.log(city_id);
 
             menu_filter_wrap.find("input[name='types']:checked").each(function () {
                 place_types.push(parseInt($(this).val()));

@@ -96,7 +96,7 @@
                                 </div>
                             </div>
                             {{--Cities--}}
-                            <div class="filter-box">
+                            {{-- <div class="filter-box">
                                 <h3>price</h3>
                                 <div class="filter-list">
                                     <div class="filter-group">
@@ -109,7 +109,7 @@
                                     </div>
                                     <a href="#" class="more open-more" data-close="Close" data-more="More">More</a>
                                 </div>
-                            </div>
+                            </div> --}}
                             {{--Cities--}}
                             <div class="filter-box">
                                 <h3>Cities</h3>
@@ -117,8 +117,8 @@
                                     <div class="filter-group">
                                         @foreach($cities as $city)
                                             <div class="field-check">
-                                                <label class="bc_filter" for="city_{{$city->id}}">
-                                                    <input type="checkbox" id="city_{{$city->id}}" name="cities" value="{{$city->id}}" {{isChecked($city->id, $filter_city)}}>
+                                                <label  for="city_{{$city->id}}">
+                                                    <input class="bc_filter" type="checkbox" id="city_{{$city->id}}" name="cities" value="{{$city->id}}" {{isChecked($city->id, $filter_city)}}>
                                                     {{$city->name}}
                                                     <span class="checkmark"><i class="la la-check"></i></span>
                                                 </label>

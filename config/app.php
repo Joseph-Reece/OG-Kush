@@ -183,6 +183,12 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
 
+        /*
+            Spatie Roles & permissions service providers
+        */
+        Spatie\Permission\PermissionServiceProvider::class,
+
+
     ],
 
     /*

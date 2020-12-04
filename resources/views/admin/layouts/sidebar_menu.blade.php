@@ -38,6 +38,14 @@
                 <li><a href="{{route('admin_testimonial_list')}}"><i class="fa fa-users"></i> Testimonials</a></li>
 
                 <li>
+                    <a><i class="fa fa-cog"></i> Roles Settings <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{route('admin_roles.index')}}"><i class="fa fa-cogs"></i> General Settings</a></li>
+                        <li><a href="{{route('admin_roles.create')}}"><i class="fa fa-cogs"></i> General Settings</a></li>
+                    </ul>
+                </li>
+
+                <li>
                     <a><i class="fa fa-cog"></i> Settings <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{route('admin_settings')}}"><i class="fa fa-cogs"></i> General Settings</a></li>
