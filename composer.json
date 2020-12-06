@@ -21,7 +21,8 @@
         "spatie/laravel-permission": "^3.18",
         "staudenmeir/eloquent-json-relations": "^1.1",
         "symfony/translation": "4.3.8",
-        "unisharp/laravel-filemanager": "^2.0"
+        "unisharp/laravel-filemanager": "^2.0",
+        "paypal/rest-api-sdk-php": "^1.13"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

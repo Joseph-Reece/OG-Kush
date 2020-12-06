@@ -41,7 +41,6 @@
                     <a><i class="fa fa-cog"></i> Roles Settings <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{route('admin_roles.index')}}"><i class="fa fa-cogs"></i> General Settings</a></li>
-                        <li><a href="{{route('admin_roles.create')}}"><i class="fa fa-cogs"></i> General Settings</a></li>
                     </ul>
                 </li>
 
@@ -49,8 +48,8 @@
                     <a><i class="fa fa-cog"></i> Settings <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{route('admin_settings')}}"><i class="fa fa-cogs"></i> General Settings</a></li>
-                        <li><a href="{{route('admin_settings_language')}}"><i class="fa fa-language"></i> Languages</a></li>
-                        <li><a href="{{url('admincp/translations/view/_json')}}"><i class="fa fa-file-text-o"></i> Translations</a></li>
+{{--                        <li><a href="{{route('admin_settings_language')}}"><i class="fa fa-language"></i> Languages</a></li>--}}
+{{--                        <li><a href="{{url('admincp/translations/view/_json')}}"><i class="fa fa-file-text-o"></i> Translations</a></li>--}}
                     </ul>
                 </li>
             </ul>

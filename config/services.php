@@ -46,5 +46,16 @@ return [
         'client_secret' => env('GOOGLE_APP_SECRET'),
         'redirect' => env('GOOGLE_APP_CALLBACK_URL'),
     ],
-
+    'paypal' => [
+        'id' => env('PAYPAL_ID'),
+        'secret' => env('PAYPAL_SECRET'),
+        'url' => [
+            'redirect' => 'http://localhost:8000/execute-payment',
+            'cancel'=>'http://localhost:8000/cancel',
+            'executeAgreement' => [
+                'success'=>'http://localhost:8000/execute-agreement/true',
+                'failure'=>'http://localhost:8000/execute-agreement/false'
+            ]
+        ]
+    ],
 ];

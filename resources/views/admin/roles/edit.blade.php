@@ -1,6 +1,9 @@
 @extends('admin.layouts.template')
 @section('content')
+
     <div class="row">
+
+        <h1>Testing </h1>
 
         <div class="col-lg-12 margin-tb">
 
@@ -12,7 +15,7 @@
 
             <div class="pull-right">
 
-                <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('admin_roles.index') }}"> Back</a>
 
             </div>
 
@@ -42,7 +45,7 @@
     @endif
 
 
-    {!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
+    {!! Form::model($role, ['method' => 'PATCH','route' => ['admin_roles.update', $role->id]]) !!}
 
     <div class="row">
 
@@ -93,6 +96,9 @@
 
 
 
+    <p class="text-center text-primary">
+        <small>Tutorial by ItSolutionStuff.com</small>
+    </p>
 
 @endsection
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
+

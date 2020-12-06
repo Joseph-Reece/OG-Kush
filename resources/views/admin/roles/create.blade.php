@@ -13,7 +13,7 @@
 
             <div class="pull-right">
 
-                <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('admin_roles.index') }}"> Back</a>
 
             </div>
 
@@ -43,7 +43,7 @@
     @endif
 
 
-    {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
+    {!! Form::open(array('route' => 'admin_roles.store','method'=>'POST')) !!}
 
     <div class="row">
 
