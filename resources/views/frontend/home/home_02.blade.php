@@ -158,43 +158,7 @@
             </div>
         </div> --}}
 
-
-        <div class="featured-cities">
-            <div class="container">
-                <h2 class="title title-border-bottom align-center">{{__('Featured Cities')}}<span>{{__("Choose the city you'll be living in next")}}</span></h2>
-                <div class="slick-sliders">
-                    <div class="slick-slider featured-slider slider-pd30" data-item="4" data-arrows="true" data-itemScroll="4" data-dots="true" data-centerPadding="30" data-tabletitem="2" data-tabletscroll="2" data-mobileitem="1" data-mobilescroll="1" data-mobilearrows="false">
-
-                        @foreach($popular_cities as $city)
-                            <div class="slick-item">
-                                <div class="cities__item hover__box">
-                                    <div class="cities__thumb hover__box__thumb">
-                                        <a title="London" href="{{route('page_search_listing', ['city[]' => $city->id])}}">
-                                            <img src="{{getImageUrl($city->thumb)}}" alt="{{$city->name}}">
-                                        </a>
-                                    </div>
-                                    <h4 class="cities__name">{{$city['country']['name']}}</h4>
-                                    <div class="cities__info">
-                                        <h3 class="cities__capital">{{$city->name}}</h3>
-                                        <p class="cities__number">{{$city->places_count}} {{__('places')}}</p>
-                                    </div>
-                                </div><!-- .cities__item -->
-                            </div>
-                        @endforeach
-
-                    </div>
-                    <div class="place-slider__nav slick-nav">
-                        <div class="place-slider__prev slick-nav__prev">
-                            <i class="las la-angle-left"></i>
-                        </div><!-- .place-slider__prev -->
-                        <div class="place-slider__next slick-nav__next">
-                            <i class="las la-angle-right"></i>
-                        </div><!-- .place-slider__next -->
-                    </div><!-- .place-slider__nav -->
-                </div>
-            </div>
-        </div>
-        <!-- .featured-cities -->
+        <!-- business-about -->
         <div class="business-about" style="background-image: url({{asset('assets/images/img_about_1.jpg')}});">
             <div class="container">
                 <div class="row">

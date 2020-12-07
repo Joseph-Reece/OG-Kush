@@ -3,6 +3,14 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
 (function ($) {
     'use strict';
+    $(document).ready(function () {
+        $('.golo-datatable').DataTable({
+            "pageLength": 10,
+            "order": [0, "desc"]
+        });
+
+        $('.right_col').css('min-height', 'auto');
+    });
 
     var editor_config = {
         path_absolute: "/",
@@ -48,14 +56,14 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         console.log(start.toISOString(), end.toISOString(), label);
     });
 
-    $(document).ready(function () {
-        $('.golo-datatable').DataTable({
-            "pageLength": 10,
-            "order": [0, "desc"]
-        });
+    // $(document).ready(function () {
+    //     $('.golo-datatable').DataTable({
+    //         "pageLength": 10,
+    //         "order": [0, "desc"]
+    //     });
 
-        $('.right_col').css('min-height', 'auto');
-    });
+    //     $('.right_col').css('min-height', 'auto');
+    // });
 
     /*  [ Chosen ]
         - - - - - - - - - - - - - - - - - - - - */

@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/fonts/jost/stylesheet.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/fontawesome-pro/css/fontawesome.css')}}"/>
+    {{-- DataTables Css --}}
+    <link href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.dataTables.min.css" rel="stylesheet">
+    <link href="{{asset('assets/DataTables/datatables.css')}}" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/line-awesome.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/bootstrap/css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/slick/slick-theme.css')}}"/>
@@ -18,9 +22,6 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/photoswipe/default-skin/default-skin.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/lity/lity.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/gijgo/css/gijgo.min.css')}}"/>
-
-
-{{--dataTables--}}
 
 
 
@@ -455,6 +456,10 @@
 <script src="{{asset('assets/libs/jquery-1.12.4.js')}}"></script>
 <script src="{{asset('assets/libs/popper/popper.js')}}"></script>
 <script src="{{asset('assets/libs/bootstrap/js/bootstrap.min.js')}}"></script>
+{{-- DataTables JS --}}
+<script src="{{asset('assets/DataTables/datatables.js')}}"></script>
+<script src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
+
 <script src="{{asset('assets/libs/slick/slick.min.js')}}"></script>
 <script src="{{asset('assets/libs/slick/jquery.zoom.min.js')}}"></script>
 <script src="{{asset('assets/libs/isotope/isotope.pkgd.min.js')}}"></script>

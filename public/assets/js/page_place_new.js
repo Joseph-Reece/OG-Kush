@@ -26,6 +26,7 @@
                                 <option value="Twitter">Twitter</option>
                                 <option value="Pinterest">Pinterest</option>
                                 <option value="Snapchat">Snapchat</option>
+                                <option value="Reddit">Reddit</option>
                             </select>
                             <i class="la la-angle-down"></i>
                         </div>
@@ -126,7 +127,7 @@
         previewUploadImage(this, 'thumb_preview')
     });
 
-    // Add more 
+    // Add more
     $('#openinghour_addmore').click(function () {
         event.preventDefault();
         let openinghour_list = $('#time-opening');

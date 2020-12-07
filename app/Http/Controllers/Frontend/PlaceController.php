@@ -9,8 +9,11 @@ use App\Models\Amenities;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Country;
+use App\Models\Deal;
 use App\Models\Place;
 use App\Models\PlaceType;
+use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\Review;
 use App\Models\Wishlist;
 use Astrotomic\Translatable\Validation\RuleFactory;
@@ -87,10 +90,7 @@ class PlaceController extends Controller
             $similar_places->where('category', 'like', "%{$cat_id}%");
         endforeach;
         $similar_places = $similar_places->limit(4)->get();
-        // dd($place->thumb);
         $addons = $place->gallery;
-        // $cover_image= $addons[0];
-        // dd($cover_image);
 
         $license_details = $place->license;
 
@@ -116,8 +116,7 @@ class PlaceController extends Controller
             'license' => $license,
             'review_score_avg' => $review_score_avg,
             'similar_places' => $similar_places,
-            // Mine
-            // 'cover_image' => $cover_image
+
         ]);
     }
 
@@ -540,5 +539,20 @@ class PlaceController extends Controller
         endif;
 
         return $html;
+    }
+
+    public function showMenu(){
+
+        $user= Auth::user()->id;
+        $place = Place::where('user_id', $user)->first();
+        $category = ProductCategory::all();
+        $product = Product::where('place_id' , $place->id)->get();
+
+
+
+        $deal = Deal::where('place_id' , $place->id)->get();
+
+
+        return view('frontend.products.place_menu', compact('category', 'product', 'place', 'deal'));
     }
 }

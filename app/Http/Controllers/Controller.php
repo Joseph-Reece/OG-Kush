@@ -29,7 +29,7 @@ class Controller extends BaseController
 
     public function deleteImage($path)
     {
-        return File::delete($path);
+        return File::delete('uploads/'.$path);
     }
 
     public function getUserByApiToken($request)

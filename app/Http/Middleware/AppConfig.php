@@ -29,6 +29,12 @@ class AppConfig
             'client_secret' => setting('google_app_secret'),
             'redirect' => route('login_social_callback', 'google'),
         ];
+        // $config_apple = [
+        //     'client_id' => setting('apple_app_id'),
+        //     'client_secret' => setting('apple_app_secret'),
+        //     'redirect' => route('login_social_callback', 'apple'),
+        // ];
+        // config(['services.apple' => $config_apple]);
         config(['services.facebook' => $config_facebook]);
         config(['services.google' => $config_google]);
 

@@ -234,7 +234,8 @@
                                     <li class="nav-login"><a title="Log In" href="#login">{{__('Log In')}}</a></li>
                                     <li class="nav-signup"><a title="Sign Up" href="#register">Sign Up</a></li>
                                 </ul>
-                                <p class="choose-more">{{__('Continue with')}} <a title="Facebook" class="fb" href="{{route('login_social', 'facebook')}}">Facebook</a> or <a title="Google" class="gg" href="{{route('login_social', 'google')}}">Google</a></p>
+                                <p class="choose-more">{{__('Continue with')}} <a title="Facebook" class="fb" href="{{route('login_social', 'facebook')}}">Facebook</a> or <a title="Google" class="gg" href="{{route('login_social', 'google')}}">Google</a> 
+                                    {{-- <a title="Apple" class="app" href="{{route('login_social', 'apple')}}">Apple</a></p> --}}
                                 <p class="choose-or"><span>{{__('Or')}}</span></p>
                                 <div class="popup-content">
 

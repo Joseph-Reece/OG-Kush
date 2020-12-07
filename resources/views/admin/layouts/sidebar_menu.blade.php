@@ -20,6 +20,13 @@
                         <li><a href="{{route('admin_country_list')}}"><i class="fa fa-globe"></i> Countries</a></li>
                     </ul>
                 </li>
+                
+                <li id="menu_place">
+                    <a><i class="fa fa-folder"></i> Products <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{{route('admin_product-category.index')}}"><i class="fa fa-home"></i>Product Categories</a></li>
+                    </ul>
+                </li>
 
                 <li id="menu_blog">
                     <a><i class="fa fa-newspaper-o"></i> Blog <span class="fa fa-chevron-down"></span></a>

@@ -1,15 +1,9 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\StripePaymentController;
+
 
 Auth::routes();
 
@@ -66,7 +60,7 @@ $router->group([
     // $router->get('/user/my-place', 'UserController@pageBusiness')->name('user_my_place')->middleware('auth');
     $router->get('/user/store-info', 'PlaceController@businessInfo')->name('business_info')->middleware('auth');
     $router->get('/user/store-reviews', 'PlaceController@pageReviews')->name('business_reviews')->middleware('auth');
-    $router->get('/user/store-menu', 'PlaceController@pageMenu')->name('business_menu')->middleware('auth');
+    $router->get('/user/store-menu', 'PlaceController@showMenu')->name('business_menu')->middleware('auth');
     $router->delete('/user/my-place', 'UserController@deleteMyPlace')->name('user_my_place_delete')->middleware('auth');
 
     $router->get('/user/following', 'UserController@pageWishList')->name('user_wishlist')->middleware('auth');
@@ -96,12 +90,31 @@ $router->group([
 
 });
 $router->group([
-    'namespace' => 'Mine',
+    'namespace' => 'commons',
     'middleware' => []], function () use ($router) {
 
         // My Routes
             $router->get('/busiP', 'newcontroller@Business_package')->name('business_package');
             $router->post('/busiAdd', 'newcontroller@Business_signup')->name('save_business');
+
+            // Product management routes
+    // Route::resource('products', 'ProductsController')->middleware('auth');
+
+    $router->post('/products/store', 'ProductsController@store')->name('product.store');
+    $router->delete('/products/{id}', 'ProductsController@destroy')->name('product.destroy');
+    $router->post('/products/edit', 'ProductsController@update')->name('product.edit');
+    $router->get('/products/{slug}', 'ProductsController@show')->name('product.show');
+
+
+    //search products
+    $router->get('/product-search', 'newcontroller@searchProduct')->name('search.product');
+
+
+    $router->post('/Deals', 'DealsController@store')->name('deal.store');
+    $router->delete('/Deals/{id}', 'DealsController@destroy')->name('deal.destroy');
+    $router->put('/Deals', 'DealsController@update')->name('deal.edit');
+
+
 
 });
 
@@ -196,6 +209,8 @@ $router->group([
 
         Route::resource('roles', 'RoleController');
 
+        Route::resource('product-category', 'ProductCategoryController');
+
 
 });
 $router->get('/admincp/login', 'Admin\UserController@loginPage')->name('admin_login');
@@ -209,13 +224,20 @@ Route::view('/map', 'frontend.New.tryMap')->middleware('auth');
 
 //...............................Paypal Intergration ..................................//
 
-Route::get('/execute-payment', 'PaymentController@execute');
-Route::post('/create-payment', 'PaymentController@create')->name('create-payment');
+Route::get('/execute-payment', [PaymentController::class ,'execute']);
+Route::post('/create-payment', [PaymentController::class,'create'])->name('create-payment');
 
-Route::get('plan/create','SubscriptionController@createPlan');
-Route::get('plan/list','SubscriptionController@listPlan');
-Route::get('plan/{id}','SubscriptionController@showPlan');
-Route::get('plan/{id}/activate','SubscriptionController@activatePlan');
+Route::get('plan/create',[SubscriptionController::class,'createPlan']);composer require laravel/socialite
 
-Route::post('plan/{id}/agreement/create','SubscriptionController@createAgreement')->name('create-agreement');
-Route::get('execute-agreement/{success}','SubscriptionController@executeAgreement');
+Route::get('plan/list',[SubscriptionController::class,'listPlan']);
+Route::get('plan/{id}',[SubscriptionController::class,'showPlan']);
+Route::get('plan/{id}/activate',[SubscriptionController::class,'activatePlan']);
+
+Route::post('plan/{id}/agreement/create',[SubscriptionController::class,'createAgreement'])->name('create-agreement');
+Route::get('execute-agreement/{success}',[SubscriptionController::class,'executeAgreement']);
+
+
+//.................Stripe Payment intergration ...............//
+
+Route::get('/stripe-payment', [StripePaymentController::class, 'handleGet']);
+Route::post('/stripe-payment', [StripePaymentController::class, 'handlePost'])->name('stripe.payment');

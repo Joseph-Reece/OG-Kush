@@ -30,6 +30,7 @@ $('#social_addmore').click(function () {
                             <option value="Twitter">Twitter</option>
                             <option value="Pinterest">Pinterest</option>
                             <option value="Snapchat">Snapchat</option>
+                            <option value="Reddit">Reddit</option>
                         </select>
                     </div>
                     <div class="col-md-6">

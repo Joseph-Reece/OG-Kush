@@ -162,6 +162,19 @@ return [
                 'rules' => '',
             ],
 
+           /*  [
+                'name' => 'apple_app_id',
+                'type' => 'text',
+                'label' => 'APPLE App ID',
+                'rules' => '',
+            ],
+            [
+                'name' => 'apple_app_secret',
+                'type' => 'text',
+                'label' => 'APPLE App Secret',
+                'rules' => '',
+            ], */
+
         ]
     ],
 

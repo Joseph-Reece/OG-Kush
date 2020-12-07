@@ -8,79 +8,53 @@ color: #999;
 }
 </style>
 <main id="main" class="site-main home-main business-main">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6">
-                <div class="well well-md">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4">
-                            {{-- <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" /> --}}
-                            {{-- @if($cover_image) --}}
-                                {{-- <img class="rounded img-fluid "  src="{{getImageUrl($cover_image)}}" alt="http://placehold.it/380x500" style="width: 100%"> --}}
-                                {{-- @else --}}
-                                {{-- <img src="https://via.placeholder.com/1280x500?text=GOLO" alt="slider no image"> --}}
+    <div class="container" style="max-width: 73.125rem">
+        <div class="card mb-3 border-0" >
+            <div class="row no-gutters">
+              <div class="col-md-3 col-sm-6">
+                @if(isset($place->thumb))
+                    <img style="max-width: 13rem" src="{{getImageUrl($place->thumb)}}" class="card-img" alt="{{$place->name}}">
+                @else
+                    <img src="https://via.placeholder.com/1280x500?text=B&C" alt="slider no image">
+                @endif
 
-                            {{-- @endif --}}
-                            @php
-                            // dd($place->gallery);
+              </div>
+              <div class="col-md-9">
+                <div class="card-body">
+                    <h5 class="card-title">{{$place->name}}</h5>
 
-                            @endphp
-                            @if(isset($place->thumb))
-                                {{-- <div class="place-slider__item photoswipe-item"> --}}
-                                    <a href="{{getImageUrl($place->thumb)}}" data-height="900" data-width="1200" data-caption="{{$place->thumb}}">
-                                        <img class="rounded" src="{{getImageUrl($place->thumb)}}" alt="{{$place->thumb}}">
-                                    </a>
-                                {{-- </div> --}}
-                            @else
-                                    <img src="https://via.placeholder.com/1280x500?text=GOLO" alt="slider no image">
-                                </a>
-                                @endif
-                        </div>
-                        <div class="col-sm-6 col-md-8">
-                            <div class="plade-04">
+                    <div class="place__reviews reviews">
+                            <span class="place__reviews__number reviews__number">
+                                {{$review_score_avg}}
+                                @php
+                                    $i=0;
+                                @endphp
+                                    @for ($i = 0; $i < $review_score_avg; $i++)
 
-                                <div class="place">
-
-                                    <h1 class="mb-1">{{$place->name}}</h1>
-                                    <div class="place__meta">
-                                        <div class="place__reviews reviews">
-                                                <span class="place__reviews__number reviews__number">
-                                                    {{$review_score_avg}}
-                                                    @php
-                                                        $i=0;
-                                                        // dd($review_score_avg);
-                                                    @endphp
-                                                        @for ($i = 0; $i < $review_score_avg; $i++)
-
-                                                        <i class="la la-star"></i>
-                                                        @endfor
-                                                </span>
-                                            <span class="place__places-item__count reviews_count">({{count($reviews)}} reviews)</span>
-                                        </div>
-                                        <small><cite title="{{$place->address}}"><i class="fas fa-address">{{$place->address}}
-                                        </i></cite></small>
-                                    </div>
-                                </div>
-                            </div>
-                            @if(isset($place_types))
-                                <div class="place__category">
-                                    @foreach($place_types as $type)
-                                        <a title="{{$type->name}}" href="{{route('page_search_listing', ['amenities[]' => $type->id])}}">{{$type->name}}</a>
-                                    @endforeach
-                                </div>
-                            @endif
-                            @if($place->phone_number)
-                             <a class=" btn mb-1" href="tel:{{$place->phone_number}}" rel="nofollow"><i class="fas fa-phone"></i> {{$place->phone_number}}</a>
-                            @endif
-
-                                <a class="btn" href="https://maps.google.com/?q={{$place->address}}" title="Direction" target="_blank" rel="nofollow"><i class="la la-map-marker"></i> ({{__('Get Directions')}})</a>
-
-
-
-
-                        </div>
+                                    <i class="la la-star"></i>
+                                    @endfor
+                            </span>
+                        <span class="place__places-item__count reviews_count">({{count($reviews)}} reviews)</span>
                     </div>
+
+                    <small><cite title="{{$place->address}}"><i class="fas fa-address">{{$place->address}}
+                    </i></cite></small>
+                    @if(isset($place_types))
+                        <div class="place__category">
+                            @foreach($place_types as $type)
+                                <a title="{{$type->name}}" href="{{route('page_search_listing', ['amenities[]' => $type->id])}}">{{$type->name}}</a>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    @if($place->phone_number)
+                        <a class=" btn mb-1" href="tel:{{$place->phone_number}}" rel="nofollow"><i class="fas fa-phone"></i> {{$place->phone_number}}</a>
+                    @endif
+
+                    <a class="btn" href="https://maps.google.com/?q={{$place->address}}" title="Direction" target="_blank" rel="nofollow"><i class="la la-map-marker"></i> ({{__('Get Directions')}})</a>
+
                 </div>
+              </div>
             </div>
         </div>
     </div>
@@ -104,7 +78,42 @@ color: #999;
             </li>
           </ul>
           <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+              {{-- Menu --}}
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                @if (count($place->products)>0)
+                <div class="container my-3">
+                    <form action="{{route('search.product')}}" method="GET" enctype="multipart/form-data">
+                        <div class="input-group">
+                        <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Search {{count($place->products)}} products">
+                        <div class="input-group-append">
+                            <button class="btn" id="submitform" type="submit"><i class="fas fa-search"></i> submit</button>
+                        </div>
+                    </div>
+							<input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+							<input type="hidden" name="place"  id="place" value="{{ $place->id }}">
+                    </form>
+
+
+
+                </div>
+                <div class="main-search">
+                    <h4 class="text-muted">{{count($place->products)}} results found</h4>
+                   @include('frontend.place.place_product')
+                </div>
+                <div class="results">
+                    <div id="overlay" style="display:none;" class="searchoverlay">
+                        <div class="spinner"></div>
+                        <br />
+                        Loading...
+                    </div>
+
+                </div>
+
+                @else
+                    This business has no products yet
+                @endif
+            </div>
+            {{-- Details --}}
             <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
                 <div class="row">
 
@@ -250,7 +259,55 @@ color: #999;
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+            {{-- Deals --}}
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                @if (count($place->deals)>0)
+                <h4 class="text-muted">{{count($place->deals)}} results found</h4>
+                @foreach ($place->deals as $item)
+                <div class="row justify-content-between">
+                      <div class="card-deck">
+                        <div class="card mb-3" style="width: 73.125rem">
+                            <div class="row no-gutters">
+                              <div class="col-md-2">
+                                <img style="height: 8rem" src="{{getImageUrl($item->image)}}" class="card-img" alt="...">
+                              </div>
+                              <div class="col-md-10">
+                                <div class="card-body">
+                                    {{-- <div class="row"> --}}
+                                     <h5 class="card-title">{{$item->name}}</h5>
+                                        {{-- <p class="pull-right"> {{$item->description}}</p> --}}
+                                    {{-- </div> --}}
+
+                                  <p class="card-text"> {{$item->place->name}}</p>
+
+                                  <h4>Applies to:</h4>
+                                  <p class="card-text"> {{$item->details}}</p>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                    {{-- <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">{{$item->name}}</h3>
+                        </div>
+                        <div class="col-md-2">
+                            <img style="max-height: 8rem" src="{{getImageUrl($item->image)}}" class="card-img" alt="...">
+                          </div>
+                        <div class="card-body">
+                            <p class="card-text">{{$item->description}}</p>
+                            <p class="card-text">{{$item->place->name}}</p>
+                            <p class="card-text">{{$item->details}}</p>
+                        </div>
+                    </div> --}}
+                </div>
+                @endforeach
+                @else
+
+                @endif
+
+            </div>
             <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
                 <div class="place__box place__box--reviews">
                     <h3 class="place__title--reviews">
@@ -480,10 +537,53 @@ color: #999;
           </div>
     </div>
 
-
 </main>
 @stop
 
 @push('scripts')
     <script src="{{asset('assets/js/page_place_detail.js')}}"></script>
+    <script>
+       /*  $('#keyword').on('change', function(){
+            console.log("keyword changed");
+            console.log($('#place').val());
+            submitForm();
+        });
+
+        $('#submitform').click(function () {
+		    submitForm();
+	    }); */
+	//.............................Submiting the form.............................//
+	function submitForm() {
+    // console.log($("#brand").val());
+        // $('.main-search').fadeOut(500);
+		// $(".searchoverlay").fadeIn();
+		// $.ajax({
+		// 	url:"{{route('search.product')}}",
+		// 	method:"GET",
+		// 	data:{
+        //         "keyword":$('#keyword').val(),
+        //         // "place":$('#place').val(),
+        //         "place":'55',
+		// 		"_token": $('#token').val(),
+		// 			},
+
+		// 	success:function(data)
+		// 	{
+		// 		console.log('successful search');
+		// 		/* $('.main-search').hide();
+		// 		$('.results').empty();
+		// 		$('.results').append(data);
+		// 		$(".searchoverlay").fadeOut(); */
+
+		// 	},
+		// 		error:function(data)
+		// 	{
+		// 	console.log('nothing');
+		// 	}
+		// });
+
+	}
+
+
+    </script>
 @endpush

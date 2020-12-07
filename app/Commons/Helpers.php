@@ -48,6 +48,11 @@ const SOCIAL_LIST = [
         'icon' => 'la la-snapchat',
         'name' => 'Snapchat',
         'base_url' => 'https://www.snapchat.com/'
+    ],
+    'Reddit' => [
+        'icon' => 'la la-reddit',
+        'name' => 'Reddit',
+        'base_url' => 'https://www.reddit.com/'
     ]
 ];
 

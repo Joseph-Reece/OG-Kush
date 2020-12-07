@@ -88,6 +88,8 @@ class HomeController extends Controller
 
         $template = setting('template', '01');
 
+        
+
         return view("frontend.home.home_{$template}", [
             'popular_cities' => $popular_cities,
             'blog_posts' => $blog_posts,
@@ -613,7 +615,7 @@ class HomeController extends Controller
 
     public function ourfetchListingsBySearch($keyword = '', $filter_category = [], $filter_amenities = [], $filter_place_type = [], $filter_city = [],   $sort_by = '',  $price = '')
     {
-        
+
         $query = Place::query()
             ->with(['city' => function ($query) {
                 return $query->select('id', 'name', 'slug');
