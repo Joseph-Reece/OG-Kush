@@ -52,8 +52,8 @@ return [
         'redirect' => env('APPLE_APP_CALLBACK_URL'),
     ],
     'paypal' => [
-        'id' => env('Ab576qDQ2pShVNyKJms7tcBoxaq_xofpmJq2vBpMWLS2jfRkwnyzHB7QO6yH12gbQQa7OU_NJudN6n4z'),
-        'secret' => env('EDCYQBhWefKcjvS_N26czclv5CzZTC9eF9CGsedOexQDb3K5Hd-M9YtomRosuNFuqfUbry5t-r2HP7gA'),
+        'id' => env('PAYPAL_CLIENT_ID'),
+        'secret' => env('PAYPAL_SECRET'),
         'url' => [
             'redirect' => 'http://localhost:8000/execute-payment',
             'cancel'=>'http://localhost:8000/cancel',

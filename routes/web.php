@@ -227,7 +227,7 @@ Route::view('/map', 'frontend.New.tryMap')->middleware('auth');
 Route::get('/execute-payment', [PaymentController::class ,'execute']);
 Route::post('/create-payment', [PaymentController::class,'create'])->name('create-payment');
 
-Route::get('plan/create',[SubscriptionController::class,'createPlan']);composer require laravel/socialite
+Route::get('plan/create',[SubscriptionController::class,'createPlan']);
 
 Route::get('plan/list',[SubscriptionController::class,'listPlan']);
 Route::get('plan/{id}',[SubscriptionController::class,'showPlan']);
