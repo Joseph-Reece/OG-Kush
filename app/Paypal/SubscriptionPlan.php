@@ -39,7 +39,7 @@ class SubscriptionPlan extends Paypal
     protected function Plan(): Plan
     {
         $plan = new Plan();
-        $plan->setName('T-Shirt of the Month Club Plan')
+        $plan->setName('Dispensaries Basic')
             ->setDescription('Template creation.')
             ->setType('fixed');
         return $plan;

@@ -92,6 +92,9 @@ class PlaceController extends Controller
         $similar_places = $similar_places->limit(4)->get();
         $addons = $place->gallery;
 
+        $product = Product::where('place_id', $place->id)->get();
+        $product_categories = ProductCategory::all();
+
         $license_details = $place->license;
 
         $license = json_decode($license_details, true);
@@ -108,6 +111,8 @@ class PlaceController extends Controller
 
         return view("frontend.place.place_detail_{$template}", [
             'place' => $place,
+            'product' => $product,
+            'product_categories' => $product_categories,
             'city' => $city,
             'amenities' => $amenities,
             'categories' => $categories,

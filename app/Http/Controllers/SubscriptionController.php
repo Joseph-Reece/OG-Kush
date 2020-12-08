@@ -38,7 +38,7 @@ class SubscriptionController extends Controller
         $plan->activate($id);
     }
 
-    public function CreateAgreement($id)
+    public function createAgreement($id)
     {
         $agreement = new PaypalAgreement;
         return $agreement->create($id);

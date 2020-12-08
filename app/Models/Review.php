@@ -36,6 +36,7 @@ class Review extends Model
     {
         return $this->hasOne(Place::class, 'id', 'place_id');
     }
+   
 
     public function validateCreate($data)
     {

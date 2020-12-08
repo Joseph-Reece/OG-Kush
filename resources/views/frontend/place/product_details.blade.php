@@ -39,7 +39,6 @@
 
                   <a target="_blank" href="{{route('place_detail', $product->place->slug)}}" class="btn">View Retailer</a>
 
-
                 </div>
               </div>
             </div>

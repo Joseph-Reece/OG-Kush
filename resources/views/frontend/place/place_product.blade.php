@@ -1,4 +1,5 @@
-@foreach ($place->products as $item)
+<h4 class="text-muted">{{count($product)}} results found</h4>
+@foreach ($product as $item)
 <div class="card-deck">
     <div class="card mb-3 border-0" >
         <div class="row no-gutters">
@@ -18,7 +19,6 @@
                 </a>
                 <p class="card-text">{{$item->productCategories->name}}</p>
               <p class="card-text"> {{$item->price}}</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
           </div>
         </div>

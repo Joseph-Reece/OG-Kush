@@ -77,41 +77,21 @@ class newcontroller extends Controller
 
         $keyword = $request->keyword;
         $place = $request->place;
-        $searchResults = $this->fetchProductsBySearch($keyword, $place);
-        $output = '';
-        $products = Product::where('place_id', $request->place);
+        $category = $request->category;
+        $sort = $request->sort;
+        $searchResults = $this->fetchProductsBySearch($keyword, $place, $sort, $category);
+        // $output = '';
+        // $products = Product::where('place_id', $request->place);
         // dd($searchResults);
-        $joseph = $searchResults;
-       $joseph->first();
-        dd($joseph);
+        $product = $searchResults->get();
         $warning = '';
 
-            return View('frontend.place.place_detail_02', compact('joseph','warning'));
+            return View('frontend.place.place_product', compact('product','warning'));
 
-            // $output .= View('shared.vehicle_no_data', compact('vehicles'));
-
-        // if($action == "carsearch"){
-        //     return $output;
-        // }
-        // elseif($action == "homesearch"){
-        //    if (!$searchResults->isEmpty()) {
-
-        //     $makes = Make::all();
-        //     $conditions = Condition::all();
-        //     return view('frontend.cars.index', compact('makes', 'conditions','searchResults','warning'));
-        //    }else{
-        //        $warning = 'Applogies,but no vehicles were found for the requested search,but here some realeted vehicles';
-        //     //    dd($warning);
-        //     $searchResults = Vehicle::all();
-        //     $makes = Make::all();
-        //     $conditions = Condition::all();
-        //     return view('frontend.cars.index', compact('makes', 'conditions','searchResults','warning'));
-        //    }
-        // }
     }
 
 
-    public function fetchProductsBySearch($keyword='', $place)
+    public function fetchProductsBySearch($keyword='', $place, $sort='', $category='')
     {
         $query = Product::where('place_id', $place);
 
@@ -119,67 +99,67 @@ class newcontroller extends Controller
             $query->where('name', 'like',  "%{$keyword}%");
         }
 
+        if ($category != '') {
+            $query->where('category_id', $category);
+        }
+
+        if ($sort == 'desc') {
+            $query->orderBy('id', 'DESC');
+        }elseif($sort == 'price_asc'){
+            $query->orderBy('price', 'ASC');
+        }elseif($sort == 'price_desc'){
+            $query->orderBy('price', 'DESC');
+        }else{
+            $query->orderBy('updated_at');
+        }
+
         return $query;
     }
-    // public function savebusiness(Request $request){
+
+    // Search Reviews
+    public function searchReview(Request $request){
 
 
+        $keyword = $request->keyword;
+        $place = $request->place;
+        $searchResults = $this->fetchReviewsBySearch($keyword, $place);
+        $reviews = $searchResults->get();
+        $warning = '';
 
-    //     // $this->validate($request, [
-    //     //     'name' => 'required|string',
-    //     //     'category' => 'string',
-    //     //     'country_id' => 'required',
-    //     //     'city_id' => 'required',
-    //     //     'address' => 'required',
-    //     //     'email' => 'required|email',
-    //     //     'phone_number' => 'required',
-    //     //     'website' => 'required|',
-    //     //     'license_number' => 'required',
-    //     //     'license_type' => 'required',
-    //     //     'expiration' => 'required',
-    //     // ]);
+            return View('frontend.user.review', compact('reviews','warning'));
 
-    //         // Put License details into array
-    //     $license_details = array([
-    //         'license_number' => $request->license_number,
-    //         'license_type' =>$request->license_type,
-    //         'expiration' =>$request->expiration
-    //     ]);
-
-    //     // Change $license_details to Json ******** to save as string **** to retrieve the output use $string_json = json_decode($license_details, true);
-    //     $json_array = json_encode($license_details);
-
-    //         // put json to $request array
-    //     $request['license']= $json_array;
-    //     $request['user_id'] = Auth::user()->id;
-    //     $request['status'] = Place::STATUS_PENDING;
-
-    //     //Get slug for business name
-    //     $name = $request->name;
-    //     $slug = \Illuminate\Support\Str::slug($name);
-
-    //     $request['slug'] = $slug;
-
-    //     $data = $request->except('_token');
+    }
 
 
-    //     //dd($request->except('_token'));
+    public function fetchReviewsBySearch($keyword='', $place)
+    {
 
-    //     //hande saving data to table
-    //     $business = new Place();
-    //     $business->fill($data);
-    //     // dd($business);
-
-    //     $business->save();
-
-    //     return redirect(route('user_my_place'))->with('success', 'Create place success. Waiting admin review and apporeve!');
-
-    //     /*
-    //     code to retrieve values
-    //     $string_json = "[{"name":"1"},{"name2":"2"},{"name":"3"}]";
-    //     $array_output = json_decode($string_json,true);
-    //     */
+        $query = Review::query()
+        ->with('user')
+        ->where('place_id', $place)
+        ->where('status', Review::STATUS_ACTIVE)
+        ->get();
 
 
-    // }
+        if ($keyword != '') {
+            $query->where('comment', 'like',  "%{$keyword}%");
+        }
+
+        // if ($category != '') {
+        //     $query->where('category_id', $category);
+        // }
+
+        // if ($sort == 'desc') {
+        //     $query->orderBy('id', 'DESC');
+        // }elseif($sort == 'price_asc'){
+        //     $query->orderBy('price', 'ASC');
+        // }elseif($sort == 'price_desc'){
+        //     $query->orderBy('price', 'DESC');
+        // }else{
+        //     $query->orderBy('updated_at');
+        // }
+
+        return $query;
+    }
+
 }

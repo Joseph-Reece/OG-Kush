@@ -76,29 +76,71 @@ color: #999;
             <li class="nav-item" role="presentation">
               <a class="nav-link" id="media-tab" data-toggle="tab" href="#media" role="tab" aria-controls="media" aria-selected="false">Media</a>
             </li>
-          </ul>
+        </ul>
           <div class="tab-content" id="myTabContent">
               {{-- Menu --}}
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                <div class="filters">
+
+                </div>
                 @if (count($place->products)>0)
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="sort">Sort By</label>
+                        <select name="sort" id="sort" class="custom-select" onchange="submitForm()">
+                            <option value="desc">Most Recent</option>
+                            <option value="asc">Oldest</option>
+                            <option value="price_desc">Price: High to Low</option>
+                            <option value="price_asc">Price: Low to High</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="category">Category filter</label>
+                        <select name="category" id="category" class="custom-select" onchange="submitForm()">
+                            <option value="">Select a category</option>
+                            @foreach($product_categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    {{-- <div class="col-md-3">
+                        <select name="" id="" class="custom-select">
+                            <option value="">option</option>
+                            <option value="">option</option>
+                            <option value="">option</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+
+                        <select name="" id="" class="custom-select">
+                            <option value="">option</option>
+                            <option value="">option</option>
+                            <option value="">option</option>
+                            <option value="">option</option>
+                        </select>
+                    </div> --}}
+
+
+                </div>
+
+
                 <div class="container my-3">
                     <form action="{{route('search.product')}}" method="GET" enctype="multipart/form-data">
                         <div class="input-group">
                         <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Search {{count($place->products)}} products">
                         <div class="input-group-append">
                             <button class="btn" id="submitform" type="submit"><i class="fas fa-search"></i> submit</button>
+
                         </div>
                     </div>
-							<input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-							<input type="hidden" name="place"  id="place" value="{{ $place->id }}">
+                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="place"  id="place" value="{{ $place->id }}">
                     </form>
-
-
-
                 </div>
                 <div class="main-search">
-                    <h4 class="text-muted">{{count($place->products)}} results found</h4>
-                   @include('frontend.place.place_product')
+                    {{-- <h4 class="text-muted">{{count($place->products)}} results found</h4> --}}
+                    @include('frontend.place.place_product')
                 </div>
                 <div class="results">
                     <div id="overlay" style="display:none;" class="searchoverlay">
@@ -106,8 +148,9 @@ color: #999;
                         <br />
                         Loading...
                     </div>
-
                 </div>
+
+
 
                 @else
                     This business has no products yet
@@ -543,44 +586,46 @@ color: #999;
 @push('scripts')
     <script src="{{asset('assets/js/page_place_detail.js')}}"></script>
     <script>
-       /*  $('#keyword').on('change', function(){
-            console.log("keyword changed");
-            console.log($('#place').val());
+       $('#keyword').on('keyup', function(){
             submitForm();
         });
 
-        $('#submitform').click(function () {
-		    submitForm();
-	    }); */
+        function check($this){
+            // e.preventDefault();
+            console.log($this);
+        //  let mine = $(this).val();
+        //  console.log(mine);
+        }
+
 	//.............................Submiting the form.............................//
 	function submitForm() {
-    // console.log($("#brand").val());
-        // $('.main-search').fadeOut(500);
-		// $(".searchoverlay").fadeIn();
-		// $.ajax({
-		// 	url:"{{route('search.product')}}",
-		// 	method:"GET",
-		// 	data:{
-        //         "keyword":$('#keyword').val(),
-        //         // "place":$('#place').val(),
-        //         "place":'55',
-		// 		"_token": $('#token').val(),
-		// 			},
+        $('.main-search').fadeOut(500);
+		$(".searchoverlay").fadeIn();
+		$.ajax({
+			url:"{{route('search.product')}}",
+			method:"GET",
+			data:{
+                "keyword":$('#keyword').val(),
+                "sort":$('#sort').val(),
+                "category":$('#category').val(),
+                "place":$('#place').val(),
+				"_token": $('#token').val(),
+					},
 
-		// 	success:function(data)
-		// 	{
-		// 		console.log('successful search');
-		// 		/* $('.main-search').hide();
-		// 		$('.results').empty();
-		// 		$('.results').append(data);
-		// 		$(".searchoverlay").fadeOut(); */
+			success:function(data)
+			{
+				console.log('successful search');
+				$('.main-search').hide();
+				$('.results').empty();
+				$('.results').append(data);
+				$(".searchoverlay").fadeOut(500);
 
-		// 	},
-		// 		error:function(data)
-		// 	{
-		// 	console.log('nothing');
-		// 	}
-		// });
+			},
+				error:function(data)
+			{
+			console.log('nothing');
+			}
+		});
 
 	}
 

@@ -51,112 +51,6 @@
             </div>
         </div><!-- .site-banner -->
 
-        {{-- <div class="business-category">
-            <div class="container">
-                <h2 class="title title-border-bottom align-center">{{__('Browse Businesses by Category')}}</h2>
-                <div class="slick-sliders">
-                    <div class="slick-slider business-cat-slider slider-pd30" data-item="6" data-arrows="true" data-itemScroll="6" data-dots="true" data-centerPadding="50" data-tabletitem="3" data-tabletscroll="3" data-smallpcitem="4" data-smallpcscroll="4" data-mobileitem="2" data-mobilescroll="2" data-mobilearrows="false">
-
-                        @foreach($categories as $cat)
-                            <div class="bsn-cat-item rosy-pink">
-                                <a href="{{route('page_search_listing', ['category[]' => $cat->id])}}" style="background-color:{{$cat->color_code}};">
-                                    <img src="{{getImageUrl($cat->icon_map_marker)}}" alt="{{$cat->name}}">
-                                    <span class="title">{{$cat->name}}</span>
-                                    <span class="place">{{$cat->place_count}} {{__('Places')}}</span>
-                                </a>
-                            </div>
-                        @endforeach
-
-                    </div>
-                    <div class="place-slider__nav slick-nav">
-                        <div class="place-slider__prev slick-nav__prev">
-                            <i class="las la-angle-left"></i>
-                        </div><!-- .place-slider__prev -->
-                        <div class="place-slider__next slick-nav__next">
-                            <i class="las la-angle-right"></i>
-                        </div><!-- .place-slider__next -->
-                    </div><!-- .place-slider__nav -->
-                </div>
-            </div>
-        </div> --}}
-        <!-- .business-category -->
-
-        {{-- <div class="trending trending-business">
-            <div class="container">
-                <h2 class="title title-border-bottom align-center">{{__('Trending Business Places')}}</h2>
-                <div class="slick-sliders">
-                    <div class="slick-slider trending-slider slider-pd30" data-item="4" data-arrows="true" data-itemScroll="4" data-dots="true" data-centerPadding="30" data-tabletitem="2" data-tabletscroll="2" data-smallpcscroll="3" data-smallpcitem="3" data-mobileitem="1" data-mobilescroll="1" data-mobilearrows="false">
-
-                        @foreach($trending_places as $place)
-                            <div class="place-item layout-02">
-                                <div class="place-inner">
-                                    <div class="place-thumb">
-                                        <a class="entry-thumb" href="{{route('place_detail', $place->slug)}}"><img src="{{getImageUrl($place->thumb)}}" alt="{{$place->name}}"></a>
-                                        <a href="#" class="golo-add-to-wishlist btn-add-to-wishlist @if($place->wish_list_count) remove_wishlist active @else @guest open-login @else add_wishlist @endguest @endif" data-id="{{$place->id}}">
-											<span class="icon-heart">
-												<i class="la la-bookmark large"></i>
-											</span>
-                                        </a>
-                                        <a class="entry-category rosy-pink" href="{{route('page_search_listing', ['category[]' => $place['categories'][0]['id']])}}" style="background-color:{{$place['categories'][0]['color_code']}};">
-                                            <img src="{{getImageUrl($place['categories'][0]['icon_map_marker'])}}" alt="{{$place['categories'][0]['name']}}">
-                                            <span>{{$place['categories'][0]['name']}}</span>
-                                        </a>
-                                    </div>
-                                    <div class="entry-detail">
-                                        <div class="entry-head">
-                                            <div class="place-type list-item">
-                                                @foreach($place['place_types'] as $type)
-                                                    <span>{{$type->name}}</span>
-                                                @endforeach
-                                            </div>
-                                            <div class="place-city">
-                                                <a href="{{route('page_search_listing', ['city[]' => $place['city']['id']])}}">{{$place['city']['name']}}</a>
-                                            </div>
-                                        </div>
-                                        <h3 class="place-title"><a href="{{route('place_detail', $place->slug)}}">{{$place->name}}</a></h3>
-                                        <div class="entry-bottom">
-                                            <div class="place-preview">
-                                                <div class="place-rating">
-                                                    @if($place->reviews_count)
-                                                        {{number_format($place->avgReview, 1)}}
-                                                        <i class="la la-star"></i>
-                                                    @endif
-                                                </div>
-                                                <span class="count-reviews">({{$place->reviews_count}} {{__('reviews')}})</span>
-                                            </div>
-                                            <div class="place-price">
-                                                <span>{{PRICE_RANGE[$place['price_range']]}}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-
-                    </div>
-                    <div class="place-slider__nav slick-nav">
-                        <div class="place-slider__prev slick-nav__prev">
-                            <i class="las la-angle-left"></i>
-                        </div><!-- .place-slider__prev -->
-                        <div class="place-slider__next slick-nav__next">
-                            <i class="las la-angle-right"></i>
-                        </div><!-- .place-slider__next -->
-                    </div><!-- .place-slider__nav -->
-                </div>
-            </div>
-        </div> --}}
-        <!-- .trending -->
-        {{-- <button id="button" class="btn">Click here</button>
-        <div class="field-group">
-            <input type="text" id="pac-input" placeholder="{{__('My Full Address')}}" value="" name="address" autocomplete="off" required/>
-        </div>
-        <div class="field-group field-maps">
-            <div class="field-map">
-                <input type="hidden" id="place_lat" name="lat" value="">
-                <input type="hidden" id="place_lng" name="lng" value="">
-                <div class="site-banner" id="map" style=" position: relative; overflow: hidden;"></div>
-            </div>
-        </div> --}}
 
         <!-- business-about -->
         <div class="business-about" style="background-image: url({{asset('assets/images/img_about_1.jpg')}});">
@@ -214,7 +108,27 @@
                                             <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Import Videos</li>
                                             <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li>
                                         </ul>
-
+                                        <div id="paypal-button-container"></div>
+                                        <script src="https://www.paypal.com/sdk/js?client-id=AVid7Ah59HjQwUApzKnY5ZG-1-W2tflsTzbBK5cXX0WDL9m-QWf8GourkvfxPkG5z8HnqpERFF64RFj3&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+                                        <script>
+                                            paypal.Buttons({
+                                                style: {
+                                                    shape: 'rect',
+                                                    color: 'gold',
+                                                    layout: 'vertical',
+                                                    label: 'subscribe'
+                                                },
+                                                createSubscription: function(data, actions) {
+                                                    return actions.subscription.create({
+                                                        'plan_id': 'P-4UH91670G57698243L7H2XSY'
+                                                    });
+                                                },
+                                                onApprove: function(data, actions) {
+                                                    alert(data.subscriptionID);
+                                                }
+                                            }).render('#paypal-button-container');
+                                        </script>
+                                      
                                     </div>
                                     </div>
                                 </div>

@@ -24,7 +24,7 @@ class PaypalAgreement extends Paypal
         $agreement = new Agreement();
         $agreement->setName('Base Agreement')
             ->setDescription('Basic Agreement')
-            ->setStartDate('2019-06-17T9:45:04Z');
+            ->setStartDate(gmdate("Y-m-d\TH:i:s\Z", strtotime("+1 day")));
 
         $agreement->setPlan($this->plan($id));
 

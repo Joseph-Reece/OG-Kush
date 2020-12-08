@@ -51,6 +51,11 @@ class User extends Authenticatable
         return $this->is_admin === self::USER_ADMIN;
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function isActive()
     {
         return $this->status === self::STATUS_ACTIVE;
