@@ -93,7 +93,7 @@
                                         </ul> --}}
                                         <ul class="menu-arrow">
                                             <li>
-                                                <a href="#" class=""><i class="fas fa-map"></i> Map Search</a>
+                                                <a href="{{route('search_listing')}}" class=""><i class="fas fa-map"></i> Map Search</a>
                                             </li>
                                             <li>
                                                 <a href="{{route('search')}}" class=""><i class="fas fa-list"></i> List Search</a>
@@ -204,7 +204,7 @@
                         </div> --}}
 
                         <div class="right-header__destinations">
-                            <a href="#" class="">Map Search</a>
+                            <a href="{{route('search_listing')}}" class="">Map Search</a>
                         </div>
                         <div class="right-header__destinations">
                             <a href="{{route('search')}}" class="">List Search</a>

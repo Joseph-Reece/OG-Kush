@@ -23,7 +23,7 @@
                     <p><i>{{$city_count}}</i> {{__('cities')}}, <i>{{$category_count}}</i> {{__('categories')}}, <i>{{$place_count}}</i> {{__('places')}}.</p>
                     <form action="{{route('page_search_listing')}}" class="site-banner__search layout-02">
                         <div class="field-input">
-                            <label for="input_search">Find</label>
+                            <label for="input_search">Find </label>
                             <input class="site-banner__search__input open-suggestion" id="input_search" type="text" placeholder="Ex: fastfood, beer" autocomplete="off">
                             <input type="hidden" name="category[]" id="category_id">
                             <div class="search-suggestions category-suggestion">
@@ -128,7 +128,7 @@
                                                 }
                                             }).render('#paypal-button-container');
                                         </script>
-                                      
+
                                     </div>
                                     </div>
                                 </div>

@@ -418,7 +418,7 @@ class HomeController extends Controller
         $paymentTypes = $request->paymentTypes;
         $price = $request->price;
         $output='';
-        // dd($request->all(),$paymentTypes);
+        // dd($request->paymentTypes);
 
         $searchresults = $this->ourfetchListingsBySearch($keyword, $filter_category, $filter_amenities, $sort_by, $price,$paymentTypes);
 
@@ -454,7 +454,7 @@ class HomeController extends Controller
 
 
 
-public function ourfetchListingsBySearch($keyword = '', $filter_category = '', $filter_amenities = [],   $sort_by = '',  $price = '',$paymentTypes=[])
+public function ourfetchListingsBySearch($keyword = '', $filter_category, $filter_amenities,   $sort_by = '',  $price = '',$paymentTypes)
     {
 
         $query = Place::query()
@@ -478,37 +478,27 @@ public function ourfetchListingsBySearch($keyword = '', $filter_category = '', $
 
             }
 
-        if ($filter_amenities != []) {
-            foreach ($filter_amenities as $key => $item) {
-                if ($key === 0) {
-                    $query->where('amenities', 'like', "%$item%");
-                } else {
-                    $query->orWhere('amenities', 'like', "%$item%");
-                }
+        if ($filter_amenities) {
+            foreach ($filter_amenities as $item) {
+                $query->where('amenities', 'like', "%$item%");
             }
         }
-        // dd($paymentTypes);
-        if ($paymentTypes != []) {
+
+        if ($paymentTypes) {
             foreach ($paymentTypes as $item) {
-                    // $query->where('payment_type', 'like', "%$item%");
-                    // $query->whereJsonContains('payment_type', $item);
-                    $query->whereRaw('JSON_CONTAINS(payment_type, ?)', [json_encode($item)]);
-
-                // dd($query->get(),$item);
+                $query->where('payment_type', 'like', "%$item%");
             }
         }
-
-
 
 
         if ($sort_by == 'newest') {
-            $query->orderBy('places.updated_at', 'desc');
+            $query->orderBy('updated_at', 'desc');
         } elseif ($sort_by == 'price_asc') {
             $query->orderBy('price_range', 'asc');
         } elseif ($sort_by == 'price_desc') {
             $query->orderBy('price_range', 'desc');
         } elseif ($sort_by == 'rating') {
-            $query->orderBy('vehicles.updated_at');
+            $query->orderBy('updated_at');
         }
 
 

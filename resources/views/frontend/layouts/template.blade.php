@@ -103,10 +103,10 @@
                                                 </ul>
                                             </li> --}}
                                             <li>
-                                                <a href="#" class=""><i class="fas fa-map"></i> Map Search</a>
+                                                <a href="{{route('search_listing')}}" class=""><i class="fas fa-map"></i> Map Search</a>
                                             </li>
                                             <li>
-                                                <a href="#" class=""><i class="fas fa-list"></i> List Search</a>
+                                                <a href="{{route('search')}}" class=""><i class="fas fa-list"></i> List Search</a>
                                             </li>
                                         </ul>
                                     </div><!-- .popup__destinations -->
@@ -232,10 +232,10 @@
                             @endif
                         </div> --}}
                         <div class="right-header__destinations">
-                            <a href="#" class="">Map Search</a>
+                            <a href="{{route('search_listing')}}" class="">Map Searchtemplate</a>
                         </div>
                         <div class="right-header__destinations">
-                            <a href="#" class="">List Search</a>
+                            <a href="{{route('search')}}" class="">List Search</a>
                         </div>
 
 
