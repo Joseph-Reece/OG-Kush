@@ -131,10 +131,10 @@
         /*  [ Destinations Popup ]
         - - - - - - - - - - - - - - - - - - - - */
 
-        $('.right-header__languages > a, .right-header__destinations > a, .site__filter a, .site__sort a').on('click', function (e) {
-            e.preventDefault();
-            $(this).parent().find('ul').toggleClass('open');
-        });
+        // $('.right-header__languages > a, .right-header__destinations > a, .site__filter a, .site__sort a').on('click', function (e) {
+        //     e.preventDefault();
+        //     $(this).parent().find('ul').toggleClass('open');
+        // });
 
         /*  [ Filter ]
         - - - - - - - - - - - - - - - - - - - - */
@@ -151,14 +151,14 @@
         });
 
         $(document).mouseup(function (e) {
-            var destinations = $('.right-header__destinations'),
-                languages = $('.right-header__languages'),
+            var languages = $('.right-header__languages'),
+                //  destinations = $('.right-header__destinations'),
                 site__filter = $('.site__filter'),
                 site__sort = $('.site__sort');
 
-            if (!destinations.is(e.target) && destinations.has(e.target).length === 0) {
-                destinations.find('ul').removeClass('open');
-            }
+            // if (!destinations.is(e.target) && destinations.has(e.target).length === 0) {
+            //     destinations.find('ul').removeClass('open');
+            // }
 
             if (!languages.is(e.target) && languages.has(e.target).length === 0) {
                 languages.find('ul').removeClass('open');

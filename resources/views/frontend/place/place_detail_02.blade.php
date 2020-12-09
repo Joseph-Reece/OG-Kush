@@ -367,6 +367,7 @@ color: #999;
                             <li>
                                 <div class="place__author">
                                     <div class="place__author__avatar">
+                                        {{-- <a title="Nitithorn" href="#0"><img src="{{getUserAvatar($review->user->avatar)}}" alt=""></a> --}}
                                         <a title="Nitithorn" href="#0"><img src="{{getUserAvatar($review['user']['avatar'])}}" alt=""></a>
                                     </div>
                                     <div class="place__author__info">
@@ -419,6 +420,7 @@ color: #999;
                                 </div>
                             </li>
                         @endforeach
+
                     </ul>
 
                     @guest

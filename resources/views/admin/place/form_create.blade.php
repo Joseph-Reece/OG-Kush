@@ -90,6 +90,17 @@
             </div>
         </div>
 
+        <div id="hightlight">
+            <p class="lead">Payment Types</p>
+            <div class="checkbox row">
+                @foreach($payments as $item)
+                    <div class="col-md-3 mb-10">
+                        <label class="p-0"><input type="checkbox" class="flat" name="payment_types[]" value="{{$item->id}}"> {{$item->name}}</label>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
         <div id="location">
             <p class="lead">Location</p>
 

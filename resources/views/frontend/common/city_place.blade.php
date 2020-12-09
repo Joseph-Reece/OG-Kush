@@ -1,4 +1,4 @@
-@foreach($places as $place)
+
 <div class="grid-item">
 <div class="places-item hover__box">
     <div class="places-item__thumb hover__box__thumb">
@@ -31,5 +31,5 @@
     </div>
 </div>
 </div>
-@endforeach
+
 

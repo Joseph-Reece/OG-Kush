@@ -253,6 +253,7 @@ const PRICE_RANGE = {
                 e.preventDefault();
                 $(this).toggleClass('active');
                 $(this).parents('.city-content__panel').find('.golo-menu-filter').slideToggle(300);
+                $(this).parents('.search-wrap').find('.golo-menu-filter').slideToggle(300);
             });
         },
 
@@ -270,13 +271,17 @@ const PRICE_RANGE = {
                 }
                 var ajax_call = true;
                 GL_FILTER.ajaxFilter();
+                GL_FILTER.ajaxFilterr();
             });
+
+
 
             // click filter: Types, Amenities
             $('.golo-menu-filter input.input-control').on('input', function () {
                 $('.golo-pagination').find('input[name="paged"]').val(1);
                 var ajax_call = true;
                 GL_FILTER.ajaxFilter();
+                GL_FILTER.ajaxFilterr();
             });
         },
 
@@ -308,6 +313,7 @@ const PRICE_RANGE = {
                 $('.golo-menu-filter input[type="checkbox"]').prop('checked', false);
                 var ajax_call = true;
                 GL_FILTER.ajaxFilter();
+                GL_FILTER.ajaxFilterr();
             });
         },
 
@@ -318,7 +324,7 @@ const PRICE_RANGE = {
                 price = menu_filter_wrap.find('.price.filter-control li.active a').data('price'),
                 place_types = [],
                 amenities = [];
-                console.log(city_id);
+            console.log(city_id);
 
             menu_filter_wrap.find("input[name='types']:checked").each(function () {
                 place_types.push(parseInt($(this).val()));
@@ -350,7 +356,75 @@ const PRICE_RANGE = {
                 }
             });
 
+        },
+        ajaxFilterr: function () {
+            var amenities = [];
+            var paymentTypes = [];
+
+            let city_id = $('input[name="city_id"]').val(),
+                keyword = $('#keyword').val(),
+                action = $('#action').val(),
+                category_id = $("select.cat_id").children("option:selected").val(),
+                sort_by = menu_filter_wrap.find('.sort-by.filter-control li.active a').data('sort'),
+                price = menu_filter_wrap.find('.price.filter-control li.active a').data('price');
+
+            menu_filter_wrap.find("input[name='amenities']:checked").each(function () {
+                amenities.push(parseInt($(this).val()));
+            });
+            menu_filter_wrap.find("input[name='types']:checked").each(function () {
+                paymentTypes.push(parseInt($(this).val()));
+            });
+            console.log('Sort' + sort_by);
+            console.log('action' + action);
+            console.log('category_id' + category_id);
+            console.log('price' + price);
+            console.log('amenities' + amenities);
+            console.log('paymentTypes' + paymentTypes);
+            console.log('keyword' + keyword);
+            // console.log('Sort'+sort_by);
+
+            // menu_filter_wrap.find("input[name='types']:checked").each(function () {
+            //     place_types.push(parseInt($(this).val()));
+            // });
+
+
+            // call api
+            $.ajax({
+                url: `${app_url}/search`,
+                data: {
+                    'city_id': city_id,
+                    'category_id': category_id,
+                    'keyword': keyword,
+                    'action': action,
+                    'sort_by': sort_by,
+                    'price': price,
+                    'paymentTypes': paymentTypes,
+                    'amenities': amenities,
+                    "_token": $('#token').val(),
+                },
+                beforeSend: function () {
+                    $('.golo-grid').fadeOut(500);
+                    $('.loads').fadeIn(1000);
+                },
+                success: function (data) {
+                    console.log('successfull search');
+                    // console.log('successfull search');
+                    // $('.main-search').hide();
+                    $('.golo-grid').empty();
+                    $('.golo-grid').append(data);
+                    $('.golo-grid').fadeIn(1000);
+                    $(".loads").fadeOut(500);
+
+                    GL_FILTER.filterDisplayClear();
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            });
+
         }
+
+
 
     };
 
@@ -595,7 +669,7 @@ function getUrlAPI(slug, type = "api") {
 function callAPI(data) {
     try {
         let method = data.method || "GET";
-        let header = data.header || {'Accept': 'application/json', 'Content-Type': 'application/json'};
+        let header = data.header || { 'Accept': 'application/json', 'Content-Type': 'application/json' };
         let body = JSON.stringify(data.body);
 
         return fetch(data.url, {
@@ -641,3 +715,12 @@ function previewUploadImage(input, element_id) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+var delayTimer;
+function doSearch(text) {
+    clearTimeout(delayTimer);
+    delayTimer = setTimeout(function () {
+        GL_FILTER.ajaxFilterr()
+    }, 1000); // Will do the ajax stuff after 1000 ms, or 1 s
+}
+
+

@@ -34,7 +34,7 @@
     //     $("#map").toggle(500);
     //    });
 
-       $( '.icon-toggler' ).on( 'click', function() {
+       $( '.icon-toggle' ).on( 'click', function() {
         $( this ).toggleClass( 'active' );
         if ($( this ).hasClass( 'active' )) {
             $( this ).parents( 'body' ).find( '#map' ).fadeIn(500);
@@ -71,6 +71,21 @@
             e.preventDefault();
 
             $("#amenities").prop('hidden', true);
+        });
+
+        // Payments
+        $('#btn_add_payments').on('click', function (e) {
+            console.log(e.currentTarget.id);
+            e.preventDefault();
+
+            $("#payments").removeProp('hidden');
+        });
+
+        $('#hidePayments').on('click', function (e) {
+            console.log(e.currentTarget.id);
+            e.preventDefault();
+
+            $("#payments").prop('hidden', true);
         });
     //    hours deals
         $('#btn_add_deals').on('click', function (e) {

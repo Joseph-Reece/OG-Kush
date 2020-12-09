@@ -1,0 +1,122 @@
+ {{-- one --}}
+ <div class="col-left">
+    <div class="archive-filter">
+        <form action="#" class="filterForm" id="filterForm">
+            <div class="filter-head">
+                <h2>{{__('Filter')}}</h2>
+                <a href="#" class="clear-filter"><i class="fal fa-sync"></i>Clear all</a>
+               {{--<a href="#" class="close-filter"><i class="las la-times"></i></a>--}}
+            </div>
+            {{--Cities--}}
+            <div class="filter-box">
+                <h3>Sort By</h3>
+                <div class="filter-list">
+                    <div class="filter-group">
+                        <ul class="sort-by filter-control custom-scrollbar">
+                            <li><a class="bc_filter" href="#" data-sort="newest">{{__('Newest')}}</a></li>
+                            {{-- <li><a class="bc_filter" href="#" data-sort="rating">{{__('Average rating')}}</a></li> --}}
+                            <li class="price-filter"><a class="bc_filter" href="#" data-sort="price_asc">{{__('Price: Low to high')}}</a></li>
+                            <li class="price-filter"><a class="bc_filter" href="#" data-sort="price_desc">{{__('Price: High to low')}}</a></li>
+                        </ul>
+                    </div>
+                    <a href="#" class="more open-more" data-close="Close" data-more="More">More</a>
+                </div>
+            </div>
+            {{--Cities--}}
+            {{-- <div class="filter-box">
+                <h3>price</h3>
+                <div class="filter-list">
+                    <div class="filter-group">
+                        <ul class="price filter-control custom-scrollbar">
+                            <li ><a class="bc_filter" href="#" data-price="0">{{__('Free')}}</a></li>
+                            <li><a class="bc_filter" href="#" data-price="1">{{__('Low: $')}}</a></li>
+                            <li><a class="bc_filter"href="#" data-price="2">{{__('Medium: $$')}}</a></li>
+                            <li><a class="bc_filter" href="#" data-price="3">{{__('High: $$$')}}</a></li>
+                        </ul>
+                    </div>
+                    <a href="#" class="more open-more" data-close="Close" data-more="More">More</a>
+                </div>
+            </div> --}}
+            {{--Cities--}}
+            <div class="filter-box">
+                <h3>Cities</h3>
+                <div class="filter-list">
+                    <div class="filter-group">
+                        {{-- @foreach($cities as $city)
+                            <div class="field-check">
+                                <label  for="city_{{$city->id}}">
+                                    <input class="bc_filter" type="checkbox" id="city_{{$city->id}}" name="cities" value="{{$city->id}}" {{isChecked($city->id, $filter_city)}}>
+                                    {{$city->name}}
+                                    <span class="checkmark"><i class="la la-check"></i></span>
+                                </label>
+                            </div>
+                        @endforeach --}}
+                    </div>
+                    <a href="#" class="more open-more" data-close="Close" data-more="More">More</a>
+                </div>
+            </div>
+            {{--categories--}}
+            <div class="filter-box">
+                <h3> {{__('Categories')}}</h3>
+                <div class="filter-list">
+                    <div class="filter-group">
+                        {{-- @foreach($categories as $cat)
+                            <div class="field-check">
+                                <label class="bc_filter" for="cat_{{$cat->id}}">
+                                    <input type="checkbox" id="cat_{{$cat->id}}" name="categories" value="{{$cat->id}}" {{isChecked($cat->id, $filter_category)}}>
+                                    {{$cat->name}}
+                                    <span class="checkmark"><i class="la la-check"></i></span>
+                                </label>
+                            </div>
+                        @endforeach --}}
+                    </div>
+                    <a href="#" class="more open-more" data-close="Close" data-more="More">{{__('More')}}</a>
+                </div>
+            </div>
+            {{--placeType--}}
+            <div class="filter-box">
+                <h3>{{__('Place Type')}}</h3>
+                <div class="filter-list">
+                    <div class="filter-group">
+                        {{-- @foreach($place_types as $place_type)
+                            <div class="field-check">
+                                <label class="bc_filter" for="place_type_{{$place_type->id}}">
+                                    <input type="checkbox" id="place_type_{{$place_type->id}}" name="types" value="{{$place_type->id}}" {{isChecked($place_type->id, $filter_place_type)}}>
+                                    {{$place_type->name}}
+                                    <span class="checkmark"><i class="la la-check"></i></span>
+                                </label>
+                            </div>
+                        @endforeach --}}
+                    </div>
+                    <a href="#" class="more open-more" data-close="Close" data-more="More">{{__('More')}}</a>
+                </div>
+            </div>
+            {{--amenities--}}
+            <div class="filter-box">
+                <h3>{{__('Amenities')}}</h3>
+                <div class="filter-list">
+                    <div class="filter-group">
+                        {{-- @foreach($amenities as $item)
+                            <div class="field-check">
+                                <label class="bc_filter" for="amenities_{{$item->id}}">
+                                    <input type="checkbox" id="amenities_{{$item->id}}" name="amenities"
+                                    value="{{$item->id}}" {{isChecked($item->id, $filter_amenities)}}>
+                                    {{$item->name}}
+                                    <span class="checkmark"><i class="la la-check"></i></span>
+                                </label>
+                            </div>
+                        @endforeach --}}
+
+                    </div>
+                    <a href="#" class="more open-more" data-close="Close" data-more="More">More</a>
+                </div>
+            </div>
+            <div class="form-button align-center">
+                <input type="hidden" name="action" value="livesearch">
+                <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                <a href="#" class="btn">{{__('Apply')}}</a>
+            </div>
+        </form>
+    </div><!-- .archive-fillter -->
+</div><!-- .col-left -->
+{{-- one --}}

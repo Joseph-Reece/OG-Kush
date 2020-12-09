@@ -96,7 +96,7 @@
                                                 <a href="#" class=""><i class="fas fa-map"></i> Map Search</a>
                                             </li>
                                             <li>
-                                                <a href="#" class=""><i class="fas fa-list"></i> List Search</a>
+                                                <a href="{{route('search')}}" class=""><i class="fas fa-list"></i> List Search</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -207,7 +207,7 @@
                             <a href="#" class="">Map Search</a>
                         </div>
                         <div class="right-header__destinations">
-                            <a href="#" class="">List Search</a>
+                            <a href="{{route('search')}}" class="">List Search</a>
                         </div>
                         {{-- <div class="right-header__destinations">
                             <a title="Destinations" href="#">
@@ -234,7 +234,7 @@
                                     <li class="nav-login"><a title="Log In" href="#login">{{__('Log In')}}</a></li>
                                     <li class="nav-signup"><a title="Sign Up" href="#register">Sign Up</a></li>
                                 </ul>
-                                <p class="choose-more">{{__('Continue with')}} <a title="Facebook" class="fb" href="{{route('login_social', 'facebook')}}">Facebook</a> or <a title="Google" class="gg" href="{{route('login_social', 'google')}}">Google</a> 
+                                <p class="choose-more">{{__('Continue with')}} <a title="Facebook" class="fb" href="{{route('login_social', 'facebook')}}">Facebook</a> or <a title="Google" class="gg" href="{{route('login_social', 'google')}}">Google</a>
                                     {{-- <a title="Apple" class="app" href="{{route('login_social', 'apple')}}">Apple</a></p> --}}
                                 <p class="choose-or"><span>{{__('Or')}}</span></p>
                                 <div class="popup-content">

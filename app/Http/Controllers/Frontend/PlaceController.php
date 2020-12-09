@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Commons\Response;
 use App\Http\Controllers\Controller;
 use App\Models\Amenities;
+use App\Models\PaymentType;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Country;
@@ -61,6 +62,10 @@ class PlaceController extends Controller
             ->whereIn('id', $place->amenities ? $place->amenities : [])
             ->get(['id', 'name', 'icon']);
 
+        $payment = PaymentType::query()
+            ->whereIn('id', $place->payment_type ? $place->payment_type : [])
+            ->get(['id', 'name', 'icon']);
+
         $categories = Category::query()
             ->whereIn('id', $place->category ? $place->category : [])
             ->get(['id', 'name', 'slug', 'icon_map_marker']);
@@ -74,6 +79,7 @@ class PlaceController extends Controller
             ->where('place_id', $place->id)
             ->where('status', Review::STATUS_ACTIVE)
             ->get();
+            // dd($reviews['user']);
         $review_score_avg = Review::query()
             ->where('place_id', $place->id)
             ->where('status', Review::STATUS_ACTIVE)
@@ -115,6 +121,7 @@ class PlaceController extends Controller
             'product_categories' => $product_categories,
             'city' => $city,
             'amenities' => $amenities,
+            'payment' => $payment,
             'categories' => $categories,
             'place_types' => $place_types,
             'reviews' => $reviews,
@@ -145,7 +152,11 @@ class PlaceController extends Controller
             ->first();
 
         $amenities = Amenities::query()
-            ->whereIn('id', $place->amenities ? $place->amenities : [])
+            // ->whereIn('id', $place->amenities ? $place->amenities : [])
+            ->get(['id', 'name', 'icon']);
+
+        $payment = PaymentType::query()
+            // ->whereIn('id', $place->amenities ? $place->amenities : [])
             ->get(['id', 'name', 'icon']);
 
         $categories = Category::query()
@@ -201,6 +212,7 @@ class PlaceController extends Controller
             'city' => $city,
             'license' => $license,
             'amenities' => $amenities,
+            'payment' => $payment,
             'categories' => $categories,
             'place_types' => $place_types,
             'reviews' => $reviews,
@@ -390,6 +402,7 @@ class PlaceController extends Controller
             '%description%' => '',
             'price_range' => '',
             'amenities' => '',
+            'payment_type' => '',
             'address' => '',
             'lat' => '',
             'lng' => '',
@@ -406,8 +419,8 @@ class PlaceController extends Controller
         ]);
         $data = $this->validate($request, $rule_factory);
 
-           // dd($data);
         $data = $request->all();
+        // dd($data);
 
         if ($request->hasFile('thumb')) {
             $thumb = $request->file('thumb');
@@ -488,7 +501,6 @@ class PlaceController extends Controller
         $places = $places->get();
 
         $html = "";
-        // dd(count($places));
         if (count($places)) :
             foreach ($places as $place) :
                 $place_detail_url = route('place_detail', $place->slug);

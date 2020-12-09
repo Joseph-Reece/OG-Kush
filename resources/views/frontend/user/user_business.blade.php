@@ -38,7 +38,7 @@
 
                                             <div class="show-map">
                                                 <span>{{__('Show on Map')}}</span>
-                                                <a href="#" class="icon-toggler"></a>
+                                                <a href="#" class="icon-toggle"></a>
                                             </div><!-- .show-map -->
 
 
@@ -130,6 +130,8 @@
 
                                             </div>
                                         </div><!-- .listing-box -->
+
+
 
                                         <div class="listing-box" id="open" hidden>
                                             <h3>{{__('Opening Hours')}}</h3>
@@ -258,6 +260,26 @@
                                             </div>
                                         </div><!-- .listing-box -->
 
+                                        <div class="listing-box" id="payments" hidden>
+                                            <h3>{{__('Payment Types')}}</h3>
+                                            <div class="field-group field-check">
+                                                @if(count($payment)>0)
+
+                                                @foreach($payment as $item)
+                                                    <label for="payment_{{$item['id']}}">
+                                                        <input type="checkbox" name="payment_type[]" id="payment_{{$item['id']}}" value="{{$item['id']}}" {{isChecked($item['id'], $place['payment_type'])}}>{{$item['name']}}
+                                                        <span class="checkmark">
+                                                            <i class="la la-check"></i>
+                                                        </span>
+                                                    </label>
+                                                @endforeach
+                                                @endif
+                                            </div>
+                                            <div class="row">
+                                                <button class="btn float-right" id="hidePayments">Hide</button>
+                                            </div>
+                                        </div><!-- .listing-box -->
+
                                         <div class="listing-box" id="media" hidden>
                                             <h3>Media</h3>
                                             <div class="field-group field-file">
@@ -321,6 +343,7 @@
                             <div class="row justify-content-around d-flex m-2">
                                 <button class="btn add-social" id="btn_add_hour" type="button">+ Add Hours</button>
                                 <button class="btn add-social" id="btn_add_amenities" type="button">+ Add Amenities</button>
+                                <button class="btn add-social" id="btn_add_payments" type="button">+ Add Payment Types</button>
                                 <button class="btn add-social" id="btn_add_deals" type="button">+ Add Deals</button>
                                 <button class="btn add-social" id="btn_add_media" type="button">+ Add Media</button>
 

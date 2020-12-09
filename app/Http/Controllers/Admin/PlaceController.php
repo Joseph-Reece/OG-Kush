@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Amenities;
+use App\Models\PaymentType;
 use App\Models\Place;
 use Astrotomic\Translatable\Validation\RuleFactory;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ class PlaceController extends Controller
     private $city;
     private $category;
     private $amenities;
+    private $paymentTypes;
     private $response;
 
     public function __construct(
@@ -30,6 +32,7 @@ class PlaceController extends Controller
         City $city,
         Category $category,
         Amenities $amenities,
+        PaymentType $paymentTypes,
         Response $response
     )
     {
@@ -38,6 +41,7 @@ class PlaceController extends Controller
         $this->city = $city;
         $this->category = $category;
         $this->amenities = $amenities;
+        $this->paymentType = $paymentTypes;
         $this->response = $response;
     }
 
@@ -73,6 +77,7 @@ class PlaceController extends Controller
         $countries = $this->country->getFullList();
         $categories = $this->category->getListAll(Category::TYPE_PLACE);
         $cities = $this->city->getListByCountry($country_id);
+        $payments = PaymentType::all();
 
         $place_types = Category::query()
             ->with('place_type')
@@ -80,7 +85,7 @@ class PlaceController extends Controller
 
         $amenities = $this->amenities->getListAll();
 
-        return view('admin.place.place_create', compact('countries', 'cities', 'categories', 'place_types', 'amenities', 'place'));
+        return view('admin.place.place_create', compact('countries', 'cities', 'categories', 'place_types','payments', 'amenities', 'place'));
     }
 
     public function create(Request $request)
@@ -102,6 +107,7 @@ class PlaceController extends Controller
             '%description%' => '',
             'price_range' => '',
             'amenities' => '',
+            'payment_type' => '',
             'address' => '',
             'lat' => '',
             'lng' => '',
@@ -153,6 +159,7 @@ class PlaceController extends Controller
             '%description%' => '',
             'price_range' => '',
             'amenities' => '',
+            'payment_type' => '',
             'address' => '',
             'lat' => '',
             'lng' => '',

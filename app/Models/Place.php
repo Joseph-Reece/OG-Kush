@@ -22,9 +22,9 @@ class Place extends Model  implements TranslatableContract
         'place_type' => 'json',
         'social' => 'json',
         'amenities' => 'json',
+        'payment_type' => 'json',
         'opening_hour' => 'json',
         'gallery' => 'json',
-
         'user_id' => 'integer',
         'country_id' => 'integer',
         'city_id' => 'integer',
@@ -38,7 +38,7 @@ class Place extends Model  implements TranslatableContract
     protected $table = 'places';
 
     protected $fillable = [
-        'user_id', 'country_id', 'city_id', 'category', 'place_type', 'slug', 'price_range',
+        'user_id', 'country_id', 'city_id', 'category', 'place_type', 'slug', 'price_range', 'payment_type',
         'amenities', 'address', 'lat', 'lng', 'email', 'phone_number', 'website', 'license' ,'social', 'opening_hour',
         'thumb', 'gallery', 'video', 'booking_type', 'link_bookingcom', 'status', 'seo_title', 'seo_description'
     ];
@@ -68,6 +68,10 @@ class Place extends Model  implements TranslatableContract
     public function place_types()
     {
         return $this->belongsToJson(PlaceType::class, 'place_type');
+    }
+    public function payment_types()
+    {
+        return $this->belongsToJson(PaymentType::class, 'payment_type');
     }
 
     public function reviews()

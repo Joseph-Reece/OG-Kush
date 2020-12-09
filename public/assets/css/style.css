@@ -3190,6 +3190,23 @@ a.place__comments__reply {
     .add-social:focus svg > *, .add-social:hover svg > * {
       fill: #ffffff; }
 
+
+.btn-search  {
+  border: solid 2px #2d2d2d;
+  color: #2d2d2d;
+  background-color: #ffffff;
+  font-family: "Jost";
+  font-size: 15px;
+  font-weight: 500;
+  transition: inherit; }
+  .btn-search svg {
+    vertical-align: -2px; }
+  .btn-search:focus, .btn-search:hover {
+    background-color: #2d2d2d;
+    color: #ffffff; }
+    .btn-search:focus svg > *, .btn-search:hover svg > * {
+      fill: #ffffff; }
+
 .viewbtn {
   border: solid 2px #6d3d23;
   color: #2d2d2d;

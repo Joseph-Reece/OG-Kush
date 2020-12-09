@@ -88,7 +88,7 @@ $router->group([
 
     // My Routes
         $router->get('/busi', 'newcontroller@Business_signup')->name('business_signup');
-    // Route::view('URI', 'viewName');
+//     Route::view('URI', 'viewName');
 
 
 });
@@ -148,10 +148,18 @@ $router->group([
     $router->put('/category', 'CategoryController@update')->name('category_update');
     $router->delete('/category/{id}', 'CategoryController@destroy')->name('category_delete');
 
+//    Payment Types Routes
+
     $router->get('/amenities', 'AmenitiesController@list')->name('amenities_list');
     $router->post('/amenities', 'AmenitiesController@create')->name('amenities_create');
     $router->put('/amenities', 'AmenitiesController@update')->name('amenities_update');
     $router->delete('/amenities/{id}', 'AmenitiesController@destroy')->name('amenities_delete');
+
+    //    Payment Types Routes
+    $router->get('/payment', 'paymentTypesController@index')->name('payment_list');
+    $router->post('/payment', 'paymentTypesController@store')->name('payment_create');
+    $router->put('/payment', 'paymentTypesController@update')->name('payment_update');
+    $router->delete('/payment/{id}', 'paymentTypesController@destroy')->name('payment_delete');
 
     $router->get('/place-type', 'PlaceTypeController@list')->name('place_type_list');
     $router->post('/place-type', 'PlaceTypeController@create')->name('place_type_create');

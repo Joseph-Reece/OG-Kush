@@ -16,11 +16,12 @@
                         <li><a href="{{route('admin_place_type_list')}}"><i class="fa fa-tags"></i> Place Type</a></li>
                         <li><a href="{{route('admin_category_list', \App\Models\Category::TYPE_PLACE)}}"><i class="fa fa-list"></i> Categories</a></li>
                         <li><a href="{{route('admin_amenities_list')}}"><i class="fa fa-wifi"></i> Amenities</a></li>
+                        <li><a href="{{route('admin_payment_list')}}"><i class="fa fa-money"></i> Payment Types</a></li>
                         <li><a href="{{route('admin_city_list')}}"><i class="fa fa-building"></i> Cities</a></li>
                         <li><a href="{{route('admin_country_list')}}"><i class="fa fa-globe"></i> Countries</a></li>
                     </ul>
                 </li>
-                
+
                 <li id="menu_place">
                     <a><i class="fa fa-folder"></i> Products <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">

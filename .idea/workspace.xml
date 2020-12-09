@@ -2,20 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="909f7a75-e4d3-4f88-82f2-de1abceb6329" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PlaceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PlaceController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Frontend/PlaceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/PlaceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SubscriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SubscriptionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/commons/newcontroller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/commons/newcontroller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Review.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Review.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Paypal/PaypalAgreement.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Paypal/PaypalAgreement.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Paypal/SubscriptionPlan.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Paypal/SubscriptionPlan.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/home/home_02.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/home/home_02.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/place/place_detail_02.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/place/place_detail_02.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/place/place_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/place/place_product.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/place/product_details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/place/product_details.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/user/business_reviews.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/user/business_reviews.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Place.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Place.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/MyJs.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/MyJs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/layouts/sidebar_menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/layouts/sidebar_menu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/place/form_create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/place/form_create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/place/form_edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/place/form_edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/user/user_business.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/user/user_business.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,21 +28,12 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SubscriptionController.php">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Paypal/SubscriptionPlan.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="672">
-              <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+            <state relative-caret-position="4320">
+              <caret line="182" selection-start-line="182" selection-end-line="182" />
               <folding>
-                <element signature="e#31#58#0#PHP" expanded="true" />
+                <element signature="e#7#50#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,8 +42,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/frontend/home/home_02.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="130" column="38" selection-start-line="130" selection-start-column="38" selection-end-line="130" selection-end-column="38" />
+            <state relative-caret-position="272">
+              <caret line="122" column="81" selection-start-line="122" selection-start-column="68" selection-end-line="122" selection-end-column="81" />
             </state>
           </provider>
         </entry>
@@ -91,13 +77,13 @@
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/config/services.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SubscriptionController.php" />
         <option value="$PROJECT_DIR$/app/Paypal/PaypalAgreement.php" />
         <option value="$PROJECT_DIR$/resources/views/frontend/place/product_details.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/frontend/place/place_detail_02.blade.php" />
         <option value="$PROJECT_DIR$/app/Paypal/SubscriptionPlan.php" />
         <option value="$PROJECT_DIR$/resources/views/frontend/home/home_02.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
       </list>
     </option>
   </component>
@@ -244,7 +230,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -255,55 +240,13 @@
             <path>
               <item name="OG-Kush" type="b2602c69:ProjectViewProjectNode" />
               <item name="OG-Kush" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OG-Kush" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OG-Kush" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OG-Kush" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OG-Kush" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OG-Kush" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OG-Kush" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OG-Kush" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OG-Kush" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
-              <item name="place" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OG-Kush" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OG-Kush" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OG-Kush" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OG-Kush" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OG-Kush" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OG-Kush" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -355,7 +298,8 @@
       <workItem from="1607327034391" duration="10584000" />
       <workItem from="1607444514003" duration="93000" />
       <workItem from="1607444648798" duration="937000" />
-      <workItem from="1607446415458" duration="827000" />
+      <workItem from="1607446415458" duration="3393000" />
+      <workItem from="1607508990182" duration="1195000" />
     </task>
     <task id="LOCAL-00001" summary="Roles views">
       <created>1607096888980</created>
@@ -385,17 +329,24 @@
       <option name="project" value="LOCAL" />
       <updated>1607379576976</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="new paypal">
+      <created>1607453858715</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1607453858715</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28751000" />
+    <option name="totallyTimeSpent" value="32512000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1036" extended-state="6" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.1277506" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.12836185" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.32839224" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
@@ -422,7 +373,8 @@
     <MESSAGE value="Roles views" />
     <MESSAGE value="Paypal subscription intergration" />
     <MESSAGE value="Code merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code merge" />
+    <MESSAGE value="new paypal" />
+    <option name="LAST_COMMIT_MESSAGE" value="new paypal" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/frontend/New/business_signup.blade.php">
@@ -574,16 +526,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="235" column="53" lean-forward="true" selection-start-line="235" selection-start-column="53" selection-end-line="235" selection-end-column="53" />
-          <folding>
-            <element signature="e#7#50#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/date/date.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
@@ -614,14 +556,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SubscriptionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
+        <state relative-caret-position="191">
           <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Paypal/SubscriptionPlan.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
+        <state relative-caret-position="200">
           <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
           <folding>
             <element signature="e#31#58#0#PHP" expanded="true" />
@@ -629,10 +571,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4320">
+          <caret line="182" selection-start-line="182" selection-end-line="182" />
+          <folding>
+            <element signature="e#7#50#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/frontend/home/home_02.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="130" column="38" selection-start-line="130" selection-start-column="38" selection-end-line="130" selection-end-column="38" />
+        <state relative-caret-position="272">
+          <caret line="122" column="81" selection-start-line="122" selection-start-column="68" selection-end-line="122" selection-end-column="81" />
         </state>
       </provider>
     </entry>

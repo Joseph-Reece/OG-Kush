@@ -117,7 +117,7 @@
                                         <div class="city-slider">
                                             <div class="city-slider__grid">
                                                 @foreach($feature['places'] as $place)
-                                                    @include('frontend.common.place_item')
+                                                     {{-- @include('frontend.common.place_item') --}}
                                                 @endforeach
                                             </div><!-- .city-slider__grid -->
                                             <div class="city-slider__nav slick-nav">
@@ -218,7 +218,7 @@
                                     @if(count($places_by_category['places']))
                                         @foreach($places_by_category['places'] as $place)
                                             <div class="col-xl-3 col-lg-4 col-6">
-                                                @include('frontend.common.place_item')
+                                                @include('frontend.common.city_place')
                                             </div>
                                         @endforeach
                                     @else
