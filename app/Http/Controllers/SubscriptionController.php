@@ -49,7 +49,7 @@ class SubscriptionController extends Controller
         if($status == 'true'){
             $agreement = new PaypalAgreement;
             $agreement->execute(request('token'));
-            return 'done';
-        }
+            return redirect()
+->route('home');        }
     }
 }

@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="909f7a75-e4d3-4f88-82f2-de1abceb6329" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/custom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SubscriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SubscriptionController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SubscriptionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+            <state relative-caret-position="303">
+              <caret line="52" column="16" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -52,7 +52,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/assets/js/custom.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="172">
@@ -82,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/services.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="54" column="37" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="37" />
+            <state relative-caret-position="339">
+              <caret line="62" selection-start-line="62" selection-end-line="62" />
             </state>
           </provider>
         </entry>
@@ -135,6 +135,7 @@
       <find>roles.</find>
       <find>StripeController</find>
       <find>setStartDate</find>
+      <find>windo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -162,13 +163,13 @@
         <option value="$PROJECT_DIR$/resources/views/frontend/home/AgeGateModal.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/frontend/layouts/template.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/css/paypal.css" />
-        <option value="$PROJECT_DIR$/config/services.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SubscriptionController.php" />
         <option value="$PROJECT_DIR$/resources/views/frontend/home/home_02.blade.php" />
         <option value="$PROJECT_DIR$/app/Paypal/SubscriptionPlan.php" />
         <option value="$PROJECT_DIR$/public/assets/js/custom.js" />
+        <option value="$PROJECT_DIR$/config/services.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SubscriptionController.php" />
       </list>
     </option>
   </component>
@@ -426,7 +427,7 @@
       <workItem from="1607444648798" duration="937000" />
       <workItem from="1607446415458" duration="3393000" />
       <workItem from="1607508990182" duration="1195000" />
-      <workItem from="1607590005031" duration="11477000" />
+      <workItem from="1607590005031" duration="12416000" />
     </task>
     <task id="LOCAL-00001" summary="Roles views">
       <created>1607096888980</created>
@@ -463,11 +464,32 @@
       <option name="project" value="LOCAL" />
       <updated>1607453858715</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Location change">
+      <created>1607603771001</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1607603771001</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Paypal url">
+      <created>1607603881344</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1607603881344</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Paypal url">
+      <created>1607603899004</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1607603899004</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43989000" />
+    <option name="totallyTimeSpent" value="44928000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1036" extended-state="6" />
@@ -476,7 +498,7 @@
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14608802" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" sideWeight="0.49938875" visible="true" weight="0.3281768" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" sideWeight="0.49938875" visible="true" weight="0.33865452" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50061125" side_tool="true" weight="0.3281768" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.3295325" />
@@ -523,7 +545,9 @@
     <MESSAGE value="Paypal subscription intergration" />
     <MESSAGE value="Code merge" />
     <MESSAGE value="new paypal" />
-    <option name="LAST_COMMIT_MESSAGE" value="new paypal" />
+    <MESSAGE value="Location change" />
+    <MESSAGE value="Paypal url" />
+    <option name="LAST_COMMIT_MESSAGE" value="Paypal url" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/frontend/New/business_signup.blade.php">
@@ -719,13 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/services.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="54" column="37" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Paypal/PaypalAgreement.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="334">
@@ -744,23 +761,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
           <caret line="36" column="89" selection-start-line="36" selection-start-column="89" selection-end-line="36" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="245" column="12" selection-start-line="245" selection-start-column="12" selection-end-line="245" selection-end-column="21" />
-          <folding>
-            <element signature="e#7#50#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SubscriptionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -790,6 +790,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="39" column="76" selection-start-line="39" selection-start-column="76" selection-end-line="39" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/services.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="245" column="12" selection-start-line="245" selection-start-column="12" selection-end-line="245" selection-end-column="21" />
+          <folding>
+            <element signature="e#7#50#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SubscriptionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="52" column="16" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
         </state>
       </provider>
     </entry>
