@@ -13,13 +13,6 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <ul class="nav nav-tabs bar_tabs" role="tablist">
-                                @foreach($languages as $index => $language)
-                                    <li class="nav-item">
-                                        <a class="nav-link {{$index !== 0 ?: "active"}}" id="home-tab" data-toggle="tab" href="#language_{{$language->code}}" role="tab" aria-controls="" aria-selected="">{{$language->name}}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
 
                             <div class="tab-content">
                                 @foreach($languages as $index => $language)

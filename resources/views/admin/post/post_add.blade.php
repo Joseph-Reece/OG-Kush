@@ -56,22 +56,22 @@
                     </div>
                 </div>
 
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Golo SEO</h2>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <div class="form-group">
-                            <label for="seo_title">SEO title:</label>
-                            <input type="text" class="form-control" id="seo_title" name="seo_title" value="{{$post['seo_title']}}">
-                        </div>
-                        <div class="form-group">
-                            <label for="seo_description">Meta Description:</label>
-                            <textarea class="form-control" id="seo_description" name="seo_description">{{$post['seo_description']}}</textarea>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="x_panel">--}}
+{{--                    <div class="x_title">--}}
+{{--                        <h2>Golo SEO</h2>--}}
+{{--                        <div class="clearfix"></div>--}}
+{{--                    </div>--}}
+{{--                    <div class="x_content">--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="seo_title">SEO title:</label>--}}
+{{--                            <input type="text" class="form-control" id="seo_title" name="seo_title" value="{{$post['seo_title']}}">--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="seo_description">Meta Description:</label>--}}
+{{--                            <textarea class="form-control" id="seo_description" name="seo_description">{{$post['seo_description']}}</textarea>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
             </div>
 

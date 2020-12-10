@@ -169,10 +169,10 @@ $router->group([
     $router->put('/payment', 'paymentTypesController@update')->name('payment_update');
     $router->delete('/payment/{id}', 'paymentTypesController@destroy')->name('payment_delete');
 
-    $router->get('/place-type', 'PlaceTypeController@list')->name('place_type_list');
-    $router->post('/place-type', 'PlaceTypeController@create')->name('place_type_create');
-    $router->put('/place-type', 'PlaceTypeController@update')->name('place_type_update');
-    $router->delete('/place-type/{id}', 'PlaceTypeController@destroy')->name('place_type_delete');
+//    $router->get('/place-type', 'PlaceTypeController@list')->name('place_type_list');
+//    $router->post('/place-type', 'PlaceTypeController@create')->name('place_type_create');
+//    $router->put('/place-type', 'PlaceTypeController@update')->name('place_type_update');
+//    $router->delete('/place-type/{id}', 'PlaceTypeController@destroy')->name('place_type_delete');
 
     $router->get('/place', 'PlaceController@list')->name('place_list');
     $router->get('/place/add', 'PlaceController@createView')->name('place_create_view');
@@ -198,8 +198,8 @@ $router->group([
     $router->get('/post-test', 'PostController@createPostTest');
     $router->get('/language/copy-folder', 'LanguageController@testCopyFolder');
 
-    $router->get('/bookings', 'BookingController@list')->name('booking_list');
-    $router->put('/bookings', 'BookingController@updateStatus')->name('booking_update_status');
+//    $router->get('/bookings', 'BookingController@list')->name('booking_list');
+//    $router->put('/bookings', 'BookingController@updateStatus')->name('booking_update_status');
 
     $router->get('/settings', 'SettingController@index')->name('settings');
     $router->post('/settings', 'SettingController@store')->name('setting_create');

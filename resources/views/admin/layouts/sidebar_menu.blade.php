@@ -13,8 +13,8 @@
                     <a><i class="fa fa-map-marker"></i> Place <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{route('admin_place_list')}}"><i class="fa fa-map-marker"></i>All Places</a></li>
-                        <li><a href="{{route('admin_place_type_list')}}"><i class="fa fa-tags"></i> Place Type</a></li>
-                        <li><a href="{{route('admin_category_list', \App\Models\Category::TYPE_PLACE)}}"><i class="fa fa-list"></i> Categories</a></li>
+{{--                        <li><a href="{{route('admin_place_type_list')}}"><i class="fa fa-tags"></i> Place Type</a></li>--}}
+                        <li><a href="{{route('admin_category_list', \App\Models\Category::TYPE_PLACE)}}"><i class="fa fa-list"></i> Business Type</a></li>
                         <li><a href="{{route('admin_amenities_list')}}"><i class="fa fa-wifi"></i> Amenities</a></li>
                         <li><a href="{{route('admin_payment_list')}}"><i class="fa fa-money"></i> Payment Types</a></li>
                         <li><a href="{{route('admin_city_list')}}"><i class="fa fa-building"></i> Cities</a></li>
@@ -38,7 +38,7 @@
                 </li>
                 <li id="menu_pages"><a href="{{route('admin_post_list_page')}}"><i class="fa fa-clone"></i> Pages</a></li>
 
-                <li id="menu_pages"><a href="{{route('admin_booking_list')}}"><i class="fa fa-calendar"></i> Bookings</a></li>
+{{--                <li id="menu_pages"><a href="{{route('admin_booking_list')}}"><i class="fa fa-calendar"></i> Bookings</a></li>--}}
 
                 <li><a href="{{route('admin_review_list')}}"><i class="fa fa-star-half-o"></i> Reviews</a></li>
                 <li><a href="{{route('admin_user_list')}}"><i class="fa fa-users"></i> Users</a></li>
