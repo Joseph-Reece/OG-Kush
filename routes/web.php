@@ -17,7 +17,7 @@ $router->group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth
  */
 $router->group([
     'namespace' => 'Frontend',
-    'middleware' => []], function () use ($router) {
+    'middleware' => ['age-gate']], function () use ($router) {
     // 'middleware' => ['age-gate']], function () use ($router) {
 
     $router->get('/', 'HomeController@index')->name('home');
