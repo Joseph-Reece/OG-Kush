@@ -121,6 +121,11 @@ $router->group([
     $router->put('/Deals', 'DealsController@update')->name('deal.edit');
 
 
+    //discovery pages
+    $router->get('/discover/products', 'newcontroller@ProductDiscoveryPage')->name('discover.product');
+
+
+
 
 });
 

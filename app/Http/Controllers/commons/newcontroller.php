@@ -149,4 +149,12 @@ class newcontroller extends Controller
         return $query->get();
     }
 
+
+    public function ProductDiscoveryPage(){
+
+        $products= Product::all()->groupBy('category_id', true);
+
+        return view('frontend.discover.index', compact('products'));
+    }
+
 }

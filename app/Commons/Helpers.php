@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Category;
+use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Request;
 use Carbon\Carbon;
 
@@ -249,4 +251,11 @@ function SEOMeta($title = '', $description = '', $image = null, $canonical = '',
 function flagImageUrl($language_code)
 {
     return asset("assets/images/flags/{$language_code}.png");
+}
+
+
+//get category name
+function getCategoryName($id){
+    $name = ProductCategory::where('id', $id)->pluck('name')->first();
+    return $name;
 }
