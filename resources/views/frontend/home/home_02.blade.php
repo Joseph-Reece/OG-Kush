@@ -811,10 +811,4 @@
 @push('scripts')
     <script src="{{asset('assets/js/map.js')}}"></script>
 
-    <script>
-        $('#ageGate').on('click', function (e) {
-            e.preventDefault();
-            $('#age_gate').modal('show');
-        })
-    </script>
 @endpush
