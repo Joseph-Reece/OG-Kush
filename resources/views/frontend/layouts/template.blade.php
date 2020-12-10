@@ -31,6 +31,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/custom-rtl.css?v=1.0')}}"/>
     @else
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/paypal.css')}}"/>
         {{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/css/Mycss.css')}}"/> --}}
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}"/>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/custom.css?v=1.0')}}"/>

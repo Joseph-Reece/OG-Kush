@@ -13,7 +13,52 @@ const PRICE_RANGE = {
 };
 
 (function ($) {
-    "use strict";
+    // "use strict";
+    var storedage = localStorage.getItem("age");
+    if (storedage == null || storedage < 18) {
+
+        $('#age_gate').modal({backdrop: 'static', keyboard: false});
+        // $("#e").modal('show');
+        $('#age_gate').modal('show');
+
+        $('#overage').on('click', function () {
+            console.log('overage');
+            submitAge(19);
+        });
+        $('#underage').on('click', function () {
+            console.log('underage');
+            submitAge(16);
+        });
+
+        function submitAge(age) {
+            var year = new Date().getFullYear()
+                - age;
+            var day = 19;
+            var month = 6;
+            if (age > 18) {
+                $('#age_gate').modal('hide');
+                window.location.reload()
+;            }
+            localStorage.setItem("age", age);
+            $.ajax({
+                type: "POST",
+                url: "submit/age",
+                data: {
+                    "day": day,
+                    "month": month,
+                    "year": year,
+                    "_token": CSRF_TOKEN
+                },
+                dataType: "json",
+                success: function (data) {
+
+                }
+            });
+            console.log(year);
+        }
+    } else {
+
+    }
 
     var menu_filter_wrap = $('.golo-menu-filter');
 
@@ -275,7 +320,6 @@ const PRICE_RANGE = {
             });
 
 
-
             // click filter: Types, Amenities
             $('.golo-menu-filter input.input-control').on('input', function () {
                 $('.golo-pagination').find('input[name="paged"]').val(1);
@@ -423,7 +467,6 @@ const PRICE_RANGE = {
             });
 
         }
-
 
 
     };
@@ -669,7 +712,7 @@ function getUrlAPI(slug, type = "api") {
 function callAPI(data) {
     try {
         let method = data.method || "GET";
-        let header = data.header || { 'Accept': 'application/json', 'Content-Type': 'application/json' };
+        let header = data.header || {'Accept': 'application/json', 'Content-Type': 'application/json'};
         let body = JSON.stringify(data.body);
 
         return fetch(data.url, {
@@ -715,7 +758,9 @@ function previewUploadImage(input, element_id) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
 var delayTimer;
+
 function doSearch(text) {
     clearTimeout(delayTimer);
     delayTimer = setTimeout(function () {

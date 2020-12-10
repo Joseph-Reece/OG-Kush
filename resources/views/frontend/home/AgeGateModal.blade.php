@@ -1,4 +1,4 @@
-<div class="modal fade" id="age_gate" tabindex="-1" role="dialog" aria-labelledby="age_gate" aria-hidden="true">
+<div class="modal fade" id="age_gate" tabindex="-1" role="dialog" aria-labelledby="age_gate" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered " role="document">
         <div class="modal-content">
             <div class="modal-body ">
@@ -20,8 +20,8 @@
 
 
                 <div class="d-flex justify-content-around">
-                    <button type="button" class="btn btn-search">No Am not</button>
-                    <button type="button" class="btn btn-search">Yes I am</button>
+                    <button type="button" class="btn btn-search" id="underage">No Am not</button>
+                    <button type="button" class="btn btn-search" id="overage">Yes I am</button>
                 </div>
             </div>
 

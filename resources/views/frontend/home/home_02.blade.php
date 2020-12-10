@@ -7,11 +7,51 @@
     }
 @endphp
 <style>
-/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-       #map {
-  height: 100%;
-}
+    /* Always set the map height explicitly to define the size of the div
+           * element that contains the map. */
+    #map {
+        height: 100%;
+    }
+    .box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .paypal-logo {
+        font-family: Verdana, Tahoma;
+        font-weight: bold;
+        font-size: 26px;
+    }
+    .paypal-logo i:first-child {
+        color: #253b80;
+    }
+    .paypal-logo i:last-child {
+        color: #179bd7;
+    }
+    .paypal-button {
+        padding: 15px 30px;
+        border: 1px solid #ff9933;
+        border-radius: 5px;
+        background-image: linear-gradient(#fff0a8, #f9b421);
+        margin: 0 auto;
+        display: block;
+        min-width: 138px;
+        position: relative;
+    }
+    .paypal-button-title {
+        font-size: 14px;
+        color: #505050;
+        vertical-align: baseline;
+        text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+    }
+    .paypal-button .paypal-logo {
+        display: inline-block;
+        text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+        font-size: 20px;
+    }
 </style>
 @extends('frontend.layouts.template_02')
 @section('main')
@@ -20,11 +60,13 @@
             <div class="container">
                 <div class="site-banner__content">
                     <h1 class="site-banner__title">{{__('Business Listing')}}</h1>
-                    <p><i>{{$city_count}}</i> {{__('cities')}}, <i>{{$category_count}}</i> {{__('categories')}}, <i>{{$place_count}}</i> {{__('places')}}.</p>
+                    <p><i>{{$city_count}}</i> {{__('cities')}}, <i>{{$category_count}}</i> {{__('categories')}},
+                        <i>{{$place_count}}</i> {{__('places')}}.</p>
                     <form action="{{route('page_search_listing')}}" class="site-banner__search layout-02">
                         <div class="field-input">
                             <label for="input_search">Find </label>
-                            <input class="site-banner__search__input open-suggestion" id="input_search" type="text" placeholder="Ex: fastfood, beer" autocomplete="off">
+                            <input class="site-banner__search__input open-suggestion" id="input_search" type="text"
+                                   placeholder="Ex: fastfood, beer" autocomplete="off">
                             <input type="hidden" name="category[]" id="category_id">
                             <div class="search-suggestions category-suggestion">
                                 <ul>
@@ -34,7 +76,8 @@
                         </div><!-- .site-banner__search__input -->
                         <div class="field-input">
                             <label for="location_search">{{__('Where')}}</label>
-                            <input class="site-banner__search__input open-suggestion" id="location_search" type="text" placeholder="Your city" autocomplete="off">
+                            <input class="site-banner__search__input open-suggestion" id="location_search" type="text"
+                                   placeholder="Your city" autocomplete="off">
                             <input type="hidden" id="city_id">
                             <div class="search-suggestions location-suggestion">
                                 <ul>
@@ -55,7 +98,6 @@
         <!-- business-about -->
         <div class="business-about" style="background-image: url({{asset('assets/images/img_about_1.jpg')}});">
             <div class="container">
-                <button class="btn-search btn" id="ageGate">Modal</button>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="business-about-info">
@@ -73,10 +115,14 @@
             <h6 class="text-uppercase text-center mb-2 " style="font-size: 3em">Pricing</h6>
 
             <div class="container-fluid">
-                <nav class="nav nav-pills d-flex justify-content-center flex-column flex-sm-row" id="myTab" role="tablist">
-                        <a class="flex-sm-fill text-sm-center nav-link active " id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Dispensaries</a>
-                        <a class="flex-sm-fill text-sm-center nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Delivery Driver</a>
-                        <a class="flex-sm-fill text-sm-center nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Doctor</a>
+                <nav class="nav nav-pills d-flex justify-content-center flex-column flex-sm-row" id="myTab"
+                     role="tablist">
+                    <a class="flex-sm-fill text-sm-center nav-link active " id="home-tab" data-toggle="tab" href="#home"
+                       role="tab" aria-controls="home" aria-selected="true">Dispensaries</a>
+                    <a class="flex-sm-fill text-sm-center nav-link" id="profile-tab" data-toggle="tab" href="#profile"
+                       role="tab" aria-controls="profile" aria-selected="false">Delivery Driver</a>
+                    <a class="flex-sm-fill text-sm-center nav-link" id="contact-tab" data-toggle="tab" href="#contact"
+                       role="tab" aria-controls="contact" aria-selected="false">Doctor</a>
                 </nav>
 
                 <div class="tab-content" id="myTabContent">
@@ -84,105 +130,236 @@
 
                         {{-- Dispensary Pricing Table --}}
 
-                        <section class="pricing py-5" >
+                        <section class="pricing py-5">
                             <div class="container">
                                 <div class="row">
-                                <!-- Free Tier -->
-                                <div class="col-lg-4">
-                                    <div class="card mb-5 mb-lg-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-muted text-uppercase text-center">Basic</h5>
-                                        <h6 class="card-price text-center">$50<span class="period">/month</span></h6>
-                                        <hr>
-                                        <ul class="fa-ul">
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Map Marker </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone Number </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Store Hours </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up To 5 Products On Display </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Company Name & Address</li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Company Logo</li>
-                                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Featured Listing On Rotation (‘x’ amount on rotation guaranteed per day)</li>
-                                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Offer Up To 20 Products On Display Under Any Categories</li>
-                                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Allow Reviews To Be Displayed For Your Company In The Listing</li>
-                                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Delivery Service Description & ‘About Us’ Information</li>
-                                            <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Offer Discounts & Deals</li>
-                                            <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Import Videos</li>
-                                            <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li>
-                                        </ul>
-                                        <div id="paypal-button-container"></div>
-                                        <script src="https://www.paypal.com/sdk/js?client-id=AVid7Ah59HjQwUApzKnY5ZG-1-W2tflsTzbBK5cXX0WDL9m-QWf8GourkvfxPkG5z8HnqpERFF64RFj3&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
-                                        <script>
-                                            paypal.Buttons({
-                                                style: {
-                                                    shape: 'rect',
-                                                    color: 'gold',
-                                                    layout: 'vertical',
-                                                    label: 'subscribe'
-                                                },
-                                                createSubscription: function(data, actions) {
-                                                    return actions.subscription.create({
-                                                        'plan_id': 'P-4UH91670G57698243L7H2XSY'
-                                                    });
-                                                },
-                                                onApprove: function(data, actions) {
-                                                    alert(data.subscriptionID);
-                                                }
-                                            }).render('#paypal-button-container');
-                                        </script>
+                                    <!-- Free Tier -->
+                                    <div class="col-lg-4">
+                                        <div class="card mb-5 mb-lg-0">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-muted text-uppercase text-center">Basic</h5>
+                                                <h6 class="card-price text-center">$50<span class="period">/month</span>
+                                                </h6>
+                                                <hr>
+                                                <ul class="fa-ul">
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Map
+                                                        Marker
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone
+                                                        Number
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Store
+                                                        Hours
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up
+                                                        To 5 Products On Display
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Name & Address
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Logo
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Featured Listing On
+                                                        Rotation (‘x’ amount on rotation guaranteed per day)
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Offer Up To 20
+                                                        Products On Display Under Any Categories
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Allow Reviews To Be
+                                                        Displayed For Your Company In The Listing
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Delivery Service
+                                                        Description & ‘About Us’ Information
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Offer Discounts &
+                                                        Deals
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Import Videos
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Premium Map Marker
+                                                        (Bigger and Different colored Map Marker)
+                                                    </li>
+                                                </ul>
+                                                <div class="box">
+                                              <span class="paypal-logo">
+                                                <i>Pay</i><i>Pal</i>
+                                              </span>
 
+                                                    <br/>
+{{--Dispensary Basic --}}
+                                                    <form action="{{ route('create-agreement','P-7SU602621D3605728JRSN7DY') }}"
+                                                          method="post">
+                                                        @csrf
+                                                        <button class="paypal-button" type="submit">
+                                                    <span class="paypal-button-title">
+                                                      Subscribe Now
+                                                    </span>
+                                                            <span class="paypal-logo">
+                                                                      <i>Pay</i><i>Pal</i>
+                                                                    </span>
+                                                        </button>
+                                                    </form>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- Plus Tier -->
+                                    <div class="col-lg-4">
+                                        <div class="card mb-5 mb-lg-0">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-muted text-uppercase text-center">Plus</h5>
+                                                <h6 class="card-price text-center">$125<span
+                                                            class="period">/month</span></h6>
+                                                <hr>
+                                                <ul class="fa-ul">
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Map
+                                                        Marker
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone
+                                                        Number
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Store
+                                                        Hours
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up
+                                                        To 5 Products On Display
+                                                    </li>
+                                                    <li class=""><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Name & Address
+                                                    </li>
+                                                    <li class=""><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Logo
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Featured
+                                                        Listing On Rotation (‘x’ amount on rotation guaranteed per day)
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up
+                                                        To 20 Products On Display Under Any Categories
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Allow
+                                                        Reviews To Be Displayed For Your Company In The Listing
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Delivery
+                                                        Service Description & ‘About Us’ Information
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Offer Discounts &
+                                                        Deals
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Import Videos
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Premium Map Marker
+                                                        (Bigger and Different colored Map Marker)
+                                                    </li>
+                                                </ul>
+                                                <div class="box">
+                                              <span class="paypal-logo">
+                                                <i>Pay</i><i>Pal</i>
+                                              </span>
+
+                                                    <br/>
+                                                    <form action="{{ route('create-agreement','P-2EA400117W8051141JR645BY') }}"
+                                                          method="post">
+                                                        @csrf
+                                                        <button class="paypal-button" type="submit">
+                                                    <span class="paypal-button-title">
+                                                      Subscribe Now
+                                                    </span>
+                                                            <span class="paypal-logo">
+                                                                      <i>Pay</i><i>Pal</i>
+                                                                    </span>
+                                                        </button>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- Plus Tier -->
-                                <div class="col-lg-4">
-                                    <div class="card mb-5 mb-lg-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-muted text-uppercase text-center">Plus</h5>
-                                        <h6 class="card-price text-center">$125<span class="period">/month</span></h6>
-                                        <hr>
-                                        <ul class="fa-ul">
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Map Marker </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone Number </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Store Hours </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up To 5 Products On Display </li>
-                                            <li class=""><span class="fa-li"><i class="fas fa-check"></i></span>Company Name & Address</li>
-                                            <li class=""><span class="fa-li"><i class="fas fa-check"></i></span>Company Logo</li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Featured Listing On Rotation (‘x’ amount on rotation guaranteed per day)</li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up To 20 Products On Display Under Any Categories</li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Allow Reviews To Be Displayed For Your Company In The Listing</li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Delivery Service Description & ‘About Us’ Information</li>
-                                            <li class="text-muted" ><span class="fa-li"><i class="fas fa-times"></i></span>Offer Discounts & Deals</li>
-                                            <li class="text-muted" ><span class="fa-li"><i class="fas fa-times"></i></span>Import Videos</li>
-                                            <li class="text-muted" ><span class="fa-li"><i class="fas fa-times"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li>
-                                        </ul>
+                                    <!-- Pro Tier -->
+                                    <div class="col-lg-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
+                                                <h6 class="card-price text-center">$200<span
+                                                            class="period">/month</span></h6>
+                                                <hr>
+                                                <ul class="fa-ul">
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Map
+                                                        Marker
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone
+                                                        Number
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Store
+                                                        Hours
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up
+                                                        To 5 Products On Display
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Name & Address
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Logo
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>High
+                                                        Priority On Featured Listings In Rotation (‘x’ amount guaranteed
+                                                        per day)
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer
+                                                        Unlimited Products On Display Under Any Categories
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Allow
+                                                        Reviews To Be Displayed For Your Company In The Listing
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Delivery
+                                                        Service Description & ‘About Us’ Information
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer
+                                                        Discounts & Deals
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Import
+                                                        Videos
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Premium
+                                                        Map Marker (Bigger and Different colored Map Marker)
+                                                    </li>
+                                                </ul>
+                                                <div class="box">
+                                              <span class="paypal-logo">
+                                                <i>Pay</i><i>Pal</i>
+                                              </span>
+
+                                                    <br/>
+                                                    <form action="{{ route('create-agreement','P-4AY84058UR844854PJSBBARA') }}"
+                                                          method="post">
+                                                        @csrf
+                                                        <button class="paypal-button" type="submit">
+                                                    <span class="paypal-button-title">
+                                                      Subscribe Now
+                                                    </span>
+                                                            <span class="paypal-logo">
+                                                                      <i>Pay</i><i>Pal</i>
+                                                                    </span>
+                                                        </button>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    </div>
-                                </div>
-                                <!-- Pro Tier -->
-                                <div class="col-lg-4">
-                                    <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
-                                        <h6 class="card-price text-center">$200<span class="period">/month</span></h6>
-                                        <hr>
-                                        <ul class="fa-ul">
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Map Marker </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone Number </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Store Hours </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up To 5 Products On Display </li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Company Name & Address</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Company Logo</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>High Priority On Featured Listings In Rotation (‘x’ amount guaranteed per day)</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Offer Unlimited Products On Display Under Any Categories</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Allow Reviews To Be Displayed For Your Company In The Listing</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Delivery Service Description & ‘About Us’ Information</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Offer Discounts & Deals</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Import Videos</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li>
-                                        </ul>
-                                    </div>
-                                    </div>
-                                </div>
                                 </div>
                             </div>
                         </section>
@@ -191,86 +368,176 @@
 
                         {{--  Delivery Driver Pricing Table --}}
 
-                        <section class="pricing py-5" >
+                        <section class="pricing py-5">
                             <div class="container">
                                 <div class="row">
-                                <!-- Free Tier -->
-                                <div class="col-lg-4">
-                                    <div class="card mb-5 mb-lg-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-muted text-uppercase text-center">Basic</h5>
-                                        <h6 class="card-price text-center">$50<span class="period">/month</span></h6>
-                                        <hr>
-                                        <ul class="fa-ul">
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Map Marker </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone Number </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Store Hours </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up To 5 Products On Display </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Company Name & Address</li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Company Logo</li>
-                                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Featured Listing On Rotation (‘x’ amount on rotation guaranteed per day)</li>
-                                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Offer Up To 20 Products On Display Under Any Categories</li>
-                                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Allow Reviews To Be Displayed For Your Company In The Listing</li>
-                                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Delivery Service Description & ‘About Us’ Information</li>
-                                            <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Offer Discounts & Deals</li>
-                                            <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Import Videos</li>
-                                            <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li>
-                                        </ul>
+                                    <!-- Free Tier -->
+                                    <div class="col-lg-4">
+                                        <div class="card mb-5 mb-lg-0">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-muted text-uppercase text-center">Basic</h5>
+                                                <h6 class="card-price text-center">$50<span class="period">/month</span>
+                                                </h6>
+                                                <hr>
+                                                <ul class="fa-ul">
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Map
+                                                        Marker
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone
+                                                        Number
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Store
+                                                        Hours
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up
+                                                        To 5 Products On Display
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Name & Address
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Logo
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Featured Listing On
+                                                        Rotation (‘x’ amount on rotation guaranteed per day)
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Offer Up To 20
+                                                        Products On Display Under Any Categories
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Allow Reviews To Be
+                                                        Displayed For Your Company In The Listing
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Delivery Service
+                                                        Description & ‘About Us’ Information
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Offer Discounts &
+                                                        Deals
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Import Videos
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Premium Map Marker
+                                                        (Bigger and Different colored Map Marker)
+                                                    </li>
+                                                </ul>
 
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- Plus Tier -->
+                                    <div class="col-lg-4">
+                                        <div class="card mb-5 mb-lg-0">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-muted text-uppercase text-center">Plus</h5>
+                                                <h6 class="card-price text-center">$125<span
+                                                            class="period">/month</span></h6>
+                                                <hr>
+                                                <ul class="fa-ul">
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Map
+                                                        Marker
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone
+                                                        Number
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Store
+                                                        Hours
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up
+                                                        To 5 Products On Display
+                                                    </li>
+                                                    <li class=""><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Name & Address
+                                                    </li>
+                                                    <li class=""><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Logo
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Featured
+                                                        Listing On Rotation (‘x’ amount on rotation guaranteed per day)
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up
+                                                        To 20 Products On Display Under Any Categories
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Allow
+                                                        Reviews To Be Displayed For Your Company In The Listing
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Delivery
+                                                        Service Description & ‘About Us’ Information
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Offer Discounts &
+                                                        Deals
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Import Videos
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Premium Map Marker
+                                                        (Bigger and Different colored Map Marker)
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- Plus Tier -->
-                                <div class="col-lg-4">
-                                    <div class="card mb-5 mb-lg-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-muted text-uppercase text-center">Plus</h5>
-                                        <h6 class="card-price text-center">$125<span class="period">/month</span></h6>
-                                        <hr>
-                                        <ul class="fa-ul">
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Map Marker </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone Number </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Store Hours </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up To 5 Products On Display </li>
-                                            <li class=""><span class="fa-li"><i class="fas fa-check"></i></span>Company Name & Address</li>
-                                            <li class=""><span class="fa-li"><i class="fas fa-check"></i></span>Company Logo</li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Featured Listing On Rotation (‘x’ amount on rotation guaranteed per day)</li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up To 20 Products On Display Under Any Categories</li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Allow Reviews To Be Displayed For Your Company In The Listing</li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Delivery Service Description & ‘About Us’ Information</li>
-                                            <li class="text-muted" ><span class="fa-li"><i class="fas fa-times"></i></span>Offer Discounts & Deals</li>
-                                            <li class="text-muted" ><span class="fa-li"><i class="fas fa-times"></i></span>Import Videos</li>
-                                            <li class="text-muted" ><span class="fa-li"><i class="fas fa-times"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li>
-                                        </ul>
+                                    <!-- Pro Tier -->
+                                    <div class="col-lg-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
+                                                <h6 class="card-price text-center">$200<span
+                                                            class="period">/month</span></h6>
+                                                <hr>
+                                                <ul class="fa-ul">
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Map
+                                                        Marker
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone
+                                                        Number
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Store
+                                                        Hours
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up
+                                                        To 5 Products On Display
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Name & Address
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Logo
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>High
+                                                        Priority On Featured Listings In Rotation (‘x’ amount guaranteed
+                                                        per day)
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer
+                                                        Unlimited Products On Display Under Any Categories
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Allow
+                                                        Reviews To Be Displayed For Your Company In The Listing
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Delivery
+                                                        Service Description & ‘About Us’ Information
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer
+                                                        Discounts & Deals
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Import
+                                                        Videos
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Premium
+                                                        Map Marker (Bigger and Different colored Map Marker)
+                                                    </li>
+                                                </ul>
+                                                <a href="#" class="btn btn-block btn-primary text-uppercase">Button</a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    </div>
-                                </div>
-                                <!-- Pro Tier -->
-                                <div class="col-lg-4">
-                                    <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
-                                        <h6 class="card-price text-center">$200<span class="period">/month</span></h6>
-                                        <hr>
-                                        <ul class="fa-ul">
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Map Marker </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone Number </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Store Hours </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up To 5 Products On Display </li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Company Name & Address</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Company Logo</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>High Priority On Featured Listings In Rotation (‘x’ amount guaranteed per day)</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Offer Unlimited Products On Display Under Any Categories</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Allow Reviews To Be Displayed For Your Company In The Listing</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Delivery Service Description & ‘About Us’ Information</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Offer Discounts & Deals</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Import Videos</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li>
-                                        </ul>
-                                        <a href="#" class="btn btn-block btn-primary text-uppercase">Button</a>
-                                    </div>
-                                    </div>
-                                </div>
                                 </div>
                             </div>
                         </section>
@@ -279,36 +546,67 @@
 
                         {{-- Doctor Pricing Table --}}
 
-                        <section class="pricing py-5" >
+                        <section class="pricing py-5">
                             <div class="container">
                                 <div class="row">
-                                <!-- Free Tier -->
-                                <div class="col-lg-4">
-                                    <div class="card mb-5 mb-lg-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-muted text-uppercase text-center">Free</h5>
-                                        <h6 class="card-price text-center">$0<span class="period">/month</span></h6>
-                                        <hr>
-                                        <ul class="fa-ul">
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Map Marker </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone Number </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Store Hours </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up To 5 Products On Display </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Company Name & Address</li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Company Logo</li>
-                                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Featured Listing On Rotation (‘x’ amount on rotation guaranteed per day)</li>
-                                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Offer Up To 20 Products On Display Under Any Categories</li>
-                                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Allow Reviews To Be Displayed For Your Company In The Listing</li>
-                                            <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Doctor Service Description & ‘About Us’ Information</li>
-                                            <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Offer Discounts & Deals</li>
-                                            <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Import Photos & Videos</li>
-                                            {{-- <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li> --}}
-                                        </ul>
+                                    <!-- Free Tier -->
+                                    <div class="col-lg-4">
+                                        <div class="card mb-5 mb-lg-0">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-muted text-uppercase text-center">Free</h5>
+                                                <h6 class="card-price text-center">$0<span class="period">/month</span>
+                                                </h6>
+                                                <hr>
+                                                <ul class="fa-ul">
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Map
+                                                        Marker
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone
+                                                        Number
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Store
+                                                        Hours
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up
+                                                        To 5 Products On Display
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Name & Address
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Logo
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Featured Listing On
+                                                        Rotation (‘x’ amount on rotation guaranteed per day)
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Offer Up To 20
+                                                        Products On Display Under Any Categories
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Allow Reviews To Be
+                                                        Displayed For Your Company In The Listing
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Doctor Service
+                                                        Description & ‘About Us’ Information
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Offer Discounts &
+                                                        Deals
+                                                    </li>
+                                                    <li class="text-muted"><span class="fa-li"><i
+                                                                    class="fas fa-times"></i></span>Import Photos &
+                                                        Videos
+                                                    </li>
+                                                    {{-- <li class="text-muted"  ><span class="fa-li"><i class="fas fa-times"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li> --}}
+                                                </ul>
 
+                                            </div>
+                                        </div>
                                     </div>
-                                    </div>
-                                </div>
-                                <!-- Plus Tier -->
+                                    <!-- Plus Tier -->
                                 {{-- <div class="col-lg-4">
                                     <div class="card mb-5 mb-lg-0">
                                     <div class="card-body">
@@ -335,30 +633,56 @@
                                     </div>
                                 </div> --}}
                                 <!-- Pro Tier -->
-                                <div class="col-lg-4">
-                                    <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
-                                        <h6 class="card-price text-center">$20<span class="period">/month</span></h6>
-                                        <hr>
-                                        <ul class="fa-ul">
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Map Marker </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone Number </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Store Hours </li>
-                                            <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up To 5 Products On Display </li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Company Name & Address</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Company Logo</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>High Priority On Featured Listings In Rotation (‘x’ amount guaranteed per day)</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Offer Unlimited Products On Display Under Any Categories</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Allow Reviews To Be Displayed For Your Company In The Listing</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Doctors Service Description & ‘About Us’ Information</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Offer Discounts & Deals</li>
-                                            <li ><span class="fa-li"><i class="fas fa-check"></i></span>Import Photos & Videos</li>
-                                            {{-- <li ><span class="fa-li"><i class="fas fa-check"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li> --}}
-                                        </ul>
+                                    <div class="col-lg-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
+                                                <h6 class="card-price text-center">$20<span class="period">/month</span>
+                                                </h6>
+                                                <hr>
+                                                <ul class="fa-ul">
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Map
+                                                        Marker
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Phone
+                                                        Number
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Store
+                                                        Hours
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer Up
+                                                        To 5 Products On Display
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Name & Address
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Company
+                                                        Logo
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>High
+                                                        Priority On Featured Listings In Rotation (‘x’ amount guaranteed
+                                                        per day)
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer
+                                                        Unlimited Products On Display Under Any Categories
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Allow
+                                                        Reviews To Be Displayed For Your Company In The Listing
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Doctors
+                                                        Service Description & ‘About Us’ Information
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Offer
+                                                        Discounts & Deals
+                                                    </li>
+                                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Import
+                                                        Photos & Videos
+                                                    </li>
+                                                    {{-- <li ><span class="fa-li"><i class="fas fa-check"></i></span>Premium Map Marker (Bigger and Different colored Map Marker) </li> --}}
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
-                                    </div>
-                                </div>
                                 </div>
                             </div>
                         </section>
@@ -378,27 +702,31 @@
                             <div class="col-md-4">
                                 <article class="post hover__box">
                                     <div class="post__thumb hover__box__thumb">
-                                        <a title="{{$post->title}}" href="{{route('post_detail', [$post->slug, $post->id])}}"><img src="{{getImageUrl($post->thumb)}}" alt="{{$post->title}}"></a>
+                                        <a title="{{$post->title}}"
+                                           href="{{route('post_detail', [$post->slug, $post->id])}}"><img
+                                                    src="{{getImageUrl($post->thumb)}}" alt="{{$post->title}}"></a>
                                     </div>
                                     <div class="post__info">
                                         <ul class="post__category">
                                             @foreach($post['categories'] as $cat)
-                                                <li><a title="{{$cat->name}}" href="{{route('post_list', $cat->slug)}}">{{$cat->name}}</a></li>
+                                                <li><a title="{{$cat->name}}"
+                                                       href="{{route('post_list', $cat->slug)}}">{{$cat->name}}</a></li>
                                             @endforeach
                                         </ul>
-                                        <h3 class="post__title"><a title="{{$post->title}}" href="{{route('post_detail', [$post->slug, $post->id])}}">{{$post->title}}</a></h3>
+                                        <h3 class="post__title"><a title="{{$post->title}}"
+                                                                   href="{{route('post_detail', [$post->slug, $post->id])}}">{{$post->title}}</a>
+                                        </h3>
                                     </div>
                                 </article>
                             </div>
                         @endforeach
 
                     </div>
-                    <div class="align-center button-wrap"><a href="{{route('post_list_all')}}" class="btn btn-border">{{__('View more')}}</a></div>
+                    <div class="align-center button-wrap"><a href="{{route('post_list_all')}}"
+                                                             class="btn btn-border">{{__('View more')}}</a></div>
                 </div>
             </div>
         </div><!-- .blogs -->
-
-
 
 
         <div class="container-fluid py-2">
@@ -417,50 +745,50 @@
                             <dl>
                                 <dt class="py-1">Here Are All The States That Have Fully Legalized Marijuana</dt>
 
-                                    <dd class="py-1">Washington</dd>
-                                    <dd class="py-1">Oregon</dd>
-                                    <dd class="py-1">California</dd>
-                                    <dd class="py-1">Nevada</dd>
-                                    <dd class="py-1">Colorado</dd>
-                                    <dd class="py-1">South Dakota</dd>
-                                    <dd class="py-1">Maine</dd>
-                                    <dd class="py-1">Vermont</dd>
-                                    <dd class="py-1">New Jersey</dd>
-                                    <dd class="py-1">D.C.</dd>
-                                    <dd class="py-1">Illinois</dd>
-                                    <dd class="py-1">Michigan</dd>
-                                    <dd class="py-1">Alaska</dd>
-                                    <dd class="py-1">Massachusetts</dd>
-                                    <dd class="py-1">Arizona</dd>
-                                    <dd class="py-1">South Dakota</dd>
-                                    <dd class="py-1">Montana</dd>
+                                <dd class="py-1">Washington</dd>
+                                <dd class="py-1">Oregon</dd>
+                                <dd class="py-1">California</dd>
+                                <dd class="py-1">Nevada</dd>
+                                <dd class="py-1">Colorado</dd>
+                                <dd class="py-1">South Dakota</dd>
+                                <dd class="py-1">Maine</dd>
+                                <dd class="py-1">Vermont</dd>
+                                <dd class="py-1">New Jersey</dd>
+                                <dd class="py-1">D.C.</dd>
+                                <dd class="py-1">Illinois</dd>
+                                <dd class="py-1">Michigan</dd>
+                                <dd class="py-1">Alaska</dd>
+                                <dd class="py-1">Massachusetts</dd>
+                                <dd class="py-1">Arizona</dd>
+                                <dd class="py-1">South Dakota</dd>
+                                <dd class="py-1">Montana</dd>
 
                             </dl>
                         </div>
                         <div class="col-md-6">
                             <dl>
                                 <dt>Here Are All The States That Have Only Medical or Decriminalized Marijuana</dt>
-                                    <dd class="py-1">Mississippi (Medical & Decriminalized)</dd>
-                                    <dd class="py-1">Arkansas (Medical)</dd>
-                                    <dd class="py-1">Connecticut (Medical & Decriminalized)</dd>
-                                    <dd class="py-1">Delaware (Medical & Decriminalized)</dd>
-                                    <dd class="py-1">Florida (Medical)</dd>
-                                    <dd class="py-1">Hawaii (Medical & Decriminalized)</dd>
-                                    <dd class="py-1">Maryland (Medical & Decriminalized)</dd>
-                                    <dd class="py-1">Minnesota (Medical & Decriminalized)</dd>
-                                    <dd class="py-1">Nebraska (Decriminalized)</dd>
-                                    <dd class="py-1">New Hampshire (Medical & Decriminalized)</dd>
-                                    <dd class="py-1">New Mexico (Medical & Decriminalized)</dd>
-                                    <dd class="py-1">New York (Medical & Decriminalized)</dd>
-                                    <dd class="py-1">North Carolina (Decriminalized)</dd>
-                                    <dd class="py-1">North Dakota (Medical & Decriminalized)</dd>
-                                    <dd class="py-1">Ohio (Medical & Decriminalized)</dd>
-                                    <dd class="py-1">Oklahoma (Medical)</dd>
-                                    <dd class="py-1">Pennsylvania (Medical)</dd>
-                                    <dd class="py-1">Rhode Island (Medical & Decriminalized)</dd>
-                                    <dd class="py-1">Utah (Medical)</dd>
-                                    <dd class="py-1">Virginia (Decriminalized)</dd>
-                                    <dd class="py-1">West Virginia (Medical)</dd>
+                                <dd class="py-1">Mississippi (Medical & Decriminalized)</dd>
+                                <dd class="py-1">Arkansas (Medical)</dd>
+                                <dd class="py-1">Connecticut (Medical & Decriminalized)</dd>
+                                <dd class="py-1">Delaware (Medical & Decriminalized)</dd>
+                                <dd class="py-1">Florida (Medical)</dd>
+                                <dd class="py-1">Hawaii (Medical & Decriminalized)</dd>
+                                <dd class="py-1">Maryland (Medical & Decriminalized)</dd>
+                                <dd class="py-1">Minnesota (Medical & Decriminalized)</dd>
+                                <dd class="py-1">Nebraska (Decriminalized)</dd>
+                                <dd class="py-1">New Hampshire (Medical & Decriminalized)</dd>
+                                <dd class="py-1">New Mexico (Medical & Decriminalized)</dd>
+                                <dd class="py-1">New York (Medical & Decriminalized)</dd>
+                                <dd class="py-1">North Carolina (Decriminalized)</dd>
+                                <dd class="py-1">North Dakota (Medical & Decriminalized)</dd>
+                                <dd class="py-1">Ohio (Medical & Decriminalized)</dd>
+                                <dd class="py-1">Oklahoma (Medical)</dd>
+                                <dd class="py-1">Pennsylvania (Medical)</dd>
+                                <dd class="py-1">Rhode Island (Medical & Decriminalized)</dd>
+                                <dd class="py-1">Utah (Medical)</dd>
+                                <dd class="py-1">Virginia (Decriminalized)</dd>
+                                <dd class="py-1">West Virginia (Medical)</dd>
 
                             </dl>
                         </div>
@@ -481,12 +809,12 @@
     @include('frontend.home.AgeGateModal')
 @stop
 @push('scripts')
-<script src="{{asset('assets/js/map.js')}}"></script>
+    <script src="{{asset('assets/js/map.js')}}"></script>
 
-<script>
-    $('#ageGate').on('click', function(e) {
-        e.preventDefault();
-        $('#age_gate').modal('show');
-    })
-</script>
+    <script>
+        $('#ageGate').on('click', function (e) {
+            e.preventDefault();
+            $('#age_gate').modal('show');
+        })
+    </script>
 @endpush

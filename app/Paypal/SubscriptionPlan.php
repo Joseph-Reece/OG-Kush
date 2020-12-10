@@ -30,7 +30,8 @@ class SubscriptionPlan extends Paypal
         $plan->setMerchantPreferences($merchantPreferences);
 
         $output = $plan->create($this->apiContext);
-        return $output;
+        dd($output);
+//        return $output;
     }
 
     /**
@@ -39,8 +40,8 @@ class SubscriptionPlan extends Paypal
     protected function Plan(): Plan
     {
         $plan = new Plan();
-        $plan->setName('Dispensaries Basic')
-            ->setDescription('Template creation.')
+        $plan->setName('Dispensaries Pro')
+            ->setDescription('Pro Package for dispensary.')
             ->setType('fixed');
         return $plan;
     }
@@ -56,7 +57,7 @@ class SubscriptionPlan extends Paypal
             ->setFrequency('Month')
             ->setFrequencyInterval("2")
             ->setCycles("12")
-            ->setAmount(new Currency(array('value' => 100, 'currency' => 'USD')));
+            ->setAmount(new Currency(array('value' => 50, 'currency' => 'USD')));
         return $paymentDefinition;
     }
 
@@ -82,7 +83,7 @@ class SubscriptionPlan extends Paypal
             ->setAutoBillAmount("yes")
             ->setInitialFailAmountAction("CONTINUE")
             ->setMaxFailAttempts("0")
-            ->setSetupFee(new Currency(array('value' => 1, 'currency' => 'USD')));
+            ->setSetupFee(new Currency(array('value' => 50, 'currency' => 'USD')));
         return $merchantPreferences;
     }
 
@@ -99,6 +100,7 @@ class SubscriptionPlan extends Paypal
     public function planDetails($id)
     {
         $plan = Plan::get($id, $this->apiContext);
+
         return $plan;
     }
 

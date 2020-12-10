@@ -3,9 +3,11 @@
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\StripePaymentController;
+use Kubis\AgeGate\Controllers\MainController;
 
 
 Auth::routes();
+Route::post('submit/age',[MainController::class, 'post']);
 
 $router->group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
@@ -17,8 +19,8 @@ $router->group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth
  */
 $router->group([
     'namespace' => 'Frontend',
-    'middleware' => ['age-gate']], function () use ($router) {
-    // 'middleware' => ['age-gate']], function () use ($router) {
+//    'middleware' => []], function () use ($router) {
+     'middleware' => ['age-gate']], function () use ($router) {
 
     $router->get('/', 'HomeController@index')->name('home');
     $router->get('/language/{locale}', 'HomeController@changeLanguage')->name('change_language');

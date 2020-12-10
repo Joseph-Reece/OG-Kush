@@ -140,7 +140,7 @@
 
         $(document).mouseup(function (e) {
             var languages = $('.right-header__languages'),
-            //   destinations = $('.right-header__destinations'),
+                //   destinations = $('.right-header__destinations'),
                 site__filter = $('.site__filter'),
                 site__sort = $('.site__sort');
 
