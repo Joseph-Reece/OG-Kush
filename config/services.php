@@ -60,6 +60,7 @@ return [
             'executeAgreement' => [
                 'success'=>'http://budandcarriage.techplus.com.pk/execute-agreement/true',
                 'failure'=>'http://budandcarriage.techplus.com.pk/execute-agreement/false'
+
             ]
         ]
     ],
