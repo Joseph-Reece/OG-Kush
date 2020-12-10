@@ -58,8 +58,8 @@ return [
             'redirect' => 'http://localhost:8000/execute-payment',
             'cancel'=>'http://localhost:8000/cancel',
             'executeAgreement' => [
-                'success'=>'http://localhost:8000/execute-agreement/true',
-                'failure'=>'http://localhost:8000/execute-agreement/false'
+                'success'=>'http://budandcarriage.techplus.com.pk/execute-agreement/true',
+                'failure'=>'http://budandcarriage.techplus.com.pk/execute-agreement/false'
             ]
         ]
     ],
