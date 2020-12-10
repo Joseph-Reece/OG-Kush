@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '7a617fa4ea376997b9ef3f88ad3f3f3fdfbfdece',
+    'reference' => '41997d4228064627eeebbe01e6ce1f113b4bfd82',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -534,6 +534,15 @@
         0 => '*',
       ),
     ),
+    'kubis/agegate' => 
+    array (
+      'pretty_version' => 'v1.1.2',
+      'version' => '1.1.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '5f48d98a48df7f5c790e61f604a5d399fe0e8626',
+    ),
     'laravel/framework' => 
     array (
       'pretty_version' => 'v5.8.38',
@@ -550,7 +559,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '7a617fa4ea376997b9ef3f88ad3f3f3fdfbfdece',
+      'reference' => '41997d4228064627eeebbe01e6ce1f113b4bfd82',
     ),
     'laravel/socialite' => 
     array (

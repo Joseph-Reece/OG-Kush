@@ -132,6 +132,10 @@ class ComposerStaticInitee0691cfc524964ee2b6f4b95fcac217
             'Laravel\\Tinker\\' => 15,
             'Laravel\\Socialite\\' => 18,
         ),
+        'K' => 
+        array (
+            'Kubis\\AgeGate\\' => 14,
+        ),
         'J' => 
         array (
             'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
@@ -434,6 +438,10 @@ class ComposerStaticInitee0691cfc524964ee2b6f4b95fcac217
         array (
             0 => __DIR__ . '/..' . '/laravel/socialite/src',
         ),
+        'Kubis\\AgeGate\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kubis/agegate/src',
+        ),
         'JakubOnderka\\PhpConsoleHighlighter\\' => 
         array (
             0 => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src',
@@ -649,6 +657,7 @@ class ComposerStaticInitee0691cfc524964ee2b6f4b95fcac217
         'App\\Http\\Controllers\\Admin\\CountryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CountryController.php',
         'App\\Http\\Controllers\\Admin\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/DashboardController.php',
         'App\\Http\\Controllers\\Admin\\LanguageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/LanguageController.php',
+        'App\\Http\\Controllers\\Admin\\PaymentTypesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PaymentTypesController.php',
         'App\\Http\\Controllers\\Admin\\PlaceController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PlaceController.php',
         'App\\Http\\Controllers\\Admin\\PlaceTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PlaceTypeController.php',
         'App\\Http\\Controllers\\Admin\\PostController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PostController.php',
@@ -707,6 +716,7 @@ class ComposerStaticInitee0691cfc524964ee2b6f4b95fcac217
         'App\\Models\\Deal' => __DIR__ . '/../..' . '/app/Models/Deal.php',
         'App\\Models\\Language' => __DIR__ . '/../..' . '/app/Models/Language.php',
         'App\\Models\\PasswordReset' => __DIR__ . '/../..' . '/app/Models/PasswordReset.php',
+        'App\\Models\\PaymentType' => __DIR__ . '/../..' . '/app/Models/PaymentType.php',
         'App\\Models\\Place' => __DIR__ . '/../..' . '/app/Models/Place.php',
         'App\\Models\\PlaceTranslation' => __DIR__ . '/../..' . '/app/Models/PlaceTranslation.php',
         'App\\Models\\PlaceType' => __DIR__ . '/../..' . '/app/Models/PlaceType.php',
@@ -3844,6 +3854,12 @@ class ComposerStaticInitee0691cfc524964ee2b6f4b95fcac217
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'Kubis\\AgeGate\\AgeGate' => __DIR__ . '/..' . '/kubis/agegate/src/AgeGate.php',
+        'Kubis\\AgeGate\\AgeGateServiceProvider' => __DIR__ . '/..' . '/kubis/agegate/src/AgeGateServiceProvider.php',
+        'Kubis\\AgeGate\\Controllers\\MainController' => __DIR__ . '/..' . '/kubis/agegate/src/Controllers/MainController.php',
+        'Kubis\\AgeGate\\Exceptions\\AgeGateFormTypeNotSet' => __DIR__ . '/..' . '/kubis/agegate/src/Exceptions/AgeGateFormTypeNotSet.php',
+        'Kubis\\AgeGate\\Facades\\AgeGate' => __DIR__ . '/..' . '/kubis/agegate/src/Facades/AgeGate.php',
+        'Kubis\\AgeGate\\Middleware\\AgeGate' => __DIR__ . '/..' . '/kubis/agegate/src/Middleware/AgeGate.php',
         'Laravel\\Socialite\\AbstractUser' => __DIR__ . '/..' . '/laravel/socialite/src/AbstractUser.php',
         'Laravel\\Socialite\\Contracts\\Factory' => __DIR__ . '/..' . '/laravel/socialite/src/Contracts/Factory.php',
         'Laravel\\Socialite\\Contracts\\Provider' => __DIR__ . '/..' . '/laravel/socialite/src/Contracts/Provider.php',

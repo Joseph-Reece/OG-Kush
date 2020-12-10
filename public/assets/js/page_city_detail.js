@@ -122,7 +122,7 @@ var map_refresh = true;
                             "elementType": "labels",
                             "stylers": [
                                 {
-                                    "visibility": "off"
+                                    "visibility": "on"
                                 }
                             ]
                         },
@@ -131,7 +131,7 @@ var map_refresh = true;
                             "elementType": "labels",
                             "stylers": [
                                 {
-                                    "visibility": "off"
+                                    "visibility": "on"
                                 }
                             ]
                         },
@@ -140,7 +140,7 @@ var map_refresh = true;
                             "elementType": "labels",
                             "stylers": [
                                 {
-                                    "visibility": "off"
+                                    "visibility": "on"
                                 }
                             ]
                         },
@@ -149,7 +149,7 @@ var map_refresh = true;
                             "elementType": "labels",
                             "stylers": [
                                 {
-                                    "visibility": "off"
+                                    "visibility": "on"
                                 }
                             ]
                         },
@@ -158,7 +158,7 @@ var map_refresh = true;
                             "elementType": "labels.icon",
                             "stylers": [
                                 {
-                                    "visibility": "off"
+                                    "visibility": "on"
                                 }
                             ]
                         },

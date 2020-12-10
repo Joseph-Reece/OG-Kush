@@ -81,19 +81,10 @@
                                     @endguest
 
                                     <div class="popup__menu popup__box">
-                                        {{-- <ul class="menu-arrow">
-                                            <li>
-                                                <a title="Destinations" href="#">{{__('Destinations')}}</a>
-                                                <ul class="sub-menu">
-                                                    @foreach($destinations as $city)
-                                                        <li><a href="{{route('page_search_listing', ['city[]' => $city->id])}}" title="{{$city->name}}">{{$city->name}}</a></li>
-                                                    @endforeach
-                                                </ul>
-                                            </li>
-                                        </ul> --}}
+
                                         <ul class="menu-arrow">
                                             <li>
-                                                <a href="{{route('search_listing')}}" class=""><i class="fas fa-map"></i> Map Search</a>
+                                                <a href="{{route('page_search_listing')}}" class=""><i class="fas fa-map"></i> Map Search</a>
                                             </li>
                                             <li>
                                                 <a href="{{route('search')}}" class=""><i class="fas fa-list"></i> List Search</a>
@@ -123,11 +114,9 @@
                                                 <a title="Page" href="#">Page</a>
                                                 <ul class="sub-menu">
                                                     <li><a href="{{route('home')}}/post/about-us-10">About</a></li>
-                                                    {{-- <li><a href="{{route('home')}}/page-404">404</a></li> --}}
+
                                                     <li><a href="{{route('home')}}/post/faqs-11">Faqs</a></li>
-                                                    {{-- <li><a href="{{route('page_landing', '03')}}">App Landing</a></li> --}}
-                                                    {{-- <li><a href="{{route('page_landing', '01')}}">Construction</a></li> --}}
-                                                    {{-- <li><a href="{{route('page_landing', '02')}}">Coming Soon</a></li> --}}
+
                                                 </ul>
                                             </li>
                                             <li><a title="Blog" href="{{route('post_list_all')}}">Blog</a></li>
@@ -152,7 +141,7 @@
                                 <a title="Close" href="#" class="search__close">
                                     <i class="la la-times"></i>
                                 </a><!-- .search__close -->
-                                <form action="{{route('page_search_listing')}}" class="site-banner__search layout-02">
+                               {{--  <form action="{{route('page_page_search_listing')}}" class="site-banner__search layout-02">
                                     <div class="field-input">
                                         <label for="input_search">{{__('Find')}}</label>
                                         <input class="site-banner__search__input open-suggestion" id="input_search" type="text" name="keyword" placeholder="Ex: fastfood, beer" autocomplete="off">
@@ -176,7 +165,7 @@
                                     <div class="field-submit">
                                         <button><i class="las la-search la-24-black"></i></button>
                                     </div>
-                                </form><!-- .site-banner__search -->
+                                </form><!-- .site-banner__search --> --}}
                             </div>
                         @endunless
                     </div><!-- .site -->
@@ -185,42 +174,13 @@
 
                 <div class="col-md-6 col-4">
                     <div class="right-header align-right">
-                        {{-- <div class="right-header__languages">
-                            <a href="#">
-                                <img src="{{flagImageUrl(\Illuminate\Support\Facades\App::getLocale())}}">
-                                @if(count($languages) > 1)
-                                    <i class="las la-angle-down la-12-black"></i>
-                                @endif
-                            </a>
-                            @if(count($languages) > 1)
-                                <ul>
-                                    @foreach($languages as $language)
-                                        @if(\Illuminate\Support\Facades\App::getLocale() !== $language->code)
-                                            <li><a href="{{route('change_language', $language->code)}}" title="{{$language->name}}"><img src="{{flagImageUrl($language->code)}}">{{$language->name}}</a></li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </div> --}}
 
                         <div class="right-header__destinations">
-                            <a href="{{route('search_listing')}}" class="">Map Search</a>
+                            <a href="{{route('page_search_listing')}}" class="">Map Search</a>
                         </div>
                         <div class="right-header__destinations">
                             <a href="{{route('search')}}" class="">List Search</a>
                         </div>
-                        {{-- <div class="right-header__destinations">
-                            <a title="Destinations" href="#">
-                                {{__('Destinations')}}
-                                <i class="las la-angle-down la-12-black"></i>
-                            </a>
-                            <ul>
-                                @foreach($destinations as $city)
-                                    <li><a href="{{route('page_search_listing', ['city[]' => $city->id])}}" title="{{$city->name}}">{{$city->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div> --}}
-                        <!-- .right-header__destinations -->
 
                         @guest
                             <div class="right-header__login">
@@ -319,11 +279,6 @@
                                 </div>
                             </div><!-- .account -->
                         @endguest
-                        <div class="right-header__search">
-                            <a title="Search" href="#" class="search-open">
-                                <i class="las la-search la-24-black"></i>
-                            </a>
-                        </div>
                         <div class="right-header__button btn">
                             <a title="Add place" href="{{route('place_addnew')}}">
                                 <i class="las la-plus la-24-white"></i>

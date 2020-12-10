@@ -18,6 +18,7 @@ $router->group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth
 $router->group([
     'namespace' => 'Frontend',
     'middleware' => []], function () use ($router) {
+    // 'middleware' => ['age-gate']], function () use ($router) {
 
     $router->get('/', 'HomeController@index')->name('home');
     $router->get('/language/{locale}', 'HomeController@changeLanguage')->name('change_language');
@@ -63,8 +64,6 @@ $router->group([
     $router->get('/user/store-menu', 'PlaceController@showMenu')->name('business_menu')->middleware('auth');
     $router->delete('/user/my-place', 'UserController@deleteMyPlace')->name('user_my_place_delete')->middleware('auth');
 
-    // Search reviews
-    $router->get('/review-search', 'newcontroller@searchReview')->name('search.review');
 
     $router->get('/user/following', 'UserController@pageWishList')->name('user_wishlist')->middleware('auth');
 
@@ -94,7 +93,7 @@ $router->group([
 });
 $router->group([
     'namespace' => 'commons',
-    'middleware' => []], function () use ($router) {
+    'middleware' => ['age-gate']], function () use ($router) {
 
         // My Routes
             $router->get('/busiP', 'newcontroller@Business_package')->name('business_package');
@@ -107,6 +106,8 @@ $router->group([
     $router->delete('/products/{id}', 'ProductsController@destroy')->name('product.destroy');
     $router->post('/products/edit', 'ProductsController@update')->name('product.edit');
     $router->get('/products/{slug}', 'ProductsController@show')->name('product.show');
+    // Search reviews
+    $router->get('/review-search', 'newcontroller@searchReview')->name('search.review');
 
 
     //search products

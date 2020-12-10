@@ -55,6 +55,7 @@
         <!-- business-about -->
         <div class="business-about" style="background-image: url({{asset('assets/images/img_about_1.jpg')}});">
             <div class="container">
+                <button class="btn-search btn" id="ageGate">Modal</button>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="business-about-info">
@@ -367,40 +368,6 @@
 
         </div>
 
-        {{-- <div class="testimonial">
-            <div class="container">
-                <h2 class="title title-border-bottom align-center">{{__('People Talking About Us')}}</h2>
-                <div class="slick-sliders">
-                    <div class="slick-slider testimonial-slider slider-pd30" data-item="2" data-arrows="true" data-itemScroll="2" data-dots="true" data-centerPadding="30" data-tabletitem="1" data-tabletscroll="1" data-mobileitem="1" data-mobilescroll="1" data-mobilearrows="false">
-                        @foreach($testimonials as $item)
-                            <div class="testimonial-item layout-02">
-                                <div class="avatar">
-                                    <img class="ava" src="{{getImageUrl($item->avatar)}}" alt="Avatar">
-                                    <img src="{{asset('assets/images/quote-active.png')}}" alt="Quote" class="quote">
-                                </div>
-                                <div class="testimonial-info">
-                                    <p>{{$item->content}}</p>
-                                    <div class="testimonial-meta">
-                                        <b>{{$item->name}}</b>
-                                        <span>{{$item->job_title}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="place-slider__nav slick-nav">
-                        <div class="place-slider__prev slick-nav__prev">
-                            <i class="las la-angle-left"></i>
-                        </div><!-- .place-slider__prev -->
-                        <div class="place-slider__next slick-nav__next">
-                            <i class="las la-angle-right"></i>
-                        </div><!-- .place-slider__next -->
-                    </div><!-- .place-slider__nav -->
-                </div>
-            </div>
-        </div> --}}
-        <!-- .testimonial -->
-
         <div class="blogs">
             <div class="container">
                 <h2 class="title title-border-bottom align-center">{{__('From Our Blog')}}</h2>
@@ -511,9 +478,15 @@
             </div>
         </div>
     </main><!-- .site-main -->
+    @include('frontend.home.AgeGateModal')
 @stop
 @push('scripts')
 <script src="{{asset('assets/js/map.js')}}"></script>
 
-
+<script>
+    $('#ageGate').on('click', function(e) {
+        e.preventDefault();
+        $('#age_gate').modal('show');
+    })
+</script>
 @endpush

@@ -2238,6 +2238,75 @@
             "install-path": "../jakub-onderka/php-console-highlighter"
         },
         {
+            "name": "kubis/agegate",
+            "version": "v1.1.2",
+            "version_normalized": "1.1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kubis-interactive/agegate.git",
+                "reference": "5f48d98a48df7f5c790e61f604a5d399fe0e8626"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kubis-interactive/agegate/zipball/5f48d98a48df7f5c790e61f604a5d399fe0e8626",
+                "reference": "5f48d98a48df7f5c790e61f604a5d399fe0e8626",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "~7.0",
+                "sempro/phpunit-pretty-print": "^1.0"
+            },
+            "time": "2019-06-24T13:26:14+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kubis\\AgeGate\\AgeGateServiceProvider"
+                    ],
+                    "aliases": {
+                        "AgeGate": "Kubis\\AgeGate\\Facades\\AgeGate"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Kubis\\AgeGate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Placinta",
+                    "email": "daniel.placinta@kubisinteractive.com",
+                    "homepage": "https://kubisinteractive.com"
+                }
+            ],
+            "description": "Laravel Package for websites that requires age validation",
+            "homepage": "https://github.com/kubis/agegate",
+            "keywords": [
+                "age gate",
+                "age validation",
+                "age-gate",
+                "agegate",
+                "kubis",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/kubis-interactive/agegate/issues",
+                "source": "https://github.com/kubis-interactive/agegate/tree/master"
+            },
+            "install-path": "../kubis/agegate"
+        },
+        {
             "name": "laravel/framework",
             "version": "v5.8.38",
             "version_normalized": "5.8.38.0",

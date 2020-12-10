@@ -332,6 +332,8 @@ class HomeController extends Controller
         $cities = City::query()
             ->get();
 
+        $payment_types = PaymentType::all();
+
 
         if (!$searchResults->isEmpty()) {
 
@@ -354,6 +356,7 @@ class HomeController extends Controller
                     'categories' => $categories,
                     'place_types' => $place_types,
                     'amenities' => $amenities,
+                    'payment_types' => $payment_types,
                     'cities' => $cities,
                     'sort_by' => $sort_by,
                     'warning' => $warning,
@@ -469,14 +472,17 @@ public function ourfetchListingsBySearch($keyword = '', $filter_category, $filte
 
         $query->where('status', Place::STATUS_ACTIVE);
 
+        //$place = Place::all()->first();
+
+        //dd($query->avgReview);
+
         if ($keyword != '') {
             $query->where('name', 'like',  "%{$keyword}%")
                 ->orWhere('slug', 'like',  "%{$keyword}%");
         }
         if ($filter_category != '') {
                     $query->where('category', 'like', "%$filter_category%");
-
-            }
+        }
 
         if ($filter_amenities) {
             foreach ($filter_amenities as $item) {
@@ -498,7 +504,7 @@ public function ourfetchListingsBySearch($keyword = '', $filter_category, $filte
         } elseif ($sort_by == 'price_desc') {
             $query->orderBy('price_range', 'desc');
         } elseif ($sort_by == 'rating') {
-            $query->orderBy('updated_at');
+            $query->orderBy('vehicles.updated_at');
         }
 
 

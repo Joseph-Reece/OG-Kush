@@ -123,7 +123,7 @@ class newcontroller extends Controller
         $keyword = $request->keyword;
         $place = $request->place;
         $searchResults = $this->fetchReviewsBySearch($keyword, $place);
-        $reviews = $searchResults->get();
+        $reviews = $searchResults;
         $warning = '';
 
             return View('frontend.user.review', compact('reviews','warning'));
@@ -138,28 +138,15 @@ class newcontroller extends Controller
         ->with('user')
         ->where('place_id', $place)
         ->where('status', Review::STATUS_ACTIVE)
-        ->get();
+        ;
 
 
         if ($keyword != '') {
             $query->where('comment', 'like',  "%{$keyword}%");
         }
 
-        // if ($category != '') {
-        //     $query->where('category_id', $category);
-        // }
 
-        // if ($sort == 'desc') {
-        //     $query->orderBy('id', 'DESC');
-        // }elseif($sort == 'price_asc'){
-        //     $query->orderBy('price', 'ASC');
-        // }elseif($sort == 'price_desc'){
-        //     $query->orderBy('price', 'DESC');
-        // }else{
-        //     $query->orderBy('updated_at');
-        // }
-
-        return $query;
+        return $query->get();
     }
 
 }

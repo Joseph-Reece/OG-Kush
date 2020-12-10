@@ -21,7 +21,7 @@
                                 <span class="site__search__icon">
                                     <i class="la la-search"></i>
                                 </span><!-- .site__search__icon -->
-                                <input onkeyup="submitForm()" class="site__search__input" type="text" id="keyword" name="keyword" value="{{$filter}}" placeholder="{{__('Search')}}">
+                                <input onkeyup="doSearch()" class="site__search__input" type="text" id="keyword" name="keyword" value="{{$filter}}" placeholder="{{__('Search')}}">
                                 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="place"  id="place" value="{{ $place->id }}">
                             </div><!-- .search__input -->
@@ -66,13 +66,22 @@
 @stop
 @push('scripts')
 <script>
-
+var delayTimer;
+function doSearch(text) {
+    clearTimeout(delayTimer);
+    delayTimer = setTimeout(function () {
+        submitForm()
+    }, 1000); // Will do the ajax stuff after 1000 ms, or 1 s
+}
 
  //.............................Submiting the form.............................//
  function submitForm() {
+
      console.log($('#keyword').val());
+
      $('.main-search').fadeOut(500);
      $(".searchoverlay").fadeIn();
+
      $.ajax({
          url:"{{route('search.review')}}",
          method:"GET",
@@ -81,7 +90,9 @@
              "place":$('#place').val(),
              "_token": $('#token').val(),
                  },
-
+        beforesend:function(){
+            console.log('before send');
+        },
          success:function(data)
          {
              console.log('successful search');

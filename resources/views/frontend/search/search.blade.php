@@ -57,9 +57,9 @@
 
         <div class="site-content">
             <div class="container">
-                <div class="search-wrap">
-
-                    <div class="">
+                <div class="member-wrap">
+                    <div class="search-wrap">
+                         <div class="">
 
                         <div class="row my-2">
                             <div class="col-md-3">
@@ -155,18 +155,19 @@
 
                             <input type="hidden" name="category_id" id="category_id" value="">
                         </div>
+                        </div>
                     </div>
 
-                    <!-- .search__form -->
+                <!-- .search__form -->
 
-                    <div class="mw-box my-2">
-                        <div class="mw-grid golo-grid grid-4 ">
-                                    @include('frontend.common.place_item')
-                        </div>
-                        <div class="loads" style="display: none">
-                            <div class="col-md-12 text-center">Loading...</div>
-                        </div>
-                    </div><!-- .mw-box -->
+                <div class="mw-box my-2">
+                    <div class="mw-grid golo-grid grid-4 ">
+                                @include('frontend.common.place_item')
+                    </div>
+                    <div class="loads" style="display: none">
+                        <div class="col-md-12 text-center">Loading...</div>
+                    </div>
+                </div><!-- .mw-box -->
 
 
                 </div><!-- .member-wrap -->

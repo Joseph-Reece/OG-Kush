@@ -312,6 +312,7 @@ class PlaceController extends Controller
             ->get();
 
         $amenities = $this->amenities->getListAll();
+        $payment= PaymentType::all();
 
         $app_name = setting('app_name', 'Golo.');
         SEOMeta("Add new place - {$app_name}");
@@ -319,6 +320,7 @@ class PlaceController extends Controller
             'place' => $place,
             'countries' => $countries,
             'cities' => $cities,
+            'payment' => $payment,
             'categories' => $categories,
             'place_types' => $place_types,
             'amenities' => $amenities,
@@ -350,6 +352,7 @@ class PlaceController extends Controller
             '%description%' => '',
             'price_range' => '',
             'amenities' => '',
+            'payment_type' => '',
             'address' => '',
             'lat' => '',
             'lng' => '',

@@ -2,19 +2,134 @@ var GL_BC = GL_BC || {};
 
 (function ($) {
     "use strict";
-
+    var menu_filter_wrap = $('.archive-filter');
     GL_BC = {
         init: function () {
-            GL_BC.clickFilter();
+            GL_BC.filterPlace();
             GL_BC.categoryMap();
             console.log("category.....");
         },
 
-        clickFilter: function () {
-            $(document).on('click', '.bc_filter', function (e) {
-                $('#filterForm').submit();
+        // Show/Hide button Clear All
+        filterDisplayClear: function () {
+            if ($('ul.filter-control li.active').length > 0) {
+
+                console.log('right place');
+                $('.filter-head').add('class', 'active');
+                $('.clear-filter').show();
+            } else {
+                $('.golo-nav-filter').removeClass('active');
+                $('.golo-clear-filter').hide();
+            }
+
+            $('.filter-group input[type="checkbox"]:checked').each(function () {
+                if ($(this).length > 0) {
+                    $('.golo-nav-filter').add('class', 'active');
+                    $('.golo-clear-filter').show();
+                } else {
+                    $('.golo-nav-filter').removeClass('active');
+                    $('.golo-clear-filter').hide();
+                }
             });
         },
+
+        filterPlace: function () {
+            // click filter: Sort By, Price Filter
+            $('.filter-group ul.filter-control a').on('click', function (e) {
+                e.preventDefault();
+                if ($(this).parent().hasClass('active')) {
+                    console.log('was active');
+                    $(this).parents('.filter-group  ul.filter-control').find('li').removeClass('active');
+                } else {
+
+                    $(this).parents('.filter-group ul.filter-control').find('li').removeClass('active');
+                    $(this).parent().add('class', 'active');
+                }
+
+                 // click filter: Types, Amenities
+                $('.filter-group input[class="bc_filter"]').on('input', function () {
+                    var ajax_call = true;
+                    console.log('its here');
+                });
+                var ajax_call = true;
+                //GL_FILTER.ajaxFilter();
+            });
+        },
+
+
+        // clickFilter: function () {
+        //     $(document).on('click', '.bc_filter', function (e) {
+
+
+
+        //        GL_BC.ajaxFilter();
+        //        //console.log('now you doing smthng');
+        //     });
+        // },
+
+        ajaxFilter: function(){
+            let keyword = $('input[name="keyword"]').val(),
+                action = $('input[name="action"]').val(),
+                sort_by = menu_filter_wrap.find('.sort-by.filter-control li.active a').data('sort'),
+                // price = menu_filter_wrap.find('.price.filter-control li.active a').data('price'),
+                category = [],
+                amenities = [],
+                place_type = [],
+                city =[];
+                //handle the ones with arrays
+                menu_filter_wrap.find("input[name='categories']:checked").each(function () {
+                    category.push(parseInt($(this).val()));
+                });
+                menu_filter_wrap.find("input[name='amenities']:checked").each(function () {
+                    amenities.push(parseInt($(this).val()));
+                });
+                menu_filter_wrap.find("input[name='types']:checked").each(function () {
+                    place_type.push(parseInt($(this).val()));
+                });
+                menu_filter_wrap.find("input[name='cities']:checked").each(function () {
+                    city.push(parseInt($(this).val()));
+                });
+
+                console.log('keyword: '+keyword);
+                console.log('category: '+category);
+                console.log('amenities: '+amenities);
+                console.log('place_type: '+place_type);
+                console.log('city: '+city);
+                //call api
+                $.ajax({
+                    url: `${app_url}/search-listing`,
+                    method:"GET",
+                    data:{
+                        'keyword': keyword,
+                        'action': action,
+                        'sort_by': sort_by,
+                        // 'price': price,
+                        'category': category,
+                        'amenities': amenities,
+                        'place_type': place_type,
+                        'city': city,
+				        "_token": $('#token').val(),
+
+                    },
+                    beforeSend: function() {
+				        $('.main-search').fadeOut(500);
+                        $(".searchoverlay").fadeIn(500);
+                    },
+                    success: function(data) {
+                        // console.log(data);
+                        $('.main-search').hide();
+                        $('.results').empty();
+                        $('.results').append(data);
+                        $(".searchoverlay").fadeOut();
+
+                        GL_BC.filterDisplayClear();
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+        },
+
 
         categoryMap: function () {
             var golo_create_markers = function (data, map) {

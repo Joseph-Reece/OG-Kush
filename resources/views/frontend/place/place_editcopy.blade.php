@@ -1,6 +1,7 @@
 @extends('frontend.layouts.template')
 @section('main')
     <main id="main" class="site-main listing-main">
+
         <div class="listing-nav">
             <div class="listing-menu nav-scroll">
                 <ul>
@@ -14,6 +15,12 @@
                         <a href="#amenities" title="Amenities">
                             <span class="icon"><i class="la la-wifi"></i></span>
                             <span>{{__('Amenities')}}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#payment" title="Payment Types">
+                            <span class="icon"><i class="la la-money"></i></span>
+                            <span>{{__('Payment Types')}}</span>
                         </a>
                     </li>
                     <li>
@@ -126,6 +133,20 @@
                         @endforeach
                     </div>
                 </div><!-- .listing-box -->
+
+                <div class="listing-box" id="payment">
+                    <h3>{{__('Payment Types')}}</h3>
+                    <div class="field-group field-check">
+                        @foreach($payment as $item)
+                            <label for="payment_{{$item['id']}}">
+                                <input type="checkbox" name="payment[]" id="payment_{{$item['id']}}" value="{{$item['id']}}" {{isChecked($item['id'], $place['payment'])}}>{{$item['name']}}
+                                <span class="checkmark">
+                                    <i class="la la-check"></i>
+                                </span>
+                            </label>
+                        @endforeach
+                    </div>
+                </div><!-- .listing-box -->
                 <div class="listing-box" id="location">
                     <h3>{{__('Location')}}</h3>
                     <label for="place_address">{{__('Place Address')}} *</label>
@@ -184,9 +205,9 @@
                 <div class="listing-box" id="license">
                     <h3>License</h3>
                     <div class="field-inline">
-                        @if ($license)
-
-                        @foreach ($license as $key =>$item)
+                        {{-- @if ($license) --}}
+{{--
+                        @foreach ($license as $key =>$item) --}}
 
 
                         <div class="field-group field-input">
@@ -203,8 +224,8 @@
                         <label for="license_expiration">{{__('Expiration')}} <span class="text-danger"> *</span></label>
                         <input type="date" disabled id="license_expiration" value="{{$item['expiration']}}" class="col-md-4" placeholder="" name="expiration">
                     </div>
-                    @endforeach
-                    @endif
+                    {{-- @endforeach --}}
+                    {{-- @endif --}}
 
                 </div>
                 {{--License listing box end--}}

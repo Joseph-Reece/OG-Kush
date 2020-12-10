@@ -79,8 +79,8 @@
                                             <div class="account-sub">
                                                 <ul>
                                                     <li class="{{isActiveMenu('user_profile')}}"><a href="{{route('user_profile')}}">{{__('Profile')}}</a></li>
-                                                    <li class="{{isActiveMenu('user_my_place')}}"><a href="{{route('user_my_place')}}">{{__('My Places')}}</a></li>
-                                                    <li class="{{isActiveMenu('user_wishlist')}}"><a href="{{route('user_wishlist')}}">{{__('Wishlist')}}</a></li>
+                                                    {{-- <li class="{{isActiveMenu('user_my_place')}}"><a href="{{route('user_my_place')}}">{{__('My Places')}}</a></li>
+                                                    <li class="{{isActiveMenu('user_wishlist')}}"><a href="{{route('user_wishlist')}}">{{__('Wishlist')}}</a></li> --}}
                                                     <li>
                                                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('Logout')}}</a>
                                                         <form class="d-none" id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -94,16 +94,9 @@
 
                                     <div class="popup__menu popup__box">
                                         <ul class="menu-arrow">
-                                            {{-- <li>
-                                                <a title="Destinations" href="#">{{__('Destinations')}}</a>
-                                                <ul class="sub-menu">
-                                                    @foreach($destinations as $city)
-                                                        <li><a href="{{route('city_detail', $city->slug)}}" title="{{$city->name}}">{{$city->name}}</a></li>
-                                                    @endforeach
-                                                </ul>
-                                            </li> --}}
+
                                             <li>
-                                                <a href="{{route('search_listing')}}" class=""><i class="fas fa-map"></i> Map Search</a>
+                                                <a href="{{route('page_search_listing')}}" class=""><i class="fas fa-map"></i> Map Search</a>
                                             </li>
                                             <li>
                                                 <a href="{{route('search')}}" class=""><i class="fas fa-list"></i> List Search</a>
@@ -133,9 +126,6 @@
                                                 <ul class="sub-menu">
                                                     <li><a href="{{route('home')}}/post/about-us-10">About</a></li>
                                                     <li><a href="{{route('home')}}/post/faqs-11">Faqs</a></li>
-                                                    {{-- <li><a href="{{route('page_landing', '03')}}">App Landing</a></li>
-                                                    <li><a href="{{route('page_landing', '01')}}">Construction</a></li>
-                                                    <li><a href="{{route('page_landing', '02')}}">Coming Soon</a></li> --}}
                                                 </ul>
                                             </li>
                                             <li><a title="Blog" href="{{route('post_list_all')}}">Blog</a></li>
@@ -155,7 +145,7 @@
                             <a title="Logo" href="{{route('home')}}" class="site__brand__logo"><img src="{{asset(setting('logo') ? 'uploads/' . setting('logo') : 'assets/images/assets/logo.png')}}" alt="logo"></a>
                         </div><!-- .site__brand -->
 
-                        @unless(isRoute('home'))
+                       {{--  @unless(isRoute('home'))
                             @if(setting('template', '01') == '01')
                                 <div class="site__search golo-ajax-search">
                                     <a title="Close" href="#" class="search__close">
@@ -179,7 +169,7 @@
                                     <a title="Close" href="#" class="search__close">
                                         <i class="la la-times"></i>
                                     </a><!-- .search__close -->
-                                    <form action="{{route('page_search_listing')}}" class="site-banner__search layout-02">
+                                    <form action="{{route('page_page_search_listing')}}" class="site-banner__search layout-02">
                                         <div class="field-input">
                                             <label for="input_search">{{__('Find')}}</label>
                                             <input class="site-banner__search__input open-suggestion" id="input_search" type="text" name="keyword" placeholder="Ex: fastfood, beer" autocomplete="off">
@@ -206,7 +196,7 @@
                                     </form><!-- .site-banner__search -->
                                 </div>
                             @endif
-                        @endunless
+                        @endunless --}}
 
                     </div><!-- .site -->
                 </div><!-- .col-md-6 -->
@@ -214,42 +204,16 @@
 
                 <div class="col-md-6 col-4">
                     <div class="right-header align-right">
-                        {{-- <div class="right-header__languages">
-                            <a href="#">
-                                <img src="{{flagImageUrl(\Illuminate\Support\Facades\App::getLocale())}}">
-                                @if(count($languages) > 1)
-                                    <i class="las la-angle-down la-12-black"></i>
-                                @endif
-                            </a>
-                            @if(count($languages) > 1)
-                                <ul>
-                                    @foreach($languages as $language)
-                                        @if(\Illuminate\Support\Facades\App::getLocale() !== $language->code)
-                                            <li><a href="{{route('change_language', $language->code)}}" title="{{$language->name}}"><img src="{{flagImageUrl($language->code)}}">{{$language->name}}</a></li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </div> --}}
+
                         <div class="right-header__destinations">
-                            <a href="{{route('search_listing')}}" class="">Map Searchtemplate</a>
+                            <a href="{{route('page_search_listing')}}" class="">Map Search</a>
                         </div>
                         <div class="right-header__destinations">
                             <a href="{{route('search')}}" class="">List Search</a>
                         </div>
 
 
-                        {{-- <div class="right-header__destinations">
-                            <a title="Destinations" href="#">
-                                {{__('Destinations')}}
-                                <i class="la la-angle-down la-12"></i>
-                            </a>
-                            <ul>
-                                @foreach($destinations as $city)
-                                    <li><a href="{{route('city_detail', $city->slug)}}" title="{{$city->name}}">{{$city->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </div><!-- .right-header__destinations --> --}}
+
                         @guest
                             <div class="right-header__login">
                                 <a title="Login" class="open-login" href="#">{{__('Login')}}</a>
@@ -346,9 +310,9 @@
                                         @if(user()->isAdmin())
                                             <li class="{{isActiveMenu('admin_dashboard')}}"><a href="{{route('admin_dashboard')}}" target="_blank" rel="nofollow">{{__('Dashboard')}}</a></li>
                                         @endif
-                                        <li class="{{isActiveMenu('user_profile')}}"><a href="{{route('user_profile')}}">{{__('Profile')}}</a></li>
-                                        <li class="{{isActiveMenu('user_my_place')}}"><a href="{{route('user_my_place')}}">{{__('My Places')}}</a></li>
-                                        <li class="{{isActiveMenu('user_wishlist')}}"><a href="{{route('user_wishlist')}}">{{__('Wishlist')}}</a></li>
+                                        <li class="{{isActiveMenu('user_profile')}}"><a href="{{route('user_profile')}}">{{__('Account Settings')}}</a></li>
+                                        {{-- <li class="{{isActiveMenu('user_my_place')}}"><a href="{{route('user_my_place')}}">{{__('My Places')}}</a></li> --}}
+                                        {{-- <li class="{{isActiveMenu('user_wishlist')}}"><a href="{{route('user_wishlist')}}">{{__('Wishlist')}}</a></li> --}}
                                         <li>
                                             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('Logout')}}</a>
                                             <form class="d-none" id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -359,11 +323,6 @@
                                 </div>
                             </div><!-- .account -->
                         @endguest
-                        <div class="right-header__search">
-                            <a title="Search" href="#" class="search-open">
-                                <i class="la la-search la-24"></i>
-                            </a>
-                        </div>
                         <div class="right-header__button btn">
                             <a title="Add place" href="{{route('place_addnew')}}">
                                 <i class="la la-plus la-24"></i>
