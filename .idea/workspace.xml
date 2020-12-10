@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="909f7a75-e4d3-4f88-82f2-de1abceb6329" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/css/paypal.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Paypal/SubscriptionPlan.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Paypal/SubscriptionPlan.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/home/AgeGateModal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/home/AgeGateModal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/home/home_02.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/home/home_02.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/layouts/template.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/template.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,14 +40,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Paypal/SubscriptionPlan.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="85" column="58" selection-start-line="85" selection-start-column="58" selection-end-line="85" selection-end-column="58" />
+            <state relative-caret-position="172">
+              <caret line="94" column="45" lean-forward="true" selection-start-line="94" selection-start-column="45" selection-end-line="94" selection-end-column="45" />
               <folding>
                 <element signature="e#31#58#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/assets/js/custom.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="39" column="76" selection-start-line="39" selection-start-column="76" selection-end-line="39" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -91,15 +93,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="282">
               <caret line="36" column="89" selection-start-line="36" selection-start-column="89" selection-end-line="36" selection-end-column="89" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/frontend/layouts/template.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="33" column="75" selection-start-line="33" selection-start-column="75" selection-end-line="33" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -167,7 +160,6 @@
         <option value="$PROJECT_DIR$/resources/views/frontend/place/place_detail_02.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/js/main.js" />
         <option value="$PROJECT_DIR$/resources/views/frontend/home/AgeGateModal.blade.php" />
-        <option value="$PROJECT_DIR$/public/assets/js/custom.js" />
         <option value="$PROJECT_DIR$/resources/views/frontend/layouts/template.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/css/paypal.css" />
         <option value="$PROJECT_DIR$/config/services.php" />
@@ -176,6 +168,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/SubscriptionController.php" />
         <option value="$PROJECT_DIR$/resources/views/frontend/home/home_02.blade.php" />
         <option value="$PROJECT_DIR$/app/Paypal/SubscriptionPlan.php" />
+        <option value="$PROJECT_DIR$/public/assets/js/custom.js" />
       </list>
     </option>
   </component>
@@ -309,8 +302,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="832" />
-    <option name="y" value="-8" />
+    <option name="x" value="401" />
+    <option name="y" value="126" />
     <option name="width" value="856" />
     <option name="height" value="1036" />
   </component>
@@ -433,7 +426,7 @@
       <workItem from="1607444648798" duration="937000" />
       <workItem from="1607446415458" duration="3393000" />
       <workItem from="1607508990182" duration="1195000" />
-      <workItem from="1607590005031" duration="11140000" />
+      <workItem from="1607590005031" duration="11477000" />
     </task>
     <task id="LOCAL-00001" summary="Roles views">
       <created>1607096888980</created>
@@ -474,16 +467,16 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43652000" />
+    <option name="totallyTimeSpent" value="43989000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1036" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.14608802" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14608802" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" sideWeight="0.49938875" weight="0.3281768" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" sideWeight="0.49938875" visible="true" weight="0.3281768" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50061125" side_tool="true" weight="0.3281768" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.3295325" />
@@ -712,13 +705,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/js/custom.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/frontend/layouts/template.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="648">
@@ -792,11 +778,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Paypal/SubscriptionPlan.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="85" column="58" selection-start-line="85" selection-start-column="58" selection-end-line="85" selection-end-column="58" />
+        <state relative-caret-position="172">
+          <caret line="94" column="45" lean-forward="true" selection-start-line="94" selection-start-column="45" selection-end-line="94" selection-end-column="45" />
           <folding>
             <element signature="e#31#58#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/js/custom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="39" column="76" selection-start-line="39" selection-start-column="76" selection-end-line="39" selection-end-column="76" />
         </state>
       </provider>
     </entry>

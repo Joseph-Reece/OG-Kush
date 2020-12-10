@@ -37,7 +37,7 @@ const PRICE_RANGE = {
             var month = 6;
             if (age > 18) {
                 $('#age_gate').modal('hide');
-                window.location.reload()
+                window.location.href="http://budandcarriage.techplus.com.pk/";
 ;            }
             localStorage.setItem("age", age);
             $.ajax({
