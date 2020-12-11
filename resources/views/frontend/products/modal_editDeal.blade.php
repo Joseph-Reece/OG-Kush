@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
 
-            <form action="{{route('deal.store')}}" method="post" data-parsley-validate enctype="multipart/form-data">
+            <form id="dealsForm" action="{{route('deal.store')}}" method="post" data-parsley-validate enctype="multipart/form-data">
                 <input type="hidden" id="add_deal_method" name="_method" value="POST">
                 @csrf
 
@@ -38,19 +38,6 @@
                             </small>
                         </div>
 
-                        <div class="col-md-4">
-                            <label for="details">Discount details</label>
-                            <select name="details" class="custom-select" id="details" >
-                                <option value="" selected disabled>Please Select a Category...</option>
-                                <option value="Storefront" >Storefront</option>
-                                <option value="Medical" >Medical</option>
-                            </select>
-                            <small  class="text-muted">
-                                @error('details')
-                                <div class="alert alert-danger alert-dissmissible">{{ $message }}</div>
-                                @enderror
-                            </small>
-                        </div>
                     </div>
                     <div class="col-md-4">
                         <label for="description">Description</label>

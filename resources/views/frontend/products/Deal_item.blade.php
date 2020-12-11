@@ -25,6 +25,7 @@
             id="EditDeal"
             data-id="{{$deal->id}}"
             data-name="{{$deal->name}}"
+            data-image="{{$deal->image}}"
             data-description="{{$deal->description}}"
             data-details="{{$deal->details}}"
             >Edit</button>

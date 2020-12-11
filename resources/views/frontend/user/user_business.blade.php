@@ -344,7 +344,7 @@
                                 <button class="btn add-social" id="btn_add_hour" type="button">+ Add Hours</button>
                                 <button class="btn add-social" id="btn_add_amenities" type="button">+ Add Amenities</button>
                                 <button class="btn add-social" id="btn_add_payments" type="button">+ Add Payment Types</button>
-                                <button class="btn add-social" id="btn_add_deals" type="button">+ Add Deals</button>
+                                <a href="{{route('business_menu')}}" class="btn btn-search">+ Add Deals</a>
                                 <button class="btn add-social" id="btn_add_media" type="button">+ Add Media</button>
 
                             </div>

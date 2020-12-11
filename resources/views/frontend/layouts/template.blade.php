@@ -81,7 +81,7 @@
                                                 <ul>
                                                     <li class="{{isActiveMenu('user_profile')}}"><a href="{{route('user_profile')}}">{{__('View Profile')}}</a></li>
                                                     <li class="{{isActiveMenu('business_info')}}"><a href="{{route('business_info')}}">{{__('View store')}}</a></li>
-                                                    <li class="{{isActiveMenu('user_my_place')}}"><a href="{{route('user_my_place')}}">{{__('Help and Support')}}</a></li>
+                                                    <li class=""><a href="#0">{{__('Help and Support')}}</a></li>
                                                     <li>
                                                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('Logout')}}</a>
                                                         <form class="d-none" id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -313,7 +313,7 @@
                                         @endif
                                             <li class="{{isActiveMenu('user_profile')}}"><a href="{{route('user_profile')}}">{{__('View Profile')}}</a></li>
                                             <li class="{{isActiveMenu('business_info')}}"><a href="{{route('business_info')}}">{{__('View store')}}</a></li>
-                                            <li class="{{isActiveMenu('user_my_place')}}"><a href="{{route('user_my_place')}}">{{__('Help and Support')}}</a></li>
+                                            <li class=""><a href="#0">{{__('Help and Support')}}</a></li>
                                         <li>
                                             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{__('Logout')}}</a>
                                             <form class="d-none" id="logout-form" action="{{ route('logout') }}" method="POST">

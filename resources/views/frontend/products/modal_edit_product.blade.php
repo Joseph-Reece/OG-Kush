@@ -11,13 +11,12 @@
 
                     <div class="row">
                         <div class="col-md-5">
-                        <img style='height: 80px; width: 100px; border: 1px solid #000;' id="thumb_preview" src="{{asset('assets/images/cs-thumb.jpg')}}" alt=""/>
+                        <img style='height: 80px; width: 100px; border: 1px solid #000;' id="thumb_previeww" src="{{asset('assets/images/cs-thumb.jpg')}}" alt=""/>
                         </div>
 
                         <div class="col-md-4">
                             <label for="thumb_image">Add Image</label>
                             <input type="file" id="thumb_image" name="thumb" class="Upload-file" accept="image/*" placeholder="one">
-                            <small>Only add an image to change current image</small>
                         </div>
                         <small class="text-muted">
                             @error('thumb')

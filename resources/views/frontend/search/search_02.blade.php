@@ -26,7 +26,7 @@
                                 {{-- <div class="entry-head"> --}}
                                     <div class="place-type list-item">
                                         @foreach($place['place_types'] as $type)
-                                            <span>{{$type->name}}</span>
+                                            <span>{{$type->name }}</span>
                                         @endforeach
                                     </div>
                                     <div class="place-city">
@@ -77,7 +77,7 @@
                 <form action="#" class="filterForm" id="filterForm">
                     <div class="filter-head">
                         <h2>{{__('Filter')}}</h2>
-{{--                            <a href="#" class="clear-filter"><i class="fal fa-sync"></i>Clear all</a>--}}
+                         {{-- <a href="#" class="clear-filter"><i class="fal fa-sync"></i>Clear all</a>--}}
                         <a href="#" class="close-filter"><i class="las la-times"></i></a>
                     </div>
                     <div class="filter-box">

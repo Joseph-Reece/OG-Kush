@@ -46,9 +46,6 @@ class newcontroller extends Controller
     //
     public function Business_signup(Request $request, $id = null){
         SEOMeta(setting('app_name'), setting('home_description'));
-
-
-
         $country_id = '11';
 
         $countries = $this->country->getFullList();

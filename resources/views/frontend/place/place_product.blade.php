@@ -1,7 +1,7 @@
 <h4 class="text-muted">{{count($product)}} results found</h4>
 @foreach ($product as $item)
 <div class="card-deck">
-    <div class="card mb-3 border-0" >
+    <div class="card mb-3 " >
         <div class="row no-gutters">
           <div class="col-md-2">
                 <a href="{{route('product.show', $item->slug)}}">
@@ -10,15 +10,17 @@
           </div>
           <div class="col-md-10">
             <div class="card-body">
-                <div class="row">
+                <div class="row justify-content-between">
                     <p class="card-text">{{$item->productCategories->name}}</p>
-                    <p class="pull-right"> {{$item->price}}</p>
+
+                    <p class="pull-right">$ {{$item->price}}</p>
+
                 </div>
                 <a href="{{route('product.show', $item->slug)}}">
                     <h5 class="card-title">{{$item->name}}</h5>
                 </a>
                 <p class="card-text">{{$item->productCategories->name}}</p>
-              <p class="card-text"> {{$item->price}}</p>
+              <p class="card-text">Price: $ {{$item->price}}</p>
             </div>
           </div>
         </div>

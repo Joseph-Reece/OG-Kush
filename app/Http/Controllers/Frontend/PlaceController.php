@@ -138,7 +138,7 @@ class PlaceController extends Controller
         //dd($user);
 
         $place = $this->place->getById($user);
-        // dd($place);
+        //dd($place->license);
 
         $license_details = $place->license;
 
@@ -335,24 +335,24 @@ class PlaceController extends Controller
 
 
         $name = $request->name;
+        $request['name'] = $name;
 
         $slug = \Illuminate\Support\Str::slug($name);
         $request['slug'] = $slug;
-    // dd($request->slug);
-        // dd($request->all());
+        //dd($request->all());
 
         $rule_factory = RuleFactory::make([
             'user_id' => '',
             'country_id' => '',
             'city_id' => '',
             'category' => '',
-            'place_type' => '',
-            '%name%' => '',
+            //'place_type' => '',
+            'name' => '',
             'slug' => '',
             '%description%' => '',
             'price_range' => '',
-            'amenities' => '',
-            'payment_type' => '',
+            //'amenities' => '',
+            //'payment_type' => '',
             'address' => '',
             'lat' => '',
             'lng' => '',
@@ -363,13 +363,13 @@ class PlaceController extends Controller
             'opening_hour' => '',
             'gallery' => '',
             'video' => '',
-            'link_bookingcom' => '',
+            //'link_bookingcom' => '',
             'status' => '',
-            'thumb' => 'mimes:jpeg,jpg,png,gif|max:10000'
+            //'thumb' => 'mimes:jpeg,jpg,png,gif|max:10000'
         ]);
         $data = $this->validate($request, $rule_factory);
             // $data = $request->all();
-        // dd($data);
+        //dd($data);
 
         if ($request->hasFile('thumb')) {
             $thumb = $request->file('thumb');
@@ -377,11 +377,9 @@ class PlaceController extends Controller
             $data['thumb'] = $thumb_file;
         }
 
+
         $model = new Place();
         $model->fill($data);
-
-
-
 
         if ($model->save()) {
             return redirect(route('user_my_place'))->with('success', 'Create place success. Waiting admin review and apporeve!');

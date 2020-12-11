@@ -41,8 +41,8 @@ color: #999;
                     </i></cite></small>
                     @if(isset($place_types))
                         <div class="place__category">
-                            @foreach($place_types as $type)
-                                <a title="{{$type->name}}" href="{{route('page_search_listing', ['amenities[]' => $type->id])}}">{{$type->name}}</a>
+                            @foreach($categories as $type)
+                                <h4>{{$type->name}}</h4>
                             @endforeach
                         </div>
                     @endif
@@ -104,23 +104,6 @@ color: #999;
                             @endforeach
                         </select>
                     </div>
-                    {{-- <div class="col-md-3">
-                        <select name="" id="" class="custom-select">
-                            <option value="">option</option>
-                            <option value="">option</option>
-                            <option value="">option</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-
-                        <select name="" id="" class="custom-select">
-                            <option value="">option</option>
-                            <option value="">option</option>
-                            <option value="">option</option>
-                            <option value="">option</option>
-                        </select>
-                    </div> --}}
-
 
                 </div>
 
@@ -139,7 +122,6 @@ color: #999;
                     </form>
                 </div>
                 <div class="main-search">
-                    {{-- <h4 class="text-muted">{{count($place->products)}} results found</h4> --}}
                     @include('frontend.place.place_product')
                 </div>
                 <div class="results">
@@ -316,34 +298,16 @@ color: #999;
                               </div>
                               <div class="col-md-10">
                                 <div class="card-body">
-                                    {{-- <div class="row"> --}}
-                                     <h5 class="card-title">{{$item->name}}</h5>
-                                        {{-- <p class="pull-right"> {{$item->description}}</p> --}}
-                                    {{-- </div> --}}
+                                    <h5 class="card-title">{{$item->name}}</h5>
 
-                                  <p class="card-text"> {{$item->place->name}}</p>
-
-                                  <h4>Applies to:</h4>
-                                  <p class="card-text"> {{$item->details}}</p>
+                                    <p class="card-text"> {{$item->place->name}}</p>
 
                                 </div>
                               </div>
                             </div>
                           </div>
                     </div>
-                    {{-- <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">{{$item->name}}</h3>
-                        </div>
-                        <div class="col-md-2">
-                            <img style="max-height: 8rem" src="{{getImageUrl($item->image)}}" class="card-img" alt="...">
-                          </div>
-                        <div class="card-body">
-                            <p class="card-text">{{$item->description}}</p>
-                            <p class="card-text">{{$item->place->name}}</p>
-                            <p class="card-text">{{$item->details}}</p>
-                        </div>
-                    </div> --}}
+
                 </div>
                 @endforeach
                 @else

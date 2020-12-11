@@ -26,7 +26,6 @@ var map_refresh = true;
         clickHideMap: function () {
             $(document).on('click', '#mapview_close', function (e) {
                 e.preventDefault();
-                $('body').css('overflow', 'auto');
                 $('.maps-wrap').fadeOut(500);
                 map_refresh = false;
             });

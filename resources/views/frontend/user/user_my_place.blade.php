@@ -76,10 +76,10 @@
                                     </td>
                                     <td data-title="Status" class="{{STATUS[$place->status]}}">{{STATUS[$place->status]}}</td>
                                     <td data-title="" class="place-action">
-                                        <a href="{{route('place_edit', $place->id)}}" class="edit" title="{{__('Edit')}}"><i class="las la-edit"></i></a>
-                                        <a href="{{route('place_detail', $place->slug)}}" class="view" title="{{__('View')}}"><i class="la la-eye"></i></a>
+                                        <a href="{{route('place_edit', $place->id)}}" disabled class="edit" title="{{__('Edit')}}"><i class="las la-edit"></i></a>
+                                        <a href="{{route('place_detail', $place->slug)}}" disabled class="view" title="{{__('View')}}"><i class="la la-eye"></i></a>
                                         @if($place->status !== \App\Models\Place::STATUS_DELETE)
-                                            <a href="{{route('user_my_place_delete')}}" class="delete" title="{{__('Delete')}}" onclick="event.preventDefault(); if (confirm('are you sure?')) {document.getElementById('delete_my_place_form_{{$place->id}}').submit();}">
+                                            <a href="{{route('user_my_place_delete')}}" disabled  class="delete" title="{{__('Delete')}}" onclick="event.preventDefault(); if (confirm('are you sure?')) {document.getElementById('delete_my_place_form_{{$place->id}}').submit();}">
                                                 <i class="la la-trash-alt"></i>
                                                 <form class="d-none" id="delete_my_place_form_{{$place->id}}" action="{{route('user_my_place_delete')}}" method="POST">
                                                     @method('delete')

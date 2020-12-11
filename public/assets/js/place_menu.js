@@ -77,6 +77,7 @@ $(function () {
                 product_name = e.currentTarget.getAttribute('data-name'),
                 product_price = e.currentTarget.getAttribute('data-price'),
                 product_category = e.currentTarget.getAttribute('data-category');
+                product_image = e.currentTarget.getAttribute('data-image');
                 console.log(product_category);
            /*  let product_id = $(this).attr('data-id');
             let  product_name = $(this).attr('data-name');
@@ -87,6 +88,7 @@ $(function () {
            $('#product-name').val(product_name);
            $('#product-price').val(product_price);
            $('#product-category').val(product_category);
+            $('#thumb_previeww').attr('src', `/uploads/${product_image}`);
 
             $('#modal_edit_product').modal('show');
         });
@@ -118,8 +120,18 @@ $(function () {
          */
         $(document).on("click", "#addDeal", function (e) {
             e.preventDefault();
-            $('#submit_add_deal').hide();
-            $('#submit_edit_deal').show();
+
+            $('#submit_add_deal').show();
+            $('#submit_edit_deal').hide();
+
+            $('#description').val('')
+            $('#details').val('')
+            $('#title').val('')
+            $('#deal_id').val('')
+            $('#deal_preview').attr('src', `assets/images/cs-thumb.jpg`);
+            $('#add_deal_method').val('Post')//To handle Update
+
+
 
             $('#modal_add_deal').modal('show');
         });
@@ -132,12 +144,14 @@ $(function () {
                 deal_name = $(this).data('name'),
                 deal_description = $(this).data('description'),
                 deal_detail = $(this).data('details');
+                deal_image = $(this).data('image');
 
 
                 $('#description').val(deal_description)
                 $('#details').val(deal_detail)
                 $('#title').val(deal_name)
                 $('#deal_id').val(deal_id)
+                $('#deal_preview').attr('src', `/uploads/${deal_image}`);
                 $('#add_deal_method').val('PUT')//To handle Update
 
 

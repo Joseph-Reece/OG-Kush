@@ -7,7 +7,15 @@
 </style>
 
 <main id="main" class="site-main home-main business-main">
-
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
           <div class="listing-main ">
 
@@ -44,7 +52,7 @@
               </div><!-- .listing-nav -->
               <div class="listing-content">
                     {{-- <h2 class="title title-border-bottom align-center">{{__('Business SignUp')}}</h2> --}}
-                    <form action="{{route('save_business')}}" method="POST" class="my-form" enctype="multipart/form-data">
+                    <form action="{{route('place_create')}}" method="POST" class="my-form" enctype="multipart/form-data">
                         @csrf
                         <div class="listing-box" id="general">
                             <h3>{{__('General')}}</h3>
@@ -62,6 +70,16 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="field-group field-select">
+                                <label for="price_range">{{__('Price Range')}}</label>
+                                <select id="price_range" name="price_range">
+                                    @foreach(PRICE_RANGE as $key => $price)
+                                        <option value="{{$key}}">{{$price}}</option>
+                                    @endforeach
+                                </select>
+                                <i class="la la-angle-down"></i>
+                            </div>
+
 
                         </div>
 

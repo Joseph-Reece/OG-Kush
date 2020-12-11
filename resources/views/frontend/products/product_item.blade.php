@@ -36,6 +36,7 @@
                             class="btn"
                             data-id="{{$item->id}}"
                             data-name="{{$item->name}}"
+                            data-image="{{$item->image}}"
                             data-price="{{$item->price}}"
                             data-category="{{$item->productCategories->name}}"
                             ><i class="fa fa-edit"></i> Edit
