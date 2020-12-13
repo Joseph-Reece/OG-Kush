@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Place;
 use App\Models\Product;
+use App\Models\ProductCategory;
+use App\Models\ProductSubCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -47,9 +49,14 @@ class ProductsController extends Controller
             'name'=>'required',
             'category_id'=>'required',
             'price'=>'required',
+            'weight'=>'required',
+            'thumb'=>'required',
+            'description'=>'required',
+            'weight'=>'required',
+            'sub_category_id'=>'required',
             'thumb'=>'required',
        ],
-    //    Validation messages
+        //    Validation messages
        [
            'thumb.required' => 'A product has to have an image.',
            'category_id.required' => 'Please select one category.',
@@ -69,22 +76,19 @@ class ProductsController extends Controller
             $data['image'] = $thumb_file;
 
         }
+
+
+        // dd($data);
+
         $product = new Product();
 
         $product->fill($data);
-        $product->name = $data['name'];
-        $product->slug = $data['slug'];
+
 
 
         if ($product->save()) {
             return redirect()->back()->with('success', 'Product added Successfully');
         }
-
-
-
-
-
-
 
     }
 
@@ -129,25 +133,28 @@ class ProductsController extends Controller
         //
 
         $item = $request->id;
-        $data = $request->all();
         if ($request->hasFile('thumb')) {
             $thumb = $request->file('thumb');
             $thumb_file = $this->uploadImage($thumb, '');
             $data['image'] = $thumb_file;
 
         }
+        $data = $request->all();
+
+
+        $slug = \Illuminate\Support\Str::slug($data['name']);
+        $data['slug'] = $slug;
+
+        dd($data);
+
 
         $product = Product::find($item);
 
         $product->fill($data);
-        $product->name = $data['name'];
+
         if ($product->save()) {
             return redirect()->back()->with('success', 'Product updated Successfully');
         }
-
-
-
-
 
     }
 
@@ -172,5 +179,15 @@ class ProductsController extends Controller
 
             dd('Try again');
         }
+    }
+
+    public function getListByCategory($category_id)
+    {
+        $subCategory = ProductSubCategory::query();
+        if ($category_id) {
+            $subCategory->where('product_category_id', $category_id);
+        }
+        $subCategory = $subCategory->orderBy('created_at', 'desc')->get();
+        return $subCategory;
     }
 }

@@ -18,12 +18,28 @@ $(function () {
         reader.readAsDataURL(event.target.files[0]);
     }
 
+    /* =====================filter subcategories by category====================== */
+    $('#select_category').change(function () {
+        let category_id = $(this).val();
+        let select_category = $('#select_subcategory');
+        let data_resp = callAPI({
+            url: getUrlAPI(`${app_url}/sub-categories/${category_id}`, 'full'),
+            method: "GET"
+        });
+        data_resp.then(res => {
+            let html = '';
+            res.forEach(function (value, index) {
+                html += `<option value="${value.id}">${value.name}</option>`;
+            });
+            select_category.find('option').remove();
+            select_category.append(html);
+        });
+    });
 
 
-        $('.right_col').css('min-height', 'auto');
 
         //show , hide form
-        $( '.product' ).on( 'click', function(e) {
+       /*  $( '.product' ).on( 'click', function(e) {
             e.preventDefault();
             let btn_text = e.currentTarget.outerText;
             console.log(btn_text);
@@ -45,9 +61,9 @@ $(function () {
                 $( this ).parents( 'body' ).find( '#createForm' ).slideUp(500);
             }
 
-         });
+         }); */
         //show , hide Deals form
-        $( '.deal' ).on( 'click', function(e) {
+       /*  $( '.deal' ).on( 'click', function(e) {
             e.preventDefault();
 
             $( this ).toggleClass( 'active' );
@@ -68,26 +84,60 @@ $(function () {
                 $( this ).parents( 'body' ).find( '#dealsForm' ).slideUp(500);
             }
 
-         });
+         }); */
+
+
+        /* ===================== Add product Toggle ============================ */
+        $(document).on("click", "#addProduct", function (e) {
+            e.preventDefault();
+
+            $('#edit_product').hide();
+            $('#add_product').show();
+            $('#add_product_method').val('POST');
+
+
+            $('#product-id').val('');
+            $('#product-name').val('');
+            $('#product-price').val('');
+            $('#product-category').val('');
+            $('#product-subcategory').val('');
+            $('#product-description').val('');
+            $('#product-weight').val('');
+            $('#thumb_preview').attr('src', `assets/images/cs-thumb.jpg`);
+
+
+
+            $('#modal_edit_product').modal('show');
+        });
 
         /* ===================== Edit product Toggle ============================ */
         $(document).on("click", "#editProduct", function (e) {
             e.preventDefault();
-           let product_id = e.currentTarget.getAttribute('data-id'),
-                product_name = e.currentTarget.getAttribute('data-name'),
-                product_price = e.currentTarget.getAttribute('data-price'),
-                product_category = e.currentTarget.getAttribute('data-category');
-                product_image = e.currentTarget.getAttribute('data-image');
-                console.log(product_category);
-           /*  let product_id = $(this).attr('data-id');
-            let  product_name = $(this).attr('data-name');
-            let  product_price = $(this).attr('data-price');
-            let  product_category = $(this).attr('data-category'); */
 
-           $('#product-id').val(product_id);
-           $('#product-name').val(product_name);
-           $('#product-price').val(product_price);
-           $('#product-category').val(product_category);
+            $('#edit_product').show();
+            $('#add_product').hide();
+
+           let product_id = $(this).attr('data-id'),
+                product_name = $(this).attr('data-name'),
+                product_price = $(this).attr('data-price'),
+                product_category = $(this).attr('data-category'),
+                product_subcategory = $(this).attr('data-subcategory'),
+                product_description = $(this).attr('data-description'),
+                product_weight = $(this).attr('data-weight'),
+                product_image = $(this).attr('data-image');
+                console.log(product_description);
+
+
+            $('#add_product_method').val('PUT');
+
+            $('#product-id').val(product_id);
+            $('#product-name').val(product_name);
+            $('#product-price').val(product_price);
+            $('#select_category').val(product_category);
+            $('#select_subcategory').val(product_subcategory);
+            // $('#product-strain').val('');
+            $('#product-description').val(product_description);
+            $('#product-weight').val(product_weight);
             $('#thumb_previeww').attr('src', `/uploads/${product_image}`);
 
             $('#modal_edit_product').modal('show');

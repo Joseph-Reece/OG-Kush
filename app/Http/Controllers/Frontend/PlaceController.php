@@ -566,6 +566,8 @@ class PlaceController extends Controller
         $category = ProductCategory::all();
         $product = Product::where('place_id' , $place->id)->get();
 
+        //  dd($product->name);
+
 
 
         $deal = Deal::where('place_id' , $place->id)->get();

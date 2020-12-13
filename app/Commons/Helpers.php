@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\ProductCategory;
+use App\Models\ProductSubCategory;
 use Illuminate\Support\Facades\Request;
 use Carbon\Carbon;
 
@@ -16,6 +17,19 @@ const PRICE_RANGE = [
     "2" => "$$",
     "3" => "$$$",
     "4" => "$$$$",
+];
+
+const PRODUCT_WEIGHT = [
+
+    "0" => "1/8 Oz",
+    "1" => "1/2 Oz",
+    "2" => "1 Oz",
+    "3" => "1/4 Oz",
+    "4" => "Each",
+    "5" => "1 g",
+    "6" => "1/2 g",
+    "7" => "2 g",
+
 ];
 
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -258,4 +272,12 @@ function flagImageUrl($language_code)
 function getCategoryName($id){
     $name = ProductCategory::where('id', $id)->pluck('name')->first();
     return $name;
+}
+
+//get subcategory name
+function getSubcategoryName($id){
+    $name = ProductSubCategory::where('id', $id)->pluck('name')->first();
+
+    return $name;
+
 }

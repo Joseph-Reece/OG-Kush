@@ -12,10 +12,16 @@ class Product extends Model
         'category_id',
         'price',
         'image',
+        'name',
+        'slug',
+        'sub_category_id',
+        'weight',
+        'description',
     ];
 
    public function productCategories()
    {
+
        return $this->hasOne(ProductCategory::class, 'id', 'category_id');
    }
 
@@ -24,5 +30,10 @@ class Product extends Model
        return $this->hasOne(Place::class, 'id', 'place_id');
    }
 
-   
+   public function subcategories($id)
+   {
+       dd($id);
+       return $this->hasManyThrough(ProductSubCategory::class, ProductCategory::class);
+   }
+
 }

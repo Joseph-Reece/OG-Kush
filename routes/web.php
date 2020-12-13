@@ -95,7 +95,8 @@ $router->group([
 });
 $router->group([
     'namespace' => 'commons',
-    'middleware' => ['age-gate']], function () use ($router) {
+    'middleware' => []], function () use ($router) {
+    // 'middleware' => ['age-gate']], function () use ($router) {
 
         // My Routes
             $router->get('/busiP', 'newcontroller@Business_package')->name('business_package');
@@ -249,6 +250,9 @@ $router->get('/admincp/login', 'Admin\UserController@loginPage')->name('admin_lo
 * New Routes
  */
 Route::view('/map', 'frontend.New.tryMap')->middleware('auth');
+
+/* ======================fiiter subcategories by category */
+$router->get('/sub-categories/{category_id}', 'commons\ProductsController@getListByCategory')->name('get.Subcategories');
 
 
 

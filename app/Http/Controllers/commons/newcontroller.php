@@ -8,10 +8,12 @@ use App\Models\Amenities;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Country;
+use App\Models\Deal;
 use App\Models\Language;
 use App\Models\Place;
 use App\Models\PlaceType;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\Review;
 use Astrotomic\Translatable\Validation\RuleFactory;
 use Illuminate\Http\Request;
@@ -153,5 +155,6 @@ class newcontroller extends Controller
 
         return view('frontend.discover.index', compact('products'));
     }
+
 
 }

@@ -47,9 +47,9 @@
                                 @if (count($product)>0)
                                     {{count($product)}} products
                                 @endif
-                                <button class="btn product float-right">+ Add Product</button>
+                                <button id="addProduct" class="btn product float-right">+ Add Product</button>
                             </div>
-                            <div class="container-fluid  py-2 border rounded my-2 box-shadow" id="createForm" style="display: none; position: relative; overflow: hidden;">
+                            {{-- <div class="container-fluid  py-2 border rounded my-2 box-shadow" id="createForm" style="display: none; position: relative; overflow: hidden;">
 
                                 <form id="myForm" action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
                                     @csrf
@@ -109,7 +109,7 @@
                                     <input type="hidden" name="place_id" id="places-id" value="{{$place->id}}">
                                     <button type="submit" id="submit-MyForm" class="btn "><i class="fas fa-plus"></i> Add</button>
                                 </form>
-                            </div>
+                            </div> --}}
 
                             {{--Menu list--}}
                             <div class="menu-items ">

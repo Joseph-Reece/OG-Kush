@@ -430,6 +430,11 @@
 <script src="{{asset('assets/libs/quilljs/js/quill.core.js')}}"></script>
 <script src="{{asset('assets/libs/quilljs/js/quill.js')}}"></script>
 <script src="{{asset('assets/libs/gijgo/js/gijgo.min.js')}}"></script>
+{{-- tinyMce Editor --}}
+
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=e8cgxme8kbsc3u65sf2y8iixj1z0mzqlejahfw9hp9yoi1to"></script>
+
+
 <script src="{{asset('assets/libs/chosen/chosen.jquery.min.js')}}"></script>
 
 <!-- orther script -->
