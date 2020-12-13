@@ -23,6 +23,7 @@
                         <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Image</th>
                             <th>Category Name</th>
                             <th>Action</th>
                         </tr>
@@ -32,11 +33,13 @@
                                 @foreach($categories as $category)
                                     <tr>
                                         <td>{{$category->id}}</td>
+                                        <td><img class="place_list_thumb" src="{{getImageUrl($category->thumb)}}" alt="category thumb"></td>
                                         <td>{{$category->name}}</td>
                                         <td>
                                             <button type="button" class="btn btn-warning btn-xs category_edit"
                                                 data-id="{{$category->id}}"
                                                 data-name="{{$category->name}}"
+                                                data-thumb="{{$category->thumb}}"
                                             >Edit</button>
                                             <form class="d-inline" action="{{route('admin_product-category.destroy',$category->id)}}" method="POST">
                                                 @method('DELETE')
@@ -60,7 +63,7 @@
 </div>
 
 @include('admin.products.modal_add_category')
-@include('admin.products.modal_edit_category')
+{{-- @include('admin.products.modal_edit_category') --}}
 @stop
 @push('scripts')
     <script src="{{asset('admin/js/product_category.js')}}"></script>

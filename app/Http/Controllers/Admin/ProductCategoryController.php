@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
+use App\Models\ProductSubCategory;
 
 class ProductCategoryController extends Controller
 {
@@ -41,17 +42,22 @@ class ProductCategoryController extends Controller
     {
         //dd($request->input('name'));
         $this->validate($request, [
-            'name'=>'required|string'
+            'name'=>'required|string',
+            'thumb' => 'mimes:jpeg,jpg,png,gif|max:10000',
         ]);
 
 
+        $data = $request->all();
 
-
-        $name = $request->input('name');
+        if ($request->hasFile('thumb')) {
+            $thumb = $request->file('thumb');
+            $thumb_file = $this->uploadImage($thumb, '');
+            $data['thumb'] = $thumb_file;
+        }
 
         $category = new ProductCategory();
 
-        $category->name = $name;
+        $category->fill($data);
 
         $category->save();
 
@@ -60,45 +66,26 @@ class ProductCategoryController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request , $id)
+    public function update(Request $request)
     {
         //dd($id);
         $this->validate($request, [
-            'name'=>'required|string'
+            'name'=>'required|string',
+            'thumb' => 'mimes:jpeg,jpg,png,gif|max:10000',
+
         ]);
 
-        $category = ProductCategory::find($id);
+        $data = $request->all();
 
-        $category->name = $request->input('name');
+        if ($request->hasFile('thumb')) {
+            $thumb = $request->file('thumb');
+            $thumb_file = $this->uploadImage($thumb, '');
+            $data['thumb'] = $thumb_file;
+        }
+
+        $category = ProductCategory::find($request->category_id);
+
+        $category->fill($data);
 
         $category->save();
 
@@ -117,5 +104,22 @@ class ProductCategoryController extends Controller
     public function destroy($id)
     {
         //
+        $category = ProductCategory::find($id);
+        $path = $category->thumb;
+
+        if ($this->deleteImage($path)) {
+            # code...
+            $subCategories = ProductSubCategory::where('product_category_id', $id)->delete();
+
+            if ($subCategories) {
+
+                ProductCategory::destroy($id);
+
+            }
+
+            return redirect()->back()->with('success', 'Category Deleted Successfully');
+        }
+
+
     }
 }

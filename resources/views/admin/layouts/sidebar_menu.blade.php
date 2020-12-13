@@ -26,7 +26,9 @@
                     <a><i class="fa fa-folder"></i> Products <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{{route('admin_product-category.index')}}"><i class="fa fa-home"></i>Product Categories</a></li>
+                        <li><a href="{{route('admin_subcategory.index')}}"><i class="fa fa-gear"></i>Sub Categories</a></li>
                     </ul>
+
                 </li>
 
                 <li id="menu_blog">

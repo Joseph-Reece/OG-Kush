@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal_add_product_category" tabindex="-1" role="dialog" aria-labelledby="modal_add_category" aria-hidden="true">
+<div class="modal fade" id="modal_add_product_category" tabindex="-1" role="dialog" aria-labelledby="modal_add_product_category" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,6 +11,24 @@
                 @csrf
 
                 <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                        <img style='height: 80px; width: 100px; border: 1px solid #000;' id="thumb_preview" src="{{asset('assets/images/cs-thumb.jpg')}}" alt=""/>
+                        </div>
+
+                        <div class="">
+                            <label for="thumb_image">Add Image</label>
+                            <input type="file" id="thumb_image" name="thumb" class="Upload-file" accept="image/*" placeholder="one">
+                        </div>
+                        <small class="text-muted">
+                            @error('thumb')
+                            <div class="alert alert-danger alert-dissmissible">{{ $message }}</div>
+                            @enderror
+
+                        </small>
+                    </div>
+
+
                     <div class="row">
                         <div class="col-md-12">
 
@@ -26,7 +44,7 @@
                 <div class="modal-footer">
                     <input type="hidden" id="category_id" name="category_id" value="">
                     <button type="submit" class="btn btn-primary" id="submit_add_category">Add</button>
-                    <button class="btn btn-primary" id="submit_edit_category">Save</button>
+                    <button  class="btn btn-primary" id="submit_edit_category">Save</button>
                     <button class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
 

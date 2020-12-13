@@ -8,12 +8,18 @@ class ProductCategory extends Model
 {
     //
     protected $fillable = [
-        'name'
+        'name',
+        'thumb'
     ];
 
     public function products()
     {
         return $this->hasMany(Product::class, 'category_id', 'id');
+    }
+
+    public function subcategories()
+    {
+        return $this->hasMany(ProductSubCategory::class , 'product_category_id', 'id');
     }
 
 }

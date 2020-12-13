@@ -156,7 +156,6 @@ $router->group([
     $router->put('/category', 'CategoryController@update')->name('category_update');
     $router->delete('/category/{id}', 'CategoryController@destroy')->name('category_delete');
 
-//    Payment Types Routes
 
     $router->get('/amenities', 'AmenitiesController@list')->name('amenities_list');
     $router->post('/amenities', 'AmenitiesController@create')->name('amenities_create');
@@ -229,6 +228,18 @@ $router->group([
         Route::resource('roles', 'RoleController');
 
         Route::resource('product-category', 'ProductCategoryController');
+
+        $router->get('/product-category', 'ProductCategoryController@index')->name('product-category.index');
+        $router->post('/product-category', 'ProductCategoryController@store')->name('product-category.store');
+        $router->put('/product-category', 'ProductCategoryController@update')->name('product-category.update');
+        $router->delete('/product-category/{id}', 'ProductCategoryController@destroy')->name('product-category.delete');
+
+        // Route::resource('product-subcategory', 'ProductSubCategoryController');
+
+        $router->get('/product-subcategory', 'ProductSubCategoryController@index')->name('subcategory.index');
+        $router->post('/product-subcategory', 'ProductSubCategoryController@store')->name('subcategory.store');
+        $router->put('/product-subcategory', 'ProductSubCategoryController@update')->name('subcategory.update');
+        $router->delete('/product-subcategory/{id}', 'ProductSubCategoryController@destroy')->name('subcategory.delete');
 
 
 });
