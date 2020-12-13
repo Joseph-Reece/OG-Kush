@@ -32,7 +32,7 @@ $(function () {
             //Toggle button text onClick
             $(this).text(function(i, text){
 
-                return text === "Add Product" ? "Hide Form" : "Add Product";
+                return text === "Hide Form" ? "+ Add Product" : "Hide Form";
 
             })
 
@@ -55,7 +55,7 @@ $(function () {
             //Toggle button text onClick
             $(this).text(function(i, text){
 
-                return text === "Add Deal" ? "Hide Form" : "Add Deal";
+                return text === "Hide Form" ? "Add Deal" : "Hide Form";
 
             })
 

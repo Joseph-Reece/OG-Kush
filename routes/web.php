@@ -19,8 +19,8 @@ $router->group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth
  */
 $router->group([
     'namespace' => 'Frontend',
-//    'middleware' => []], function () use ($router) {
-     'middleware' => ['age-gate']], function () use ($router) {
+    'middleware' => []], function () use ($router) {
+     //'middleware' => ['age-gate']], function () use ($router) {
 
     $router->get('/', 'HomeController@index')->name('home');
     $router->get('/language/{locale}', 'HomeController@changeLanguage')->name('change_language');
@@ -169,10 +169,10 @@ $router->group([
     $router->put('/payment', 'paymentTypesController@update')->name('payment_update');
     $router->delete('/payment/{id}', 'paymentTypesController@destroy')->name('payment_delete');
 
-//    $router->get('/place-type', 'PlaceTypeController@list')->name('place_type_list');
-//    $router->post('/place-type', 'PlaceTypeController@create')->name('place_type_create');
-//    $router->put('/place-type', 'PlaceTypeController@update')->name('place_type_update');
-//    $router->delete('/place-type/{id}', 'PlaceTypeController@destroy')->name('place_type_delete');
+   $router->get('/place-type', 'PlaceTypeController@list')->name('place_type_list');
+   $router->post('/place-type', 'PlaceTypeController@create')->name('place_type_create');
+   $router->put('/place-type', 'PlaceTypeController@update')->name('place_type_update');
+   $router->delete('/place-type/{id}', 'PlaceTypeController@destroy')->name('place_type_delete');
 
     $router->get('/place', 'PlaceController@list')->name('place_list');
     $router->get('/place/add', 'PlaceController@createView')->name('place_create_view');
