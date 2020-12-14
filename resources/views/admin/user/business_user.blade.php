@@ -2,7 +2,7 @@
 @section('main')
     <div class="page-title">
         <div class="title_left">
-            <h3>All Users</h3>
+            <h3>Business users</h3>
         </div>
     </div>
     <div class="clearfix"></div>

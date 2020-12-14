@@ -44,6 +44,7 @@
 
                 <li><a href="{{route('admin_review_list')}}"><i class="fa fa-star-half-o"></i> Reviews</a></li>
                 <li><a href="{{route('admin_user_list')}}"><i class="fa fa-users"></i> Users</a></li>
+                <li><a href="{{route('admin_business_user_list')}}"><i class="fa fa-users"></i>Business Users</a></li>
 
                 <li><a href="{{route('admin_testimonial_list')}}"><i class="fa fa-users"></i> Testimonials</a></li>
 

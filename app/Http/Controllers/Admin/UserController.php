@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -24,7 +25,26 @@ class UserController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
+
         return view('admin.user.user_list', [
+            'users' => $users
+        ]);
+    }
+
+    public function business_list()
+    {
+        $users = DB::table('users')
+           ->whereExists(function ($query) {
+               $query->select(DB::raw(1))
+                     ->from('places')
+                     ->whereColumn('places.user_id', 'users.id');
+           })
+           ->get();
+        //    dd($users);
+
+
+
+        return view('admin.user.business_user', [
             'users' => $users
         ]);
     }

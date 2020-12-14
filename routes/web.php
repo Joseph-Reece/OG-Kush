@@ -19,8 +19,8 @@ $router->group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth
  */
 $router->group([
     'namespace' => 'Frontend',
-    'middleware' => []], function () use ($router) {
-     //'middleware' => ['age-gate']], function () use ($router) {
+    // 'middleware' => []], function () use ($router) {
+     'middleware' => ['age-gate']], function () use ($router) {
 
     $router->get('/', 'HomeController@index')->name('home');
     $router->get('/language/{locale}', 'HomeController@changeLanguage')->name('change_language');
@@ -185,6 +185,7 @@ $router->group([
     $router->delete('/review', 'ReviewController@destroy')->name('review_delete');
 
     $router->get('/users', 'UserController@list')->name('user_list');
+    $router->get('/users/businesses', 'UserController@business_list')->name('business_user_list');
 
     $router->get('/blog', 'PostController@list')->name('post_list_blog');
     $router->get('/pages', 'PostController@list')->name('post_list_page');
