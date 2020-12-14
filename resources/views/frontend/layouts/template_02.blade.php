@@ -366,7 +366,7 @@
                 </div>
             </div><!-- .top-footer -->
             <div class="footer__bottom">
-                <p class="footer__bottom__copyright">{{now()->year}} &copy; <a href="{{__('https://uxper.co')}}" target="_blank">{{__('UxPer')}}</a>. {{__('All rights reserved.')}}</p>
+                <p class="footer__bottom__copyright">{{now()->year}} &copy; <a href="{{__('https://budandcarriage.techplus.com.pk/')}}" target="_blank">{{__('budandcarriage')}}</a>. {{__('All rights reserved.')}}</p>
             </div><!-- .top-footer -->
         </div><!-- .container -->
     </footer><!-- site-footer -->
@@ -407,6 +407,9 @@
 <script src="{{asset('assets/libs/quilljs/js/quill.core.js')}}"></script>
 <script src="{{asset('assets/libs/quilljs/js/quill.js')}}"></script>
 <script src="{{asset('assets/libs/gijgo/js/gijgo.min.js')}}"></script>
+{{-- tinyMce Editor --}}
+
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=e8cgxme8kbsc3u65sf2y8iixj1z0mzqlejahfw9hp9yoi1to"></script>
 <script src="{{asset('assets/libs/chosen/chosen.jquery.min.js')}}"></script>
 <!-- orther script -->
 <script src="{{asset('assets/js/main_business.js?v=1.0')}}"></script>

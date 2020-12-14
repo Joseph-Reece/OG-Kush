@@ -60,6 +60,7 @@
                         <p class="card-text">{{$item->name}} </p>
                     </a>
                     <p class="card-text">$ {{$item->price}} </p>
+                   
                 </div>
             </div>
             @endforeach
