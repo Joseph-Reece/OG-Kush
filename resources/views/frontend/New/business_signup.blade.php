@@ -85,8 +85,8 @@
 
                 <div class="listing-box" id="location">
                     <h3>{{__('Location')}}</h3>
-                    <label for="country">{{__('Country')}} <span class="text-danger"> *</span></label>
                     <div class="field-clone">
+                        {{-- <label for="country">{{__('Country')}} <span class="text-danger"> *</span></label> --}}
                         <div class="field-inline field-3col">
                             <div class="field-group field-select">
                                 <select name="country_id" class="custom-select" id="select_country" required>
@@ -97,7 +97,7 @@
                                 </select>
                                 <i class="la la-angle-down"></i>
                             </div>
-                            <label for="city_id">City <span class="text-danger"> *</span></label>
+                            {{-- <label for="city_id">City <span class="text-danger"> *</span></label> --}}
                             <div class="field-group field-select">
                                 <select name="city_id" class="custom-select" id="select_city" required>
                                     <option value="">{{__('Select city')}}</option>
@@ -165,13 +165,30 @@
                                 <option class="" value="Testing Lab">{{__('Testing Lab')}}</option>
                             </select>
                         </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="field-group field-select">
+                                <label for="age_limit">{{__('Age Limit')}}</label>
+                                <select id="age_limit" name="age_limit">
+                                    @foreach(AGE_LIMIT as $key => $age)
+                                        <option value="{{$key}}">{{$age}}</option>
+                                    @endforeach
+                                </select>
+                                <i class="la la-angle-down"></i>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="field-group">
+                                <label for="license_expiration">{{__('Expiration')}} <span class="text-danger"> *</span></label>
+                                <input type="date" id="license_expiration" value="" class="" placeholder="" name="expiration">
+                            </div>
+
+                        </div>
                     </div>
 
-
-                    <div class="field-group">
-                        <label for="license_expiration">{{__('Expiration')}} <span class="text-danger"> *</span></label>
-                        <input type="date" id="license_expiration" value="" class="" placeholder="" name="expiration">
-                    </div>
                 </div>
 
                 <div class="field-group field-submit">

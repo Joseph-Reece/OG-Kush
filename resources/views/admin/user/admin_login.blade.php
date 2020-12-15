@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Golo. Dashboard</title>
+    <title>Bud & Carriage. Dashboard</title>
     <link href="{{asset('admin/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
@@ -22,7 +22,7 @@
             <section class="login_content">
                 <form action="{{ route('login') }}" method="POST" id="login_admin">
                     @csrf
-                    <h1>Golo. Admin</h1>
+                    <h1>Bud & Carriage. Admin</h1>
 
                     <p id="login_error" class="red"></p>
                     <div>

@@ -18,7 +18,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Description: *</label>
-                                    <textarea type="text" class="form-control" name="description" rows="6" required>{{$place->description}}</textarea>
+                                    <textarea type="text" class="form-control tinymce_editor" name="description" rows="6" required>{{$place->description}}</textarea>
                                 </div>
                             </div>
                     </div>
@@ -39,8 +39,8 @@
 
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="name">Category: *</label>
-                    <select class="form-control chosen-select" id="" name="category[]" multiple data-live-search="true" required>
+                    <label for="name">Business Type: *</label>
+                    <select class="form-control " id="" name="category[]"  required>
                         @foreach($categories as $cat)
                             <option value="{{$cat->id}}" {{isSelected($cat->id, $place->category)}}>{{$cat->name}}</option>
                         @endforeach
@@ -48,19 +48,14 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="name">Place type: *</label>
-                    <select class="form-control chosen-select" id="" name="place_type[]" multiple data-live-search="true" required>
-                        @foreach($place_types as $cat)
-                            <optgroup label="{{$cat->name}}">
-                                @foreach($cat['place_type'] as $type)
-                                    <option value="{{$type->id}}" {{isSelected($type->id, $place->place_type)}}>{{$type->name}}</option>
-                                @endforeach
-                            </optgroup>
+                    <label for="age_limit">Age Limit: *</label>
+                    <select class="form-control " id="age_limit" name="age_limit"  required>
+                        @foreach(AGE_LIMIT as $key=> $age)
+                            <option value="{{$key}}" {{isSelected(AGE_LIMIT[$key], $place->age_limit)}}>{{$age}}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
-
         </div>
 
 

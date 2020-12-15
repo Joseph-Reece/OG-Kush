@@ -53,6 +53,7 @@ class PlaceController extends Controller
         $place = $this->place->getBySlug($slug);
         if (!$place) abort(404);
 
+        // dd($place->age_limit);
         $city = City::query()
             ->with('country')
             ->where('id', $place->city_id)
@@ -73,6 +74,10 @@ class PlaceController extends Controller
         $place_types = PlaceType::query()
             ->whereIn('id', $place->place_type ? $place->place_type : [])
             ->get(['id', 'name']);
+
+        $payment_types = PaymentType::query()
+            ->whereIn('id', $place->payment_type ? $place->payment_type : [])
+            ->get(['id', 'name', 'icon']);
 
         $reviews = Review::query()
             ->with('user')
@@ -105,6 +110,7 @@ class PlaceController extends Controller
 
         $license = json_decode($license_details, true);
 
+        // dd($payment_types);
 
         // return $categories;
 
@@ -124,6 +130,7 @@ class PlaceController extends Controller
             'payment' => $payment,
             'categories' => $categories,
             'place_types' => $place_types,
+            'payment_types' => $payment_types,
             'reviews' => $reviews,
             'license' => $license,
             'review_score_avg' => $review_score_avg,
@@ -138,7 +145,7 @@ class PlaceController extends Controller
         //dd($user);
 
         $place = $this->place->getById($user);
-        //dd($place->license);
+        // dd($place->age_limit);
 
         $license_details = $place->license;
 
@@ -351,6 +358,7 @@ class PlaceController extends Controller
             'slug' => '',
             '%description%' => '',
             'price_range' => '',
+            'age_limit' => '',
             //'amenities' => '',
             //'payment_type' => '',
             'address' => '',
@@ -369,7 +377,7 @@ class PlaceController extends Controller
         ]);
         $data = $this->validate($request, $rule_factory);
             // $data = $request->all();
-        //dd($data);
+        // dd($data);
 
         if ($request->hasFile('thumb')) {
             $thumb = $request->file('thumb');
@@ -402,6 +410,7 @@ class PlaceController extends Controller
             'slug' => '',
             '%description%' => '',
             'price_range' => '',
+            'age_limit' => '',
             'amenities' => '',
             'payment_type' => '',
             'address' => '',

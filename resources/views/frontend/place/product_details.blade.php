@@ -16,35 +16,46 @@
 
 </style>
 @section('main')
-<div class="container">
 
-    <div class="card-deck">
-        <div class="card mb-3">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img style="height:384px; width:384px" src="{{getImageUrl($product->image)}}" class="card-img" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <p class="card-text"> {{$product->productCategories->name}}</p>
+<main id="main" class="site-main home-main business-main">
+    <div class="container">
 
-                  <h5 class="card-title">{{$product->name}}</h5>
-
-                  <div class="bg-light p-3">
-                      <p class="card-text"> Available at {{$product->place->name}}</p>
-                  </div>
-                  <h3 class="font-weight-bolder">
-                      ${{$product->price}}
-                  </h3>
-
-                  <a target="_blank" href="{{route('place_detail', $product->place->slug)}}" class="btn">View Retailer</a>
-
+        <div class="card-deck">
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img style="height:384px; width:384px" src="{{getImageUrl($product->image)}}" class="card-img" alt="...">
                 </div>
-              </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                    <p class="card-text"> {{$product->productCategories->name}}|{{getSubcategoryName($product->sub_category_id)}}</p>
+
+                    <h5 class="card-title">{{$product->name}}</h5>
+
+                   
+                    <h3 class="font-weight-bolder my-2">
+                        ${{$product->price}} @ {{PRODUCT_WEIGHT[$product->weight]}}
+                    </h3>
+
+                    <div class="my-3">
+
+                        <a style="border-radius: 5px"  target="_blank" href="{{route('place_detail', $product->place->slug)}}" class="btn">View Retailer</a>
+                    </div>
+
+                        <div class="">
+
+                        {!! $product->description !!}
+                        </div>
+
+
+
+
+                    </div>
+                    </div>
+                </div>
             </div>
-          </div>
+        </div>
     </div>
-</div>
     <div class="container">
         <h3>Related Products</h3>
         @if (count($related)>0)
@@ -60,12 +71,14 @@
                         <p class="card-text">{{$item->name}} </p>
                     </a>
                     <p class="card-text">$ {{$item->price}} </p>
-                   
+
                 </div>
             </div>
             @endforeach
         </div>
         @endif
     </div>
+</main>
+
 @stop
 

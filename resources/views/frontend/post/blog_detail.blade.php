@@ -25,7 +25,7 @@
                                 <h1>{{$post->title}}</h1>
                                 <ul class="entry-meta">
                                     <li>
-                                        {{__('by')}} <a title="Ben Cobb" href="#">{{$post['user']['name']}}</a>
+                                        {{-- {{__('by')}} <a title="Ben Cobb" href="#">{{$post['user']['name']}}</a> --}}
                                     </li>
                                     <li>{{formatDate($post->created_at, 'd M Y')}}</li>
                                 </ul>

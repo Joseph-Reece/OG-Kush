@@ -22,7 +22,7 @@
                                     <label for="place_description">Description
                                         <small>({{$language->code}})</small>
                                         : *</label>
-                                    <textarea type="text" class="form-control" id="place_description" name="{{$language->code}}[description]" rows="6" {{$index !== 0 ?: "required"}}></textarea>
+                                    <textarea type="text" class="form-control tinymce_editor" id="place_description" name="{{$language->code}}[description]" rows="6" {{$index !== 0 ?: "required"}}></textarea>
                                 </div>
                             </div>
                         @endforeach
@@ -46,8 +46,8 @@
 
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="place_category">Category: *</label>
-                    <select class="form-control chosen-select" id="place_category" name="category[]" multiple data-live-search="true" required>
+                    <label for="place_category">Business type: *</label>
+                    <select class="form-control chosen-select" id="place_category" name="category[]" required>
                         @foreach($categories as $cat)
                             <option value="{{$cat->id}}">{{$cat->name}}</option>
                         @endforeach
@@ -55,14 +55,10 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="place_type">Place type: *</label>
-                    <select class="form-control chosen-select" id="place_type" name="place_type[]" multiple data-live-search="true" required>
-                        @foreach($place_types as $cat)
-                            <optgroup label="{{$cat->name}}">
-                                @foreach($cat['place_type'] as $type)
-                                    <option value="{{$type->id}}">{{$type->name}}</option>
-                                @endforeach
-                            </optgroup>
+                    <label for="age_limit">Age Limit: *</label>
+                    <select class="form-control " id="age_limit" name="age_limit"  required>
+                        @foreach(AGE_LIMIT as $key=> $age)
+                            <option value="{{$key}}">{{$age}}</option>
                         @endforeach
                     </select>
                 </div>

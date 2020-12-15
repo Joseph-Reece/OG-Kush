@@ -896,3 +896,25 @@
         grid-template-columns: repeat(1, 1fr);
     }
 }
+
+    /* ============ horizontal nav list============== */
+
+
+  div.scrollmenu {
+    /* background-color: #333; */
+    overflow: auto;
+    white-space: nowrap;
+    margin-left: 10em;
+  }
+
+  div.scrollmenu a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 5px 10px;
+    text-decoration: none;
+  }
+
+  div.scrollmenu a:hover {
+    background-color: beige;
+  }

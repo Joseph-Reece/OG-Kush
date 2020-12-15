@@ -145,8 +145,6 @@ class ProductsController extends Controller
         $slug = \Illuminate\Support\Str::slug($data['name']);
         $data['slug'] = $slug;
 
-        dd($data);
-
 
         $product = Product::find($item);
 

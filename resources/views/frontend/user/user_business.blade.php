@@ -187,11 +187,11 @@
                                     </div>
                                     {{-- End Left side --}}
                                     <div class="col-md-6">
-
+                                       
                                         <div class="listing-box" id="description">
                                             <div class="field-group">
                                                 <label for="description">{{__('Description')}} ({{$language_default['code']}}) <span class="text-danger"> *</span></label>
-                                                <textarea class="form-control tinymce_edtor" id="description" name="description" rows="5">{{$place['description']}}</textarea>
+                                                <textarea class="form-control tinymce_editor" id="description" name="description" rows="5">{{$place['description']}}</textarea>
                                             </div>
                                         </div><!-- .listing-box -->
 

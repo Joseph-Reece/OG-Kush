@@ -26,7 +26,8 @@
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                lara.getgolo.com - version {{config('app.version')}}
+                budandcarriage.techplus.com.pk - version {{config('app.version')}}
+                {{-- http://budandcarriage.techplus.com.pk --}}
             </div>
             <div class="clearfix"></div>
         </footer>

@@ -108,6 +108,7 @@ class PlaceController extends Controller
             'price_range' => '',
             'amenities' => '',
             'payment_type' => '',
+            'age_limit' => '',
             'address' => '',
             'lat' => '',
             'lng' => '',
@@ -160,6 +161,7 @@ class PlaceController extends Controller
             'price_range' => '',
             'amenities' => '',
             'payment_type' => '',
+            'age_limit' => '',
             'address' => '',
             'lat' => '',
             'lng' => '',
@@ -177,7 +179,6 @@ class PlaceController extends Controller
             'seo_description' => ''
         ]);
         $data = $this->validate($request, $rule_factory);
-
         if ($request->hasFile('thumb')) {
             $thumb = $request->file('thumb');
             $thumb_file = $this->uploadImage($thumb, '');

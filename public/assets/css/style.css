@@ -646,7 +646,7 @@ textarea {
   vertical-align: 1px; }
 
 .site-header {
-  padding: 20px 0; }
+  padding: 5px 0; }
   .site-header .container-fluid {
     padding-left: 50px;
     padding-right: 50px; }
@@ -2629,7 +2629,7 @@ a.place__comments__reply {
   transition: all 0.3s;
   text-align: left;
   padding: 50px 30px 30px;
-  max-width: 400px;
+  max-width: 600px;
   width: 100%; }
   .popup-form .popup__close {
     top: 30px;

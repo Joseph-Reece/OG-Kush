@@ -145,13 +145,20 @@ color: #999;
                     <div class="col-md-6">
                         <div class="place-04">
                             <div class="place">
+                                <div class="blog-content">
 
-                                <div class="place__box place__box-overview">
-                                    <h3>{{__('Overview')}}</h3>
-                                    <div class="place__desc text-justify">
-                                        {{$place->description}}
-                                    </div><!-- .place__desc -->
-                                    <a href="#" class="show-more" title="{{__('Show more')}}">{{__('Show more')}}</a>
+                                    <div class="entry-content">
+                                        <div class="entry-desc">
+
+                                            <div class="place__box place__box-overview">
+                                                <h3>{{__('Overview')}}</h3>
+                                                <div class="place__desc text-justify">
+                                                    {!! $place->description !!}
+                                                </div><!-- .place__desc -->
+                                                <a href="#" class="show-more" title="{{__('Show more')}}">{{__('Show more')}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 @if(isset($amenities))
                                     <div class="place__box place__box-hightlight">
@@ -191,6 +198,43 @@ color: #999;
                                     </div>
                                 @endif
                             </div><!-- .place__box -->
+                                @if(isset($payment_types))
+                                    <div class="place__box place__box-hightlight">
+                                        <h3>{{__('Payment Types')}}</h3>
+                                        <div class="hightlight-grid">
+                                            @foreach($payment_types as $key => $item)
+                                                @if($key < 4)
+                                                    <div class="place__amenities">
+                                                        <img src="{{getImageUrl($item->icon)}}" alt="{{$item->name}}">
+                                                        <span>{{$item->name}}</span>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                            @if(count($payment_types) > 4)
+                                                <a class="open-popup" href="#show-amenities"><span class="hightlight-count">+({{count($amenities) - 4}})</span></a>
+                                            @endif
+                                            <div class="popup-wrap" id="show-amenities">
+                                                <div class="popup-bg popupbg-close"></div>
+                                                <div class="popup-middle">
+                                                    <a title="Close" href="#" class="popup-close">
+                                                        <i class="la la-times la-24"></i>
+                                                    </a><!-- .popup-close -->
+                                                    <h3>{{__('Payment  Types')}}</h3>
+                                                    <div class="popup-content">
+                                                        <div class="hightlight-flex">
+                                                            @foreach($payment_types as $key => $item)
+                                                                <div class="place__amenities">
+                                                                    <img src="{{getImageUrl($item->icon)}}" alt="{{$item->name}}">
+                                                                    <span>{{$item->name}}</span>
+                                                                </div>
+                                                            @endforeach
+                                                        </div><!-- .hightlight-flex -->
+                                                    </div><!-- .popup-content -->
+                                                </div><!-- .popup-middle -->
+                                            </div><!-- .popup-wrap -->
+                                        </div>
+                                    </div>
+                                @endif
 
                             <h3>{{__('State license')}}</h3>
                             @if ($license)
@@ -200,6 +244,11 @@ color: #999;
                                 </p>
                                 @endforeach
                             @endif
+
+                            <h3>{{__('Age Limit')}}</h3>
+                                <p class="pt-2">
+                                    {{AGE_LIMIT[$place->age_limit]}}
+                                </p>
                         </div>
                     </div>
                     <div class="col-md-6 border rounded border-secondary">

@@ -32,6 +32,13 @@ const PRODUCT_WEIGHT = [
 
 ];
 
+const AGE_LIMIT = [
+
+    "0" => "18 and Over",
+    "1" => "19 and Over",
+    "2" => "21 and Over",
+];
+
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
 const SOCIAL_LIST = [

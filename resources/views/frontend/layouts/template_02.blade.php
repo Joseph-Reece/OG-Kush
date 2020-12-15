@@ -194,9 +194,9 @@
                                     <li class="nav-login"><a title="Log In" href="#login">{{__('Log In')}}</a></li>
                                     <li class="nav-signup"><a title="Sign Up" href="#register">Sign Up</a></li>
                                 </ul>
-                                <p class="choose-more">{{__('Continue with')}} <a title="Facebook" class="fb" href="{{route('login_social', 'facebook')}}">Facebook</a> or <a title="Google" class="gg" href="{{route('login_social', 'google')}}">Google</a>
-                                    {{-- <a title="Apple" class="app" href="{{route('login_social', 'apple')}}">Apple</a></p> --}}
-                                <p class="choose-or"><span>{{__('Or')}}</span></p>
+                                {{-- <p class="choose-more">{{__('Continue with')}} <a title="Facebook" class="fb" href="{{route('login_social', 'facebook')}}">Facebook</a> or <a title="Google" class="gg" href="{{route('login_social', 'google')}}">Google</a>
+                                    {{-- <a title="Apple" class="app" href="{{route('login_social', 'apple')}}">Apple</a></p>
+                                <p class="choose-or"><span>{{__('Or')}}</span></p> --}}
                                 <div class="popup-content">
 
                                     <form action="{{route('login')}}" class="form-log form-content" id="login" method="POST">
@@ -214,30 +214,60 @@
                                     <form class="form-sign form-content" id="register" action="{{route('register')}}" method="post">
                                         @csrf
                                         <small class="form-text text-danger golo-d-none" id="register_error">error!</small>
-                                        <div class="field-input">
-                                            <input type="text" id="register_name" name="name" placeholder="Full Name" required>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                 <div class="field-input">
+                                                    <input type="text" id="register_name" name="name" placeholder="Full Name" required>
+                                                </div>
+                                                <div class="field-input">
+                                                    <input type="email" id="register_email" name="email" placeholder="Email" required>
+                                                </div>
+                                                <div class="field-input">
+                                                    <input type="password" id="register_password" name="password" placeholder="Password" required>
+                                                </div>
+                                                <div class="field-input">
+                                                    <input type="password" id="register_password_confirmation" name="password_confirmation" placeholder="Confirm Password" required>
+                                                </div>
+                                                <div class="field-check">
+                                                    <label for="accept">
+                                                        <input type="checkbox" id="accept" checked required>
+                                                        Accept the <a title="Terms" href="#">Terms</a> and <a title="Privacy Policy" href="#">Privacy Policy</a>
+                                                        <span class="checkmark">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6">
+                                                            <path fill="#FFF" fill-rule="nonzero" d="M2.166 4.444L.768 3.047 0 3.815 1.844 5.66l.002-.002.337.337L7.389.788 6.605.005z"/>
+                                                        </svg>
+                                                    </span>
+                                                    </label>
+                                                </div>
+                                                <button type="submit" class="gl-button btn button w-100" id="submit_register">{{__('Sign Up')}}</button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h4>Sign-up As: </h4>
+                                                <div class="">
+                                                    <a style="border-radius: 5px" href="#0" class="btn btn-search my-2">Dispensary</a>
+                                                </div>
+                                                <div class="">
+                                                    <a style="border-radius: 5px" href="#0" class="btn btn-search my-2">Doctor</a>
+                                                </div>
+                                                <div class="">
+                                                    <a style="border-radius: 5px" href="#0" class="btn btn-search my-2">Delivery</a>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="field-input">
-                                            <input type="email" id="register_email" name="email" placeholder="Email" required>
+                                        <div class="row">
+
+                                            <a href="{{route('login_social', 'facebook')}}" class="btn btn-search">Facebook</a>
                                         </div>
-                                        <div class="field-input">
-                                            <input type="password" id="register_password" name="password" placeholder="Password" required>
+                                        <div class="row">
+                                            <a href="{{route('login_social', 'google')}}" class="btn btn-search">Google</a>
+
                                         </div>
-                                        <div class="field-input">
-                                            <input type="password" id="register_password_confirmation" name="password_confirmation" placeholder="Confirm Password" required>
+                                        <div class="row">
+
+                                            <a href="" class="btn btn-search">Apple</a>
                                         </div>
-                                        <div class="field-check">
-                                            <label for="accept">
-                                                <input type="checkbox" id="accept" checked required>
-                                                Accept the <a title="Terms" href="#">Terms</a> and <a title="Privacy Policy" href="#">Privacy Policy</a>
-                                                <span class="checkmark">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6">
-                                                    <path fill="#FFF" fill-rule="nonzero" d="M2.166 4.444L.768 3.047 0 3.815 1.844 5.66l.002-.002.337.337L7.389.788 6.605.005z"/>
-                                                </svg>
-                                            </span>
-                                            </label>
-                                        </div>
-                                        <button type="submit" class="gl-button btn button w-100" id="submit_register">{{__('Sign Up')}}</button>
+
+
                                     </form>
                                     <form class="form-forgotpass form-content" id="forgot_password" action="{{route('api_user_forgot_password')}}" method="POST">
                                         @csrf
@@ -288,6 +318,15 @@
                     </div><!-- .right-header -->
                 </div><!-- .col-md-6 -->
             </div><!-- .row -->
+
+             {{-- horizontal Nav --}}
+             <div class="scrollmenu">
+                <a href="" class="nav-link">Dispensaries</a>
+                <a href="" class="nav-link"> Deliveries</a>
+                <a href="" class="nav-link">Maps</a>
+                <a href="" class="nav-link">Products</a>
+                <a href="" class="nav-link">Deals</a>
+            </div>
 
 
         </div><!-- .container-fluid -->
@@ -370,28 +409,6 @@
             </div><!-- .top-footer -->
         </div><!-- .container -->
     </footer><!-- site-footer -->
-    @if(isRoute('home'))
-        @php
-            $img_home_banner_app = getImageUrl(setting('home_banner_app'));
-            if (setting('home_banner_app')) {
-                $home_banner_app = "style=background-image:url({$img_home_banner_app})";
-            } else {
-                $home_banner_app = "style=background-image:url(/assets/images/bg-app.png)";
-            }
-        @endphp
-        <div class="landing-banner business-landing-banner" {{$home_banner_app}}>
-            <div class="container">
-                <div class="lb-info">
-                    <h2>{{__('The Golo App')}}</h2>
-                    <p>{{__('Download the app and go to travel the world.')}}</p>
-                    <div class="lb-button">
-                        <a href="#" title="App store"><img src="{{asset('assets/images/app-store.png')}}" alt="App store"></a>
-                        <a href="#" title="Google play"><img src="{{asset('assets/images/google-play.png')}}" alt="Google play"></a>
-                    </div>
-                </div><!-- .lb-info -->
-            </div>
-        </div><!-- .landing-banner -->
-    @endif
 </div><!-- #wrapper -->
 
 <!-- jQuery -->

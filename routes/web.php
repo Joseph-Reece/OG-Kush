@@ -105,9 +105,9 @@ $router->group([
             // Product management routes
     // Route::resource('products', 'ProductsController')->middleware('auth');
 
-    $router->post('/products/store', 'ProductsController@store')->name('product.store');
+    $router->post('/products-store', 'ProductsController@store')->name('product.store');
     $router->delete('/products/{id}', 'ProductsController@destroy')->name('product.destroy');
-    $router->post('/products/edit', 'ProductsController@update')->name('product.edit');
+    $router->put('/products-store', 'ProductsController@update')->name('product.edit');
     $router->get('/products/{slug}', 'ProductsController@show')->name('product.show');
     // Search reviews
     $router->get('/review-search', 'newcontroller@searchReview')->name('search.review');

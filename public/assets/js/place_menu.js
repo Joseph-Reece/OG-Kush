@@ -125,7 +125,7 @@ $(function () {
                 product_description = $(this).attr('data-description'),
                 product_weight = $(this).attr('data-weight'),
                 product_image = $(this).attr('data-image');
-                console.log(product_description);
+                // console.log(product_description);
 
 
             $('#add_product_method').val('PUT');

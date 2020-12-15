@@ -334,6 +334,14 @@
                 </div><!-- .col-md-6 -->
             </div><!-- .row -->
 
+            {{-- horizontal Nav --}}
+            <div class="scrollmenu">
+                <a href="{{route('search')}}" class="nav-link">Dispensaries</a>
+                <a href="{{route('search')}}" class="nav-link"> Deliveries</a>
+                <a href="{{route('page_search_listing')}}" class="nav-link">Maps</a>
+                <a href="{{route('discover.product')}}" class="nav-link">Products</a>
+                <a href="{{route('search')}}" class="nav-link">Deals</a>
+            </div>
 
         </div><!-- .container-fluid -->
     </header><!-- .site-header -->

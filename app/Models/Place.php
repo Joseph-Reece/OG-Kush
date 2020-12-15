@@ -29,6 +29,7 @@ class Place extends Model  implements TranslatableContract
         'country_id' => 'integer',
         'city_id' => 'integer',
         'price_range' => 'integer',
+        'age_limit' => 'integer',
         'lat' => 'double',
         'lng' => 'double',
         'booking_type' => 'integer',
@@ -38,7 +39,7 @@ class Place extends Model  implements TranslatableContract
     protected $table = 'places';
 
     protected $fillable = [
-        'user_id', 'name', 'country_id', 'city_id', 'category', 'place_type', 'slug', 'price_range', 'payment_type',
+        'user_id', 'name', 'country_id', 'city_id', 'category', 'place_type', 'slug', 'price_range', 'age_limit', 'payment_type',
         'amenities', 'address', 'lat', 'lng', 'email', 'phone_number', 'website', 'license' ,'social', 'opening_hour',
         'thumb', 'gallery', 'video', 'booking_type', 'link_bookingcom', 'status', 'seo_title', 'seo_description'
     ];
