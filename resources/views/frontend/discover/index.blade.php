@@ -3,15 +3,17 @@
 @section('main')
 
 <main id="main" class="site-main home-main business-main">
-    <div class="blogs">
-        <div class="container">
-        @foreach ($categories as $item)
+        <div class="container mt-3">
+            <h2 class="title title-border-bottom align-center">{{__('Product Categories')}}</h2>
+
             <div class="row">
-                <div class="col-md-4">
-                    <div class="place-item layout-02">
+                @foreach ($categories as $item)
+                <div class="col-md-3 ">
+
+                    <div class="place-item layout-02 my-2">
                         <div class="place-inner">
                             <div class="place-thumb">
-                                <a class="entry-thumb" href="#"><img src="{{getImageUrl($item->image)}}" alt="{{$item->name}}"></a>
+                                <a class="entry-thumb" href="#"><img src="{{getImageUrl($item->thumb)}}" alt="{{$item->name}}"></a>
                                 {{-- <a class="entry-thumb" href="{{route('product.show', $item->slug)}}"><img src="{{getImageUrl($item->image)}}" alt="{{$item->name}}"></a> --}}
 
                             </div>
@@ -27,13 +29,9 @@
                     </div>
 
                 </div>
-
+                @endforeach
             </div>
-        @endforeach
         </div>
-
-    </div>
-
 
 
     {{-- Sub Categories --}}
@@ -51,7 +49,7 @@
                     <div class="place-item layout-02">
                         <div class="place-inner">
                             <div class="place-thumb">
-                                <a class="entry-thumb" href="#"><img src="{{getImageUrl($item->image)}}" alt="{{$item->name}}"></a>
+                                <a class="entry-thumb" href="#"><img src="{{getImageUrl($item->thumb)}}" alt="{{$item->name}}"></a>
                                 {{-- <a class="entry-thumb" href="{{route('product.show', $item->slug)}}"><img src="{{getImageUrl($item->image)}}" alt="{{$item->name}}"></a> --}}
 
                             </div>
