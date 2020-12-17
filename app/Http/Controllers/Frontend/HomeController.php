@@ -415,15 +415,16 @@ class HomeController extends Controller
         $filter_category = $request->category_id;
         $filter_amenities = $request->amenities;
         $filter_place_type = $request->place_type;
-        $filter_city = $request->city;
+        $filter_city = $request->city_name;
         $sort_by = $request->sort_by;
         $action = $request->action;
         $paymentTypes = $request->paymentTypes;
         $price = $request->price;
+        $ajax = $request->ajax;
         $output='';
         // dd($request->paymentTypes);
 
-        $searchresults = $this->ourfetchListingsBySearch($keyword, $filter_category, $filter_amenities, $sort_by, $price,$paymentTypes);
+        $searchresults = $this->ourfetchListingsBySearch($keyword, $filter_category, $filter_amenities, $filter_city,   $sort_by, $price,$paymentTypes, $ajax);
 
         $places = $searchresults;
 
@@ -455,9 +456,73 @@ class HomeController extends Controller
         }
     }
 
+    // for map search page
+    public function Mapsearch(Request $request)
+    {
+        $keyword = $request->keyword;
+        $filter_category = $request->category_id;
+        $filter_amenities = $request->amenities;
+        $filter_place_type = $request->place_type;
+        $filter_city = $request->city_name;
+        $sort_by = $request->sort_by;
+        $action = $request->action;
+        $ajax = $request->ajax;
+        $paymentTypes = $request->paymentTypes;
+        $price = $request->price;
+        $output='';
+        //dd($filter_amenities);
+
+        $searchresults = $this->ourfetchListingsBySearch($keyword, $filter_category,  $filter_amenities, $filter_city, $sort_by, $price,$paymentTypes, $ajax);
+
+        $places = $searchresults;
+
+        // dd($places);
+        $payment_types= PaymentType::all();
+
+        $categories = Category::query()
+            ->where('type', Category::TYPE_PLACE)
+            ->get();
+
+        $amenities = Amenities::query()
+            ->get();
 
 
-public function ourfetchListingsBySearch($keyword = '', $filter_category, $filter_amenities,   $sort_by = '',  $price = '',$paymentTypes)
+
+
+            return view('frontend.search.mapSearch', [
+                'places' => $places,
+                'amenities' => $amenities,
+                'category' => $categories,
+                'payment_types' => $payment_types,
+            ]);
+
+    }
+
+    public function getListMapSearch(Request $request)
+    {
+        //dd($request->name);
+        $city = City::find($request->name);
+
+        $places = Place::query()
+            ->with('categories')
+            ->with('avgReview')
+            ->withCount('reviews')
+            ->where('city_id', $request->city_id)
+            ->where('category', 'like', '%' . $request->category_id . '%')
+            ->where('status', Place::STATUS_ACTIVE)
+            ->get();
+
+        $data = [
+            'city' => $city,
+            'places' => $places
+        ];
+
+        return $this->response->formatResponse(200, $data, 'success');
+    }
+
+
+
+public function ourfetchListingsBySearch($keyword = '', $filter_category=[], $filter_amenities, $filter_city,   $sort_by = '',  $price = '',$paymentTypes, $ajax)
     {
 
         $query = Place::query()
@@ -470,7 +535,17 @@ public function ourfetchListingsBySearch($keyword = '', $filter_category, $filte
             ->with('avgReview')
             ->withCount('wishList');
 
-        $query->where('status', Place::STATUS_ACTIVE);
+
+        //dd($filter_city);
+
+            $city_id = City::where('name', 'like', "%$filter_city%" )->get();
+            // dd($city_id[0]->id);
+            $myid=$city_id[0]->id;
+                    $query->where('status', Place::STATUS_ACTIVE);
+                    if($filter_city!=''){
+                        $query->where('city_id',  $myid);
+                    }
+
 
         //$place = Place::all()->first();
 
@@ -480,11 +555,11 @@ public function ourfetchListingsBySearch($keyword = '', $filter_category, $filte
             $query->where('name', 'like',  "%{$keyword}%")
                 ->orWhere('slug', 'like',  "%{$keyword}%");
         }
-        if ($filter_category != '') {
+        if ($filter_category!=[]) {
                     $query->where('category', 'like', "%$filter_category%");
         }
 
-        if ($filter_amenities) {
+        if ($filter_amenities!=[]) {
             foreach ($filter_amenities as $item) {
                 $query->where('amenities', 'like', "%$item%");
             }
@@ -510,6 +585,24 @@ public function ourfetchListingsBySearch($keyword = '', $filter_category, $filte
 
         if ($price) {
             $query->where('price_range', $price);
+        }
+
+        if ($ajax == '1') {
+            $places = $query->get();
+
+            $city = null;
+            if (isset($filter_city)) {
+                $city = City::query()
+                    ->whereIn('id', $filter_city)
+                    ->first();
+            }
+
+            $data = [
+                'city' => $city,
+                'places' => $places
+            ];
+
+            return $this->response->formatResponse(200, $data, 'success');
         }
 
 

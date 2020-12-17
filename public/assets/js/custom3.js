@@ -1,5 +1,4 @@
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-var usable_name="";
 var GL = GL || {};
 var GL_FILTER = GL_FILTER || {};
 var GL_BOOKING = GL_BOOKING || {};
@@ -318,7 +317,6 @@ const PRICE_RANGE = {
                 var ajax_call = true;
                 GL_FILTER.ajaxFilter();
                 GL_FILTER.ajaxFilterr();
-                GL_FILTER.ajaxFilterMap();
             });
 
 
@@ -328,7 +326,6 @@ const PRICE_RANGE = {
                 var ajax_call = true;
                 GL_FILTER.ajaxFilter();
                 GL_FILTER.ajaxFilterr();
-                GL_FILTER.ajaxFilterMap();
             });
         },
 
@@ -361,7 +358,6 @@ const PRICE_RANGE = {
                 var ajax_call = true;
                 GL_FILTER.ajaxFilter();
                 GL_FILTER.ajaxFilterr();
-                GL_FILTER.ajaxFilterMap();
             });
         },
 
@@ -408,8 +404,8 @@ const PRICE_RANGE = {
         ajaxFilterr: function () {
             var amenities = [];
             var paymentTypes = [];
-            console.log(usable_name);
-            let city_name = usable_name,
+
+            let city_id = $('input[name="city_id"]').val(),
                 keyword = $('#keyword').val(),
                 action = $('#action').val(),
                 category_id = $("select.cat_id").children("option:selected").val(),
@@ -429,7 +425,6 @@ const PRICE_RANGE = {
             console.log('amenities' + amenities);
             console.log('paymentTypes' + paymentTypes);
             console.log('keyword' + keyword);
-            console.log('city_name'+city_name);
             // console.log('Sort'+sort_by);
 
             // menu_filter_wrap.find("input[name='types']:checked").each(function () {
@@ -441,7 +436,7 @@ const PRICE_RANGE = {
             $.ajax({
                 url: `${app_url}/search`,
                 data: {
-                    'city_name': city_name,
+                    'city_id': city_id,
                     'category_id': category_id,
                     'keyword': keyword,
                     'action': action,
@@ -470,251 +465,6 @@ const PRICE_RANGE = {
                     console.log(e);
                 }
             });
-
-
-        },
-        ajaxFilterMap: function () {
-            console.log('ajaxFilterMap');
-            //Create markers
-            var golo_create_markers = function (data, map) {
-                var infowindow = new google.maps.InfoWindow();
-
-                $.each(data, function (i, value) {
-
-                    let html_review = '';
-                    let html_category = '';
-
-                    if (value.avg_review.length) {
-                        html_review = `
-                            ${value.avg_review[0]['aggregate']} <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="#DDD" fill-rule="evenodd" d="M6.12.455l1.487 3.519 3.807.327a.3.3 0 0 1 .17.525L8.699 7.328l.865 3.721a.3.3 0 0 1-.447.325L5.845 9.4l-3.272 1.973a.3.3 0 0 1-.447-.325l.866-3.721L.104 4.826a.3.3 0 0 1 .17-.526l3.807-.327L5.568.455a.3.3 0 0 1 .553 0z"/></svg>
-                            `;
-                    }
-
-                    if (value.categories) {
-                        for (var j = 0; j < value.categories.length; j++) {
-                            html_category += `<a style="color: #666;"> ${value.categories[j]['name']}</a>`;
-                        }
-                    }
-
-                    var html_infowindow = `
-                        <div id='infowindow'>
-                            <div class="places-item" data-title="${value.name}" data-lat="-33.796864" data-lng="150.620614" data-index="${i}">
-                                <a href="/place/${value.slug}"><img src="/uploads/${value.thumb}" alt=""></a>
-                                <div class="places-item__info">
-                                    <span class="places-item__category">${html_category}</span>
-                                    <a href="/place/${value.slug}"><h3>${value.name}</h3></a>
-                                    <div class="places-item__meta">
-                                        <div class="places-item__reviews">
-                                            <span class="places-item__number">
-                                                ${html_review}
-                                                <span class="places-item__count">(${value.reviews_count} reviews)</span>
-                                            </span>
-                                        </div>
-                                        <div class="places-item__currency">${PRICE_RANGE[value.price_range]}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-
-                    let marker_options = {
-                        position: {lat: parseFloat(value.lat), lng: parseFloat(value.lng)},
-                        map: map,
-                        draggable: false,
-                        animation: google.maps.Animation.DROP
-                    };
-                    if (value.categories[0].icon_map_marker) {
-                        marker_options.icon = {
-                            url: `/assets/images/icon-mapker.svg`
-                        }
-                    }
-                    let marker = new google.maps.Marker(marker_options);
-                    marker.addListener('click', function () {
-                        infowindow.setContent(html_infowindow);
-                        infowindow.open(map, this);
-                    });
-                }); // End each data
-            };
-            //Create markers
-
-            // Call api
-            var amenities = [];
-            var paymentTypes = [];
-            console.log(usable_name);
-            let city_name = usable_name,
-                keyword = $('#keyword').val(),
-                action = $('#action').val(),
-                category_id = $("select.cat_id").children("option:selected").val(),
-                sort_by = menu_filter_wrap.find('.sort-by.filter-control li.active a').data('sort'),
-                price = menu_filter_wrap.find('.price.filter-control li.active a').data('price');
-
-            menu_filter_wrap.find("input[name='amenities']:checked").each(function () {
-                amenities.push(parseInt($(this).val()));
-            });
-            menu_filter_wrap.find("input[name='types']:checked").each(function () {
-                paymentTypes.push(parseInt($(this).val()));
-            });
-            console.log('Sort' + sort_by);
-            console.log('action' + action);
-            console.log('category_id' + category_id);
-            console.log('price' + price);
-            console.log('amenities' + amenities);
-            console.log('paymentTypes' + paymentTypes);
-            console.log('keyword' + keyword);
-            console.log('city_name'+city_name);
-            // console.log('Sort'+sort_by);
-
-            // menu_filter_wrap.find("input[name='types']:checked").each(function () {
-            //     place_types.push(parseInt($(this).val()));
-            // });
-
-            // call api
-            $.ajax({
-                url: `${app_url}/map-search`,
-                data: {
-                    'city_name': city_name,
-                    'category_id': category_id,
-                    'keyword': keyword,
-                    'action': action,
-                    'sort_by': sort_by,
-                    'price': price,
-                    'paymentTypes': paymentTypes,
-                    'amenities': amenities,
-                    "_token": $('#token').val(),
-                },
-                beforeSend: function () {
-                    $('.golo-grid').fadeOut(500);
-                    $('.loads').fadeIn(1000);
-                },
-                success: function (data) {
-                    console.log('successfull search');
-                    // console.log('successfull search');
-                    // $('.main-search').hide();
-                    /* $('.golo-grid').empty();
-                    $('.golo-grid').append(data);
-                    $('.golo-grid').fadeIn(1000);
-                    $(".loads").fadeOut(500); */
-
-
-                    // Append results on map
-                    var golo_map_style_silver = [
-                        {
-                            "featureType": "landscape",
-                            "elementType": "labels",
-                            "stylers": [
-                                {
-                                    "visibility": "on"
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "transit",
-                            "elementType": "labels",
-                            "stylers": [
-                                {
-                                    "visibility": "on"
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "poi",
-                            "elementType": "labels",
-                            "stylers": [
-                                {
-                                    "visibility": "on"
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "water",
-                            "elementType": "labels",
-                            "stylers": [
-                                {
-                                    "visibility": "on"
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "road",
-                            "elementType": "labels.icon",
-                            "stylers": [
-                                {
-                                    "visibility": "on"
-                                }
-                            ]
-                        },
-                        {
-                            "stylers": [
-                                {
-                                    "hue": "#00aaff"
-                                },
-                                {
-                                    "saturation": -100
-                                },
-                                {
-                                    "gamma": 2.15
-                                },
-                                {
-                                    "lightness": 12
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "road",
-                            "elementType": "labels.text.fill",
-                            "stylers": [
-                                {
-                                    "visibility": "on"
-                                },
-                                {
-                                    "lightness": 24
-                                }
-                            ]
-                        },
-                        {
-                            "featureType": "road",
-                            "elementType": "geometry",
-                            "stylers": [
-                                {
-                                    "lightness": 57
-                                }
-                            ]
-                        }
-                    ];
-                    var golo_map_option = {
-                        scrollwheel: false,
-                        scroll: {x: $(window).scrollLeft(), y: $(window).scrollTop()},
-                        zoom: 12,
-                        center: {lat: parseFloat(data.city.lat), lng: parseFloat(data.city.lng)},
-                        mapTypeId: google.maps.MapTypeId.ROADMAP,
-                        mapTypeControl: false,
-                        fullscreenControl: true,
-                        streetViewControl: true,
-                        disableDefaultUI: false,
-                        styles: golo_map_style_silver,
-                        zoomControlOptions: {
-                            position: google.maps.ControlPosition.RIGHT_CENTER
-                        },
-                        streetViewControlOptions: {
-                            position: google.maps.ControlPosition.RIGHT_CENTER
-                        },
-                        fullscreenControlOptions: {
-                            position: google.maps.ControlPosition.RIGHT_CENTER
-                        }
-                    };
-
-                    var map = new google.maps.Map(document.getElementById('maps'), golo_map_option);
-                    golo_create_markers(data.places, map);
-
-
-
-                    GL_FILTER.filterDisplayClear();
-                },
-                error: function (e) {
-                    console.log(e);
-                }
-            });
-
 
         }
 
@@ -941,93 +691,11 @@ const PRICE_RANGE = {
     GL_BUSINESS_SEARCH.init();
 
 })(jQuery);
-$(window).on('load', function() {
-    getLatLng();
-})
+
 function getLatLng(){
-console.log("getlatlong");
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(initMap);
-    } else {
-        console.log( "Geolocation is not supported by this browser.");
-    }
-
-
+    
 }
-function initMap(position) {
-    // console.log( "Latitude: " + position.coords.latitude );
-    // console.log( "longitude: " + position.coords.longitude );
 
-
-    console.log( "Latitude: " + position.coords.latitude );
-    console.log( "longitude: " + position.coords.longitude );
-        var user_lat = position.coords.latitude;
-        var user_long = position.coords.longitude;
-    // const map = new google.maps.Map(document.getElementById("map"), {
-    //   zoom: 8,
-    //   center: { lat: 40.731, lng: -73.997 },
-    // });
-    const geocoder = new google.maps.Geocoder();
-    const infowindow = new google.maps.InfoWindow();
-      geocodeLatLng(geocoder, infowindow,user_lat,user_long);
-
-  }
-
-  function geocodeLatLng(geocoder, infowindow,user_lat,user_long) {
-    // const input = document.getElementById("latlng").value;
-    // const latlngStr = input.split(",", 2);
-    const latlng = {
-
-      lat: parseFloat(user_lat),
-      lng: parseFloat(user_long),
-    };
-    geocoder.geocode({ location: latlng }, (results, status) => {
-      if (status === "OK") {
-        if (results[0]) {
-
-
-          console.log(results[0]);
-          var city="";
-          var state="";
-          usable_name="";
-          results.forEach(function(element){
-            element.address_components.forEach(function(element2){
-                element2.types.forEach(function(element3){
-                switch(element3){
-                    case 'postal_code':
-                    postal_code = element2.long_name;
-                    break;
-                    case 'administrative_area_level_1':
-                    state = element2.long_name;
-                    break;
-                    case 'locality':
-                    city = element2.long_name;
-                    break;
-                }
-                })
-            });
-            });
-
-          console.log(city);
-          console.log(state);
-            if(city!=""){
-                // infowindow.setContent(results[0].formatted_address);
-                usable_name=city;
-            }else{
-                usable_name=state;
-            }
-
-            console.log(usable_name);
-
-            GL_FILTER.ajaxFilterr();
-        } else {
-          window.alert("No results found");
-        }
-      } else {
-        window.alert("Geocoder failed due to: " + status);
-      }
-    });
-  }
 /**
  * @param slug
  * @param type
@@ -1101,12 +769,6 @@ function doSearch(text) {
     clearTimeout(delayTimer);
     delayTimer = setTimeout(function () {
         GL_FILTER.ajaxFilterr()
-    }, 1000); // Will do the ajax stuff after 1000 ms, or 1 s
-}
-function doMapSearch(text) {
-    clearTimeout(delayTimer);
-    delayTimer = setTimeout(function () {
-        GL_FILTER.ajaxFilterMap()
     }, 1000); // Will do the ajax stuff after 1000 ms, or 1 s
 }
 

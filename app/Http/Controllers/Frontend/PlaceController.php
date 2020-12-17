@@ -469,6 +469,27 @@ class PlaceController extends Controller
 
         return $this->response->formatResponse(200, $data, 'success');
     }
+    public function getListMapSearch(Request $request)
+    {
+        dd($request->name);
+        $city = City::find($request->name);
+
+        $places = Place::query()
+            ->with('categories')
+            ->with('avgReview')
+            ->withCount('reviews')
+            ->where('city_id', $request->city_id)
+            ->where('category', 'like', '%' . $request->category_id . '%')
+            ->where('status', Place::STATUS_ACTIVE)
+            ->get();
+
+        $data = [
+            'city' => $city,
+            'places' => $places
+        ];
+
+        return $this->response->formatResponse(200, $data, 'success');
+    }
 
     public function getListFilter(Request $request)
     {

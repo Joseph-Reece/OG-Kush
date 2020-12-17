@@ -1,38 +1,130 @@
-@extends('frontend.layouts.template_02')
-<style type="text/css">
-            #mapDiv { width: 800px; height: 500px; }
-        </style>
-@section('main')
-<main id="main" class="site-main">
-    <div class="site-content">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reverse Geocoding</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-2mhVoLX7oIOgRQ-6bxlJt4TF5k0xhWc&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
 
-        <div class="container-fluid">
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
 
-           {{--  <div class="form-group">
-                <label for="address_address">Address</label>
-                <input type="text" id="address-input" name="address_address" class="form-control map-input">
-                <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
-                <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
-            </div>
-            <div id="address-map-container" style="width:100%;height:400px; ">
-                <div style="width: 100%; height: 100%" id="mapDiv"></div>
-            </div> --}}
-            <div class="field-group">
-                <input type="text" id="pac-input" placeholder="{{__('Full Address')}}" value="" name="address" autocomplete="off" required/>
-            </div>
-            <div class="field-group field-maps">
-                <div class="field-map">
-                    <input type="hidden" id="place_lat" name="lat" value="">
-                    <input type="hidden" id="place_lng" name="lng" value="">
-                    <div class="Show_map" id="map" style=" position: relative; overflow: hidden;"></div>
-                </div>
-            </div>
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: "Roboto", "sans-serif";
+        line-height: 30px;
+        padding-left: 10px;
+      }
 
-        </div>
+      #floating-panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        width: 350px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+
+      #latlng {
+        width: 225px;
+      }
+    </style>
+
+<script src="{{asset('assets/libs/jquery-1.12.4.js')}}"></script>
+    <script>
+
+        function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(initMap);
+        } else {
+            console.log( "Geolocation is not supported by this browser.");
+        }
+        }
+
+        function showPosition(position) {
+        console.log( "Latitude: " + position.coords.latitude );
+        console.log( "longitude: " + position.coords.longitude );
+            var user_lat = position.coords.latitude;
+            var user_long = position.coords.longitude;
+
+        }
+      function initMap(position) {
+        // console.log( "Latitude: " + position.coords.latitude );
+        // console.log( "longitude: " + position.coords.longitude );
+
+
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 8,
+          center: { lat: 40.731, lng: -73.997 },
+        });
+        const geocoder = new google.maps.Geocoder();
+        const infowindow = new google.maps.InfoWindow();
+        document.getElementById("submit").addEventListener("click", () => {
+          geocodeLatLng(geocoder, map, infowindow);
+        });
+      }
+
+      function geocodeLatLng(geocoder, map, infowindow) {
+        const input = document.getElementById("latlng").value;
+        const latlngStr = input.split(",", 2);
+        const latlng = {
+
+          lat: parseFloat(latlngStr[0]),
+          lng: parseFloat(latlngStr[1]),
+        };
+        geocoder.geocode({ location: latlng }, (results, status) => {
+          if (status === "OK") {
+            if (results[0]) {
+              map.setZoom(11);
+              const marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+              });
+              console.log(results[1]);
+              infowindow.setContent(results[0].political);
+              infowindow.open(map, marker);
+            } else {
+              window.alert("No results found");
+            }
+          } else {
+            window.alert("Geocoder failed due to: " + status);
+          }
+        });
+      }
+    </script>
+  </head>
+  <body onload="getLocation()">
+    <div id="floating-panel">
+
+        <button onclick="getLocation()">Try It</button>
+      <input id="latlng" type="text" value="40.714224,-73.961452" />
+      {{-- <input id="lat" type="text" value="" />
+      <input id="lng" type="text" value="" /> --}}
+      <input id="submit" type="button" value="Reverse Geocode" />
     </div>
-</main>
-@stop
-@push('scripts')
-  <!-- Map creation is here -->
-<script src="{{asset('assets/js/map.js')}}"></script>
-@endpush
+    <div id="map"></div>
+  </body>
+</html>

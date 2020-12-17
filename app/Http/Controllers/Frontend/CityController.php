@@ -126,6 +126,7 @@ class CityController extends Controller
         $description = $city->seo_description ? $city->seo_description : Str::limit($city->description, 165);
         SEOMeta($title, $description, getImageUrl($city->banner));
 
+        // return view('frontend.city.city_detail', [
         return view('frontend.city.city_detail', [
             'city' => $city,
             'categories' => $categories,

@@ -77,7 +77,9 @@ $router->group([
     $router->get('/ajax-search', 'HomeController@ajaxSearch');
     $router->get('/ajax-search-listing', 'HomeController@searchListing');
     $router->get('/search', 'HomeController@search')->name('search');
+    $router->get('/map-search', 'HomeController@Mapsearch')->name('mapsearch');
     $router->get('/places/map', 'PlaceController@getListMap')->name('place_get_list_map');
+    $router->get('/places/mapsearch', 'PlaceController@getListMapSearch')->name('place_get_list_map');
 
     $router->get('/cities/{country_id}', 'CityController@getListByCountry')->name('city_get_list');
     $router->get('/cities', 'CityController@search')->name('city_search');
