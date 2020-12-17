@@ -546,7 +546,8 @@ const PRICE_RANGE = {
                 action = $('#action').val(),
                 category_id = $("select.cat_id").children("option:selected").val(),
                 sort_by = menu_filter_wrap.find('.sort-by.filter-control li.active a').data('sort'),
-                price = menu_filter_wrap.find('.price.filter-control li.active a').data('price');
+                price = menu_filter_wrap.find('.price.filter-control li.active a').data('price'),
+                ajax = '1';
 
             menu_filter_wrap.find("input[name='amenities']:checked").each(function () {
                 amenities.push(parseInt($(this).val()));
@@ -577,6 +578,7 @@ const PRICE_RANGE = {
                     'keyword': keyword,
                     'action': action,
                     'sort_by': sort_by,
+                    'ajax': ajax,
                     'price': price,
                     'paymentTypes': paymentTypes,
                     'amenities': amenities,

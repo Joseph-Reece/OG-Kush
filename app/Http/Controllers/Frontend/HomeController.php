@@ -536,7 +536,7 @@ public function ourfetchListingsBySearch($keyword = '', $filter_category=[], $fi
             ->withCount('wishList');
 
 
-        //dd($filter_city);
+        //dd($ajax);
 
             $city_id = City::where('name', 'like', "%$filter_city%" )->get();
             // dd($city_id[0]->id);

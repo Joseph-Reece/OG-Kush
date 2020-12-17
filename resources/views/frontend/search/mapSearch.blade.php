@@ -160,17 +160,22 @@
 
                 <!-- .search__form -->
 
-                {{-- <div class="mw-box my-2">
+                <div class="mw-box my-2">
                     <div class="mw-grid golo-grid grid-4 ">
-                                @include('frontend.common.place_item')
+                        <div
+                        style=" height: 100vh;
+                        position: sticky;
+                        position: -webkit-sticky;
+                        ;"
+                        class="">
+                            <div style="height: 100%;" id="place-map-filter"></div>
+                        </div>
                     </div>
                     <div class="loads" style="display: none">
                         <div class="col-md-12 text-center">Loading...</div>
                     </div>
-                </div><!-- .mw-box --> --}}
-                <div class="entry-map">
-                    <div id="place-map-filter"></div>
-                </div>
+                </div><!-- .mw-box -->
+
 
 
                 </div><!-- .member-wrap -->

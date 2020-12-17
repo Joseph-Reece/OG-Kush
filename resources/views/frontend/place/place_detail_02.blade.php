@@ -244,11 +244,13 @@ color: #999;
                                 </p>
                                 @endforeach
                             @endif
+                                @if ($place->age_limit)
 
-                            <h3>{{__('Age Limit')}}</h3>
-                                <p class="pt-2">
-                                    {{AGE_LIMIT[$place->age_limit]}}
-                                </p>
+                                <h3>{{__('Age Limit')}}</h3>
+                                    <p class="pt-2">
+                                        {{AGE_LIMIT[$place->age_limit]}}
+                                    </p>
+                                @endif
                         </div>
                     </div>
                     <div class="col-md-6 border rounded border-secondary">

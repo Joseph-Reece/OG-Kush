@@ -201,7 +201,7 @@ function getImageUrl($image_file)
     if ($image_file) {
         return asset("uploads/{$image_file}");
     }
-    return "https://via.placeholder.com/300x300?text=GOLO";
+    return "https://via.placeholder.com/300x300?text=bud";
 }
 
 function getUserAvatar($image_file)

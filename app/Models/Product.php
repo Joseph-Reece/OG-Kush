@@ -30,9 +30,8 @@ class Product extends Model
        return $this->hasOne(Place::class, 'id', 'place_id');
    }
 
-   public function subcategories($id)
+   public function subcategories()
    {
-       dd($id);
        return $this->hasManyThrough(ProductSubCategory::class, ProductCategory::class);
    }
 

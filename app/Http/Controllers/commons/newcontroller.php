@@ -14,6 +14,7 @@ use App\Models\Place;
 use App\Models\PlaceType;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductSubCategory;
 use App\Models\Review;
 use Astrotomic\Translatable\Validation\RuleFactory;
 use Illuminate\Http\Request;
@@ -153,7 +154,21 @@ class newcontroller extends Controller
 
         $products= Product::all()->groupBy('category_id', true);
 
-        return view('frontend.discover.index', compact('products'));
+        $categories = ProductCategory::all();
+
+        $subCategories = ProductSubCategory::all()->groupBy('product_category_id', true);
+
+
+
+
+        //dd($subCategories);
+
+        //dd($categories->products);
+
+        return view('frontend.discover.index', [
+            'subCategory'=>$subCategories,
+            'categories'=>$categories,
+        ]);
     }
 
 
