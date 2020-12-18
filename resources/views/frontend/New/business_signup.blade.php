@@ -17,6 +17,8 @@
     </div>
 @endif
 
+@include('frontend.common.box-alert')
+
           <div class="listing-main ">
 
               <div class="listing-nav ">

@@ -346,7 +346,14 @@ class PlaceController extends Controller
 
         $slug = \Illuminate\Support\Str::slug($name);
         $request['slug'] = $slug;
-        //dd($request->all());
+
+        $exists = Place::where('user_id', Auth::user()->id)->get();
+        // dd($exists);
+
+        if($exists){
+            return redirect()->back()->with('error', 'User Already exists. Contact Admin');
+        }else{
+
 
         $rule_factory = RuleFactory::make([
             'user_id' => '',
@@ -393,7 +400,9 @@ class PlaceController extends Controller
             return redirect(route('user_my_place'))->with('success', 'Create place success. Waiting admin review and apporeve!');
         }
 
-        return $request;
+        // return $request;
+    }
+
     }
 
     public function update(Request $request)
