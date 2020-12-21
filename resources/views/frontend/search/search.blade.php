@@ -26,10 +26,8 @@
                                             <span>{{$type->name}}</span>
                                         @endforeach
                                     </div>
-                                    <div class="place-city">
-                                        <h5><a href="{{route('page_search_listing', ['city[]' => $place['city']['id']])}}">{{$place['city']['name']}}</a></h5>
-                                    </div>
-                                <h3 class="place-title"><a href="{{route('place_detail', $place->slug)}}">{{$place->name}}</a></h3>
+
+                                <h2 class="place-title"><a href="{{route('place_detail', $place->slug)}}">{{$place->name}}</a></h2>
 
                               </div>
                         </div>
@@ -38,11 +36,9 @@
                 @endforeach
                 @endif
               <div class="carousel-item active">
-                <img src="{{URL::asset('/assets/images/home-banner.jpg')}}" class="d-block w-100" alt="..." style="height: 400px">
+                <img src="{{URL::asset('/assets/images/newyork.jpg')}}" class="d-block w-100" alt="..." style="height: 400px">
               </div>
-              <div class="carousel-item">
-                <img src="{{URL::asset('/assets/images/home-banner.jpg')}}" class="d-block w-100" alt="..." style="height: 400px">
-              </div>
+
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>

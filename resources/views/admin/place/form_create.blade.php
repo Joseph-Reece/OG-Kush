@@ -8,25 +8,19 @@
 
             <div class="form-group row">
                 <div class="col-md-12">
-                    <div class="tab-content">
-                        @foreach($languages as $index => $language)
-                            <div class="tab-pane fade show {{$index !== 0 ?: "active"}}" id="language_{{$language->code}}" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="form-group">
-                                    <label for="place_name">Place name
-                                        <small>({{$language->code}})</small>
-                                        : *</label>
-                                    <input type="text" class="form-control" name="{{$language->code}}[name]" placeholder="What the name of place" autocomplete="off" {{$index !== 0 ?: "required"}}>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="place_description">Description
-                                        <small>({{$language->code}})</small>
-                                        : *</label>
-                                    <textarea type="text" class="form-control tinymce_editor" id="place_description" name="{{$language->code}}[description]" rows="6" {{$index !== 0 ?: "required"}}></textarea>
-                                </div>
-                            </div>
-                        @endforeach
+                    <div class="form-group">
+                        <label for="place_name">Place name
+                            : *</label>
+                        <input type="text" class="form-control" name="name" placeholder="What the name of place" autocomplete="off" required>
                     </div>
+
+                    <div class="form-group">
+                        <label for="place_description">Description
+                            : *</label>
+                        <textarea type="text" class="form-control tinymce_editor" id="place_description" name="description" rows="6" ></textarea>
+                    </div>
+
+
                 </div>
             </div>
 
@@ -47,7 +41,7 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="place_category">Business type: *</label>
-                    <select class="form-control chosen-select" id="place_category" name="category[]" required>
+                    <select class="form-control " id="place_category" name="category[]" required>
                         @foreach($categories as $cat)
                             <option value="{{$cat->id}}">{{$cat->name}}</option>
                         @endforeach
@@ -231,7 +225,7 @@
 
         <div class="ln_solid"></div>
 
-        <div id="golo_seo">
+        {{-- <div id="golo_seo">
             <p class="lead">Golo SEO</p>
 
             <div class="form-group">
@@ -242,7 +236,7 @@
                 <label for="seo_description">Meta Description:</label>
                 <textarea class="form-control" id="seo_description" name="seo_description"></textarea>
             </div>
-        </div>
+        </div> --}}
 
 
     </div>

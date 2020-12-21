@@ -424,7 +424,34 @@ class HomeController extends Controller
         $output='';
         // dd($request->paymentTypes);
 
-        $searchresults = $this->ourfetchListingsBySearch($keyword, $filter_category, $filter_amenities, $filter_city,   $sort_by, $price,$paymentTypes, $ajax);
+        $value = $request->session()->get('User');
+        $city = $value['location'];
+        // dd($city);
+
+        // Get All Places before Page loads
+        $query = Place::query()
+            ->with(['city' => function ($query) {
+                return $query->select('id', 'name', 'slug');
+            }])
+            ->with('categories')
+            // ->with('payment_types')
+            ->withCount('reviews')
+            ->with('avgReview')
+            ->withCount('wishList');
+
+            // Filter according to location before passing to search function
+            $city_id = City::where('name', 'like', "%$city%" )
+                            ->orWhere('slug', 'like', "%$city%")
+                            ->get();
+
+            // dd($city_id[0]->id);
+            $myid=$city_id[0]->id;
+            $query->where('status', Place::STATUS_ACTIVE);
+            $query->where('city_id',  $myid);
+
+            // dd($query->get());
+
+        $searchresults = $this->ourfetchListingsBySearch($query, $keyword, $filter_category, $filter_amenities, $filter_city,   $sort_by, $price,$paymentTypes, $ajax);
 
         $places = $searchresults;
 
@@ -472,7 +499,31 @@ class HomeController extends Controller
         $output='';
         //dd($filter_amenities);
 
-        $searchresults = $this->ourfetchListingsBySearch($keyword, $filter_category,  $filter_amenities, $filter_city, $sort_by, $price,$paymentTypes, $ajax);
+
+        $value = $request->session()->get('User');
+        $city = $value['location'];
+        // Get All Places before Page loads
+        $query = Place::query()
+            ->with(['city' => function ($query) {
+                return $query->select('id', 'name', 'slug');
+            }])
+            ->with('categories')
+            // ->with('payment_types')
+            ->withCount('reviews')
+            ->with('avgReview')
+            ->withCount('wishList');
+
+            // Filter according to location before passing to search function
+            $city_id = City::where('name', 'like', "%$city%" )
+                            ->orWhere('slug', 'like', "%$city%")
+                            ->get();
+
+            // dd($city_id[0]->id);
+            $myid=$city_id[0]->id;
+            $query->where('status', Place::STATUS_ACTIVE);
+            $query->where('city_id',  $myid);
+
+        $searchresults = $this->ourfetchListingsBySearch($query, $keyword, $filter_category,  $filter_amenities, $filter_city, $sort_by, $price,$paymentTypes, $ajax);
 
         $places = $searchresults;
 
@@ -522,34 +573,9 @@ class HomeController extends Controller
 
 
 
-public function ourfetchListingsBySearch($keyword = '', $filter_category=[], $filter_amenities, $filter_city,   $sort_by = '',  $price = '',$paymentTypes, $ajax)
+public function ourfetchListingsBySearch($query, $keyword = '', $filter_category=[], $filter_amenities, $filter_city,   $sort_by = '',  $price = '',$paymentTypes, $ajax)
     {
 
-        $query = Place::query()
-            ->with(['city' => function ($query) {
-                return $query->select('id', 'name', 'slug');
-            }])
-            ->with('categories')
-            // ->with('payment_types')
-            ->withCount('reviews')
-            ->with('avgReview')
-            ->withCount('wishList');
-
-
-        //dd($ajax);
-
-            $city_id = City::where('name', 'like', "%$filter_city%" )->get();
-            // dd($city_id[0]->id);
-            $myid=$city_id[0]->id;
-                    $query->where('status', Place::STATUS_ACTIVE);
-                    if($filter_city!=''){
-                        $query->where('city_id',  $myid);
-                    }
-
-
-        //$place = Place::all()->first();
-
-        //dd($query->avgReview);
 
         if ($keyword != '') {
             $query->where('name', 'like',  "%{$keyword}%")

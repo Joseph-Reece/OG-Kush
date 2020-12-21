@@ -127,6 +127,10 @@ $router->group([
     //discovery pages
     $router->get('/discover/products', 'newcontroller@ProductDiscoveryPage')->name('discover.product');
 
+    // Put User Location in Session
+    $router->get('/sessioning', 'newcontroller@SessionPut')->name('SessionPut');
+
+
 
 
 

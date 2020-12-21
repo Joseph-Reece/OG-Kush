@@ -93,7 +93,6 @@ class PlaceController extends Controller
         $request['user_id'] = Auth::id();
         $name = $request->name;
         $slug = \Illuminate\Support\Str::slug($name);
-
         $request['slug'] = $slug;
         // $request['slug'] = getSlug($request, 'name');
         $rule_factory = RuleFactory::make([
@@ -102,9 +101,9 @@ class PlaceController extends Controller
             'city_id' => '',
             'category' => '',
             'place_type' => '',
-            '%name%' => '',
+            'name' => '',
             'slug' => '',
-            '%description%' => '',
+            'description' => '',
             'price_range' => '',
             'amenities' => '',
             'payment_type' => '',
@@ -135,6 +134,8 @@ class PlaceController extends Controller
         }
 
         $model = new Place();
+        $model->name = $data['name'];
+        $model->name = $data['description'];
         $model->fill($data);
 
         if ($model->save()) {
@@ -155,9 +156,9 @@ class PlaceController extends Controller
             'city_id' => '',
             'category' => '',
             'place_type' => '',
-            '%name%' => '',
+            'name' => '',
             'slug' => '',
-            '%description%' => '',
+            'description' => '',
             'price_range' => '',
             'amenities' => '',
             'payment_type' => '',
@@ -185,7 +186,10 @@ class PlaceController extends Controller
             $data['thumb'] = $thumb_file;
         }
 
+        // dd($data);
         $model = Place::find($request->place_id);
+        $model->name = $data['name'];
+        $model->name = $data['description'];
         $model->fill($data);
 
         if ($model->save()) {

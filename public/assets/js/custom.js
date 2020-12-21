@@ -409,8 +409,8 @@ const PRICE_RANGE = {
             var amenities = [];
             var paymentTypes = [];
             console.log(usable_name);
-            let city_name = usable_name,
-                keyword = $('#keyword').val(),
+            //  city_name = usable_name,
+            let keyword = $('#keyword').val(),
                 action = $('#action').val(),
                 category_id = $("select.cat_id").children("option:selected").val(),
                 sort_by = menu_filter_wrap.find('.sort-by.filter-control li.active a').data('sort'),
@@ -429,7 +429,7 @@ const PRICE_RANGE = {
             console.log('amenities' + amenities);
             console.log('paymentTypes' + paymentTypes);
             console.log('keyword' + keyword);
-            console.log('city_name'+city_name);
+            // console.log('city_name'+city_name);
             // console.log('Sort'+sort_by);
 
             // menu_filter_wrap.find("input[name='types']:checked").each(function () {
@@ -441,7 +441,7 @@ const PRICE_RANGE = {
             $.ajax({
                 url: `${app_url}/search`,
                 data: {
-                    'city_name': city_name,
+                    // 'city_name': city_name,
                     'category_id': category_id,
                     'keyword': keyword,
                     'action': action,
@@ -541,8 +541,8 @@ const PRICE_RANGE = {
             var amenities = [];
             var paymentTypes = [];
             console.log(usable_name);
-            let city_name = usable_name,
-                keyword = $('#keyword').val(),
+            //  city_name = usable_name,
+            let keyword = $('#keyword').val(),
                 action = $('#action').val(),
                 category_id = $("select.cat_id").children("option:selected").val(),
                 sort_by = menu_filter_wrap.find('.sort-by.filter-control li.active a').data('sort'),
@@ -562,7 +562,7 @@ const PRICE_RANGE = {
             console.log('amenities' + amenities);
             console.log('paymentTypes' + paymentTypes);
             console.log('keyword' + keyword);
-            console.log('city_name'+city_name);
+            // console.log('city_name'+city_name);
             // console.log('Sort'+sort_by);
 
             // menu_filter_wrap.find("input[name='types']:checked").each(function () {
@@ -573,7 +573,7 @@ const PRICE_RANGE = {
             $.ajax({
                 url: `${app_url}/map-search`,
                 data: {
-                    'city_name': city_name,
+                    // 'city_name': city_name,
                     'category_id': category_id,
                     'keyword': keyword,
                     'action': action,
@@ -718,6 +718,17 @@ const PRICE_RANGE = {
             });
 
 
+        },
+
+        ajaxSetLocation: function(usable_name){
+            console.log(usable_name);
+            $.ajax({
+                url: `${app_url}/sessioning`,
+                data: { location: usable_name },
+                success: function (data) {
+                    console.log('Geo-location successfull');
+                },
+           });
         }
 
 
@@ -1021,7 +1032,9 @@ function initMap(position) {
 
             console.log(usable_name);
 
-            GL_FILTER.ajaxFilterr();
+            // GL_FILTER.ajaxFilterr();
+            GL_FILTER.ajaxSetLocation(usable_name);
+
         } else {
           window.alert("No results found");
         }

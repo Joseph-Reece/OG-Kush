@@ -9,19 +9,17 @@
 
             <div class="form-group row">
                 <div class="col-md-12">
-                    <div class="tab-content">
-
-                            <div class="tab-pane fade show active" id="" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="form-group">
-                                    <label for="place_name">Place name *</label>
-                                    <input type="text" class="form-control" name="name" value="{{$place->name}}" placeholder="What the name of place" autocomplete="off" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">Description: *</label>
-                                    <textarea type="text" class="form-control tinymce_editor" name="description" rows="6" required>{{$place->description}}</textarea>
-                                </div>
-                            </div>
+                    <div class="tab-pane fade show active" id="" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="form-group">
+                            <label for="place_name">Place name *</label>
+                            <input type="text" class="form-control" name="name" value="{{$place->name}}" placeholder="What is the name of place" autocomplete="off" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Description: *</label>
+                            <textarea type="text" class="form-control tinymce_editor" name="description" rows="6" >{{$place->description}}</textarea>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
@@ -270,7 +268,7 @@
 
         <div class="ln_solid"></div>
 
-        <div id="golo_seo">
+        {{-- <div id="golo_seo">
             <p class="lead">Golo SEO</p>
 
             <div class="form-group">
@@ -281,7 +279,7 @@
                 <label for="seo_description">Meta Description:</label>
                 <textarea class="form-control" id="seo_description" name="seo_description">{{$place['seo_description']}}</textarea>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 

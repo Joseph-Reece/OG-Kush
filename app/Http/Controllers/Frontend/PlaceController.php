@@ -480,8 +480,12 @@ class PlaceController extends Controller
     }
     public function getListMapSearch(Request $request)
     {
-        dd($request->name);
+        // dd($request->ip());
         $city = City::find($request->name);
+
+
+        $value = $request->session()->get('User');
+        // dd($value['location']);
 
         $places = Place::query()
             ->with('categories')

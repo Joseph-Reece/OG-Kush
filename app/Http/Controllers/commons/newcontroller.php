@@ -171,5 +171,21 @@ class newcontroller extends Controller
         ]);
     }
 
+    public function mapSearch(){
+
+    }
+
+    public function SessionPut(Request $request){
+        $city = $request->location;
+
+
+
+        session(['User.location' => $city]);
+        $data = $request->session()->all();
+        dd($data);
+
+
+        return $this->response->formatResponse(200, $city, 'success');
+    }
 
 }
